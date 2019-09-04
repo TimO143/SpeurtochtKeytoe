@@ -18,7 +18,7 @@ class App extends Component {
             answer: '',
             answerCount: {},
             result: '',
-            match: true
+            match: false
         };
         // hard bind event handler voor performance increase
         this.handleAnswerSelected = this.handleAnswerSelected.bind(this);
@@ -150,3 +150,19 @@ class App extends Component {
 }
 
 export default App;
+
+        super(props);
+
+        this.state = {
+            counter: 0,
+            questionId: 2,
+            question: '',
+            answerOptions: [],
+            answer: '',
+            answerCount: {},
+            result: '',
+            match: false
+        };
+        // hard bind event handler voor performance increase
+        this.handleAnswerSelected = this.handleAnswerSelected.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
