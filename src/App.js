@@ -18,7 +18,7 @@ class App extends Component {
             answer: '',
             answerCount: {},
             result: '',
-            match: false
+            match: true
         };
         // hard bind event handler voor performance increase
         this.handleAnswerSelected = this.handleAnswerSelected.bind(this);
