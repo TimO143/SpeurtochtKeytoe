@@ -12,7 +12,7 @@ class App extends Component {
 
         this.state = {
             counter: 0,
-            questionId: 1,
+            questionId: 2,
             question: '',
             answerOptions: [],
             answer: '',
