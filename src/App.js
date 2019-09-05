@@ -13,22 +13,22 @@ class App extends Component {
       counter: 0,
       questionId: 1,
       question: '',
-      answerOptions: [],
+      answerOptions: '',
       answer: '',
       answersCount: {},
       result: ''
     };
 
-    this.handleAnswerSelected = this.handleAnswerSelected.bind(this);
+    //this.handleAnswerSelected = this.handleAnswerSelected.bind(this);
   }
 
   componentDidMount() {
-    const shuffledAnswerOptions = quizQuestions.map(question =>
-      this.shuffleArray(question.answers)
-    );
+    //const shuffledAnswerOptions = quizQuestions.map(question =>
+    //  this.shuffleArray(question.answers)
+    //);
     this.setState({
-      question: quizQuestions[0].question,
-      answerOptions: shuffledAnswerOptions[0]
+        question: quizQuestions[0].question,
+        answerOptions: quizQuestions[0].answers
     });
   }
 
@@ -53,24 +53,17 @@ class App extends Component {
   }
 
   handleAnswerSelected(event) {
-    this.setUserAnswer(event.currentTarget.value);
+    //this.setUserAnswer(event.currentTarget.value);
 
-    if (this.state.questionId < quizQuestions.length) {
-      setTimeout(() => this.setNextQuestion(), 300);
+      //  gaat naar volgende bij input
+      if (this.state.questionId < quizQuestions.length) {
+      this.setNextQuestion();
     } else {
-      setTimeout(() => this.setResults(this.getResults()), 300);
+      this.setResults(this.getResults());
     }
   }
 
-  setUserAnswer(answer) {
-    this.setState((state, props) => ({
-      answersCount: {
-        ...state.answersCount,
-        [answer]: (state.answersCount[answer] || 0) + 1
-      },
-      answer: answer
-    }));
-  }
+  
 
   setNextQuestion() {
     const counter = this.state.counter + 1;
