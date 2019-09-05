@@ -2,18 +2,34 @@ import React from 'react';
 //import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 
-function validate(answer) {
-    return {
-        answer: answer.length == 0
-    };
+class AnswerOption extends React.Component {
+
+    constructor() {
+        super()
+        this.state = {}
+    }
+    render() {
+        return (
+            <li className="answerOption">
+                <form onSubmit={this.props.onAnswerSelected}>
+                    <input
+                        type="input"
+                    //value={this.props.givenAnswer}
+                    />
+                </form>
+
+            </li>
+        );
+    }
 }
 
-class AnswerSubmit extends React.Component {
-    constructor() {
-        super();
-        this.state = {
-            questionId: 1,
-            answer: ""
+
+
+AnswerOption.propTypes = {
+  answer: PropTypes.string.isRequired,
+  onAnswerSelected: PropTypes.func.isRequired
+  
+};
 
 
         };

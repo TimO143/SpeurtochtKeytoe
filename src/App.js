@@ -26,53 +26,48 @@ class App extends Component {
     //const shuffledAnswerOptions = quizQuestions.map(question =>
     //  this.shuffleArray(question.answers)
     //);
-    this.setState({
+      this.setState({
         question: quizQuestions[0].question,
         answerOptions: quizQuestions[0].answers
     });
   }
 
-  shuffleArray(array) {
-    var currentIndex = array.length,
-      temporaryValue,
-      randomIndex;
+  //shuffleArray(array) {
+  //  var currentIndex = array.length,
+  //    temporaryValue,
+  //    randomIndex;
 
-    // While there remain elements to shuffle...
-    while (0 !== currentIndex) {
-      // Pick a remaining element...
-      randomIndex = Math.floor(Math.random() * currentIndex);
-      currentIndex -= 1;
+  //  // While there remain elements to shuffle...
+  //  while (0 !== currentIndex) {
+  //    // Pick a remaining element...
+  //    randomIndex = Math.floor(Math.random() * currentIndex);
+  //    currentIndex -= 1;
 
-      // And swap it with the current element.
-      temporaryValue = array[currentIndex];
-      array[currentIndex] = array[randomIndex];
-      array[randomIndex] = temporaryValue;
-    }
+  //    // And swap it with the current element.
+  //    temporaryValue = array[currentIndex];
+  //    array[currentIndex] = array[randomIndex];
+  //    array[randomIndex] = temporaryValue;
+  //  }
 
-    return array;
-  }
+  //  return array;
+  //}
 
-  handleAnswerSelected(event) {
-    //this.setUserAnswer(event.currentTarget.value);
-      //gaat naar volgende bij input
-    if (this.state.questionId < quizQuestions.length) {
+    handleAnswerSelected(event) {
+        //  gaat naar volgende bij input
+        this.setState({
+            answer: event.target.value
+        })
+        if (this.state.questionId < quizQuestions.length) {
       this.setNextQuestion();
     } else {
       this.setResults(this.getResults());
     }
   }
 
-  //setUserAnswer(answer) {
-  //  this.setState((state, props) => ({
-  //    answersCount: {
-  //      ...state.answersCount,
-  //      [answer]: (state.answersCount[answer] || 0) + 1
-  //    },
-  //    answer: answer
-  //  }));
-  //}
 
-  setNextQuestion() {
+  
+
+  setNextQuestion(event) {
     const counter = this.state.counter + 1;
     const questionId = this.state.questionId + 1;
 
@@ -81,7 +76,7 @@ class App extends Component {
       questionId: questionId,
       question: quizQuestions[counter].question,
       answerOptions: quizQuestions[counter].answers,
-      answer: ''
+      //answer: ""
     });
   }
 
