@@ -5,24 +5,26 @@ import QuestionCount from '../components/QuestionCount';
 import AnswerOption from '../components/AnswerOption';
 
 function Quiz(props) {
+  
+    //console.log(props)
     // geeft de layout van quiz met de props voor questionCount , Question en AnswerOption --> antwoord moet het input veld doorgeven
-    return (
+  return (
       <div key={props.questionId}>
-          <QuestionCount counter={props.questionId} total={props.questionTotal} />
+        <QuestionCount counter={props.questionId} total={props.questionTotal} />
           <Question content={props.question} />
           <AnswerOption 
+              answer={props.answer}
               questionId={props.questionId}
               onAnswerSelected={props.onAnswerSelected}
-            />
-            <span style={{ color: 'white' }}>Levens: {props.levens}</span> <br/>
-            <span style={{ color: 'white' }}>Score: {props.score}</span>
-            
+
+          />
 
       </div>
   );
 }
 
 Quiz.propTypes = {
+  //answer: PropTypes.string.isRequired,
   answerOptions: PropTypes.string.isRequired,
   question: PropTypes.string.isRequired,
   questionId: PropTypes.number.isRequired,
