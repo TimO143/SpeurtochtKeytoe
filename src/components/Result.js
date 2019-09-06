@@ -5,7 +5,8 @@ function Result(props) {
   return (
   
       <div>
-        You prefer <strong>{props.quizResult}</strong>!
+          <strong>{props.quizResult}</strong>!
+          <strong> </strong>    
       </div>
   
   );

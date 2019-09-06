@@ -32,10 +32,8 @@ class App extends Component {
     });
   }
 
-
     handleAnswerSelected(value) {
         //  gaat naar volgende bij input
-        
         if (quizQuestions[this.state.counter].answers === value || this.state.leven === 0) {
             if (this.state.questionId < quizQuestions.length) {
                 this.setNextQuestion();
@@ -48,10 +46,7 @@ class App extends Component {
         }
   }
 
-
-  
-
-  setNextQuestion(event) {
+    setNextQuestion(event) {
     const counter = this.state.counter + 1;
       const questionId = this.state.questionId + 1;
       
@@ -94,7 +89,7 @@ class App extends Component {
 
     setResults(result) {
         if (true) {
-            this.setState({ result: "je hebt het einde gehaald" });
+            this.setState({ result: this.state.score });
         }
     }
 
