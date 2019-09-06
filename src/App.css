@@ -23,6 +23,13 @@ span.currentQuestion{
     font-style: italic;
 }
 
+span.leven {
+    color: white;
+}
+span.score {
+    color: white;
+}
+
 /*Placement of the input field*/
 div.answerOption {
     background-color: black;
