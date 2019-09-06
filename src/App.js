@@ -17,7 +17,7 @@ class App extends Component {
       answersCount: {},
       result: '',
       leven: 5,
-      score: 0
+      score: 0 
     };
 
     // functie geimporteert vanuit AnswerOption en hier gedefined
@@ -33,9 +33,8 @@ class App extends Component {
   }
 
     handleAnswerSelected(value) {
-        // als het antwoord overeenkomt met de input dan verder
-        if (quizQuestions[this.state.counter].answers === value) {
-            //  gaat naar volgende bij input
+        //  gaat naar volgende bij input
+        if (quizQuestions[this.state.counter].answers === value || this.state.leven === 0) {
             if (this.state.questionId < quizQuestions.length) {
                 this.setNextQuestion();
             } else {
@@ -46,20 +45,28 @@ class App extends Component {
             this.lowerLife();
         }
   }
-    // zet de counter omhoog en geeft volgende vraag + antwoord die je moet invullen
-  setNextQuestion() {
-    const counter = this.state.counter + 1;
-    const questionId = this.state.questionId + 1;
 
-    this.setState({
-      counter: counter,
-      questionId: questionId,
-      question: quizQuestions[counter].question,
-      answerOptions: quizQuestions[counter].answers,
-      leven: 5,
-      score: this.state.score + (10 * this.state.leven) 
+    setNextQuestion(event) {
+    const counter = this.state.counter + 1;
+      const questionId = this.state.questionId + 1;
+      
+      if (this.state.leven === 5) {
+          const newScore = this.state.score + (20 * this.state.leven);
+          this.setState({score:newScore})
+      }
+      else {
+          const newScore = this.state.score + (10 * this.state.leven);
+          this.setState({ score: newScore })
+      }
+
+      this.setState({
+          counter: counter,
+          questionId: questionId,
+          question: quizQuestions[counter].question,
+          answerOptions: quizQuestions[counter].answers,
+          leven: 5         
     });
-  }
+    }
 
     lowerLife() {
         const leven = this.state.leven - 1;
@@ -70,34 +77,33 @@ class App extends Component {
         }
     }
 
-    
+    // houd de count bij vergeleken met totale count
   getResults() {
     //const answersCount = this.state.answersCount;
     //const answersCountKeys = Object.keys(answersCount);
     //const answersCountValues = answersCountKeys.map(key => answersCount[key]);
     //const maxAnswerCount = Math.max.apply(null, answersCountValues);
-    
-    //  return answersCountKeys.filter(key => answersCount[key] === maxAnswerCount);
-     
+
+    //return answersCountKeys.filter(key => answersCount[key] === maxAnswerCount);
   }
 
-  setResults(result) {
-    if (true) {
-      this.setState({ result:"Sla die gong dan" });
-    } 
-  }
+    setResults(result) {
+        if (true) {
+            this.setState({ result: this.state.score });
+        }
+    }
 
     // rendert de quiz op het scherm met de props van quiz
   renderQuiz() {
     return (
       <Quiz
-            answerOptions={this.state.answerOptions}
-            questionId={this.state.questionId}
-            question={this.state.question}
-            questionTotal={quizQuestions.length}
-            onAnswerSelected={this.handleAnswerSelected}
-            levens={this.state.leven}
-            score={this.state.score}
+        answerOptions={this.state.answerOptions}
+        questionId={this.state.questionId}
+        question={this.state.question}
+        questionTotal={quizQuestions.length}
+        onAnswerSelected={this.handleAnswerSelected}
+        levens={this.state.leven}
+        score={this.state.score}
       />
     );
   }
@@ -105,14 +111,14 @@ class App extends Component {
     // rendert het resultaat (oud resultaat moet nog verandert worden)
   renderResult() {
     return <Result quizResult={this.state.result} />;
-  }
+      }
 
-    // rendert de algemene layout en het resultaat als het er is anders rendert het de quiz
   render() {
     return (
       <div className="App">
         <div className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
+          <h2>React Quiz</h2>
         </div>
         {this.state.result ? this.renderResult() : this.renderQuiz()}
       </div>
@@ -121,5 +127,3 @@ class App extends Component {
 }
 
 export default App;
-
-        

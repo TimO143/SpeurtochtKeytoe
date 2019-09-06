@@ -1,12 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Input = ({ label, error, onChange, name, value }) => (
+const errorStyle = { color: 'red' }
+const input = ({ label, error, onChange, name, value }) => (
     <label>
         {label}
-        <input name={name} type='text' value={value} onChange={onChange} required /> <br/>
+    <input name={name} type='text' value={value} onChange={onChange} required />
+        {error && <span style={errorStyle}>{error}</span>}
     </label>
-)
+    )
+
+
 
 class AnswerOption extends React.Component {
     constructor() {
@@ -27,11 +31,15 @@ class AnswerOption extends React.Component {
             <div className="answerOption">
                 <form onSubmit={e => { e.preventDefault(); this.props.onAnswerSelected(this.state.value)}}>
                     <input
-                        onChange={this.onChange}
+                        type='text'
                         placeholder="Je antwoord"
+                        //value={form.userName}
+                        onChange={this.onChange}
+                        //error={asyncErrors.userName}
                     />
                 </form>
-             </div>
+
+            </div>
         );
     }
 }
@@ -41,3 +49,9 @@ AnswerOption.propTypes = {
 };
 
 export default AnswerOption
+const input = ({ label, error, onChange, name, value }) => (
+    <input name={name} type='text' value={value} onChange={onChange} required />
+    )
+                        type='text'
+                        placeholder="Je antwoord"
+            </div>
