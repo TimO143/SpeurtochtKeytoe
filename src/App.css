@@ -16,7 +16,7 @@
 /*Placement of the input field*/
 div.answerOption {
     background-color: black;
-    padding-left: 10%;
+    padding-left: 5%;
     font-family: Cooper Hewitt;
     padding-top: 20%;
 }
@@ -31,7 +31,7 @@ body {
 h2 {
     color: white;
     text-align: left;
-    padding-left: 10%;
+    padding-left: 13%;   
     font-family: Cooper Hewitt;
 }
 
@@ -50,12 +50,13 @@ div.questionCount {
 
 /*Text placement inside input field*/
 input {
-    width: 50%;
+    width: 25%;
     padding: 12px;
     background: transparent;
     border: none;
     color: white;
     border-bottom: 1px solid;
+    padding-left: 0px;
 }
 
 
