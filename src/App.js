@@ -22,46 +22,25 @@ class App extends Component {
     this.handleAnswerSelected = this.handleAnswerSelected.bind(this);
   }
 
-  componentDidMount() {
-    //const shuffledAnswerOptions = quizQuestions.map(question =>
-    //  this.shuffleArray(question.answers)
-    //);
+    componentDidMount() {
+      // gaat naar de eerste vraag
       this.setState({
         question: quizQuestions[0].question,
         answerOptions: quizQuestions[0].answers
     });
   }
 
-  //shuffleArray(array) {
-  //  var currentIndex = array.length,
-  //    temporaryValue,
-  //    randomIndex;
 
-  //  // While there remain elements to shuffle...
-  //  while (0 !== currentIndex) {
-  //    // Pick a remaining element...
-  //    randomIndex = Math.floor(Math.random() * currentIndex);
-  //    currentIndex -= 1;
-
-  //    // And swap it with the current element.
-  //    temporaryValue = array[currentIndex];
-  //    array[currentIndex] = array[randomIndex];
-  //    array[randomIndex] = temporaryValue;
-  //  }
-
-  //  return array;
-  //}
-
-    handleAnswerSelected(event) {
+    handleAnswerSelected(value) {
         //  gaat naar volgende bij input
-        this.setState({
-            answer: event.target.value
-        })
-        if (this.state.questionId < quizQuestions.length) {
-      this.setNextQuestion();
-    } else {
-      this.setResults(this.getResults());
-    }
+        
+        if (quizQuestions[this.state.counter].answers === value) {
+            if (this.state.questionId < quizQuestions.length) {
+                this.setNextQuestion();
+            } else {
+                this.setResults(this.getResults());
+            }
+        }
   }
 
 
@@ -80,6 +59,7 @@ class App extends Component {
     });
   }
 
+    // houd de count bij vergeleken met totale count
   getResults() {
     const answersCount = this.state.answersCount;
     const answersCountKeys = Object.keys(answersCount);
@@ -91,12 +71,13 @@ class App extends Component {
 
   setResults(result) {
     if (result.length === 1) {
-      this.setState({ result: result[0] });
+      this.setState({ result:"je hebt het einde gehaald" });
     } else {
-      this.setState({ result: 'Undetermined' });
+      this.setState({ result: 'Deze else doet niet echt iets' });
     }
   }
 
+    // rendert de quiz op het scherm met de props van quiz
   renderQuiz() {
     return (
       <Quiz
@@ -110,10 +91,12 @@ class App extends Component {
     );
   }
 
+    // rendert het resultaat (oud resultaat moet nog verandert worden)
   renderResult() {
     return <Result quizResult={this.state.result} />;
   }
 
+    // rendert de algemene layout en het resultaat als het er is anders rendert het de quiz
   render() {
     return (
       <div className="App">

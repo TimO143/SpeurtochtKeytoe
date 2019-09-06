@@ -6,7 +6,8 @@ import AnswerOption from '../components/AnswerOption';
 
 function Quiz(props) {
   
-  console.log(props)
+    //console.log(props)
+    // geeft de layout van quiz met de props voor questionCount , Question en AnswerOption --> antwoord moet het input veld doorgeven
   return (
       <div key={props.questionId}>
         <QuestionCount counter={props.questionId} total={props.questionTotal} />
@@ -15,6 +16,7 @@ function Quiz(props) {
               answer={props.answer}
               questionId={props.questionId}
               onAnswerSelected={props.onAnswerSelected}
+
           />
 
       </div>
