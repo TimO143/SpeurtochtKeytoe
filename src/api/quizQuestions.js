@@ -1,4 +1,8 @@
 var quizQuestions = [
+    {
+        question: "What franchise would you rather play a game from?",
+        answers: "answer1"
+    },
   {
       question: "What franchise would you rather play a game from?",
       answers: "answer1"
