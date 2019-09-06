@@ -13,12 +13,22 @@
     text-align: left;
 }
 
+span.totalQuestions {
+    font-weight: lighter;
+    font-style: italic;
+    font-size: 60%;
+}
+
+span.currentQuestion{
+    font-style: italic;
+}
+
 /*Placement of the input field*/
 div.answerOption {
     background-color: black;
     padding-left: 5%;
     font-family: Cooper Hewitt;
-    padding-top: 20%;
+    padding-top: 15%;
 }
 
 
@@ -42,21 +52,23 @@ div.questionCount {
     padding-left: 0%;
     padding-top: 5%;
     color: white;
-    font-size: 700%;
-    font-weight: bold;
+    font-size: 900%;
+    font-weight: bolder;
     font-family: Cooper Hewitt;
+
 }
 
 
 /*Text placement inside input field*/
 input {
-    width: 25%;
+    width: 33%;
     padding: 12px;
+    padding-left: 0px;
     background: transparent;
     border: none;
     color: white;
-    border-bottom: 1px solid;
-    padding-left: 0px;
+    border-bottom: 2px solid;
+    font-size: 150%;
 }
 
 
