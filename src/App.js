@@ -18,7 +18,7 @@ class App extends Component {
       answersCount: {},
       result: '',
       leven: 5,
-      score: 0
+      score: 0 
     };
 
     this.handleAnswerSelected = this.handleAnswerSelected.bind(this);
@@ -36,7 +36,7 @@ class App extends Component {
     handleAnswerSelected(value) {
         //  gaat naar volgende bij input
         
-        if (quizQuestions[this.state.counter].answers === value) {
+        if (quizQuestions[this.state.counter].answers === value || this.state.leven === 0) {
             if (this.state.questionId < quizQuestions.length) {
                 this.setNextQuestion();
             } else {
@@ -53,15 +53,23 @@ class App extends Component {
 
   setNextQuestion(event) {
     const counter = this.state.counter + 1;
-    const questionId = this.state.questionId + 1;
+      const questionId = this.state.questionId + 1;
+      
+      if (this.state.leven === 5) {
+          const newScore = this.state.score + (20 * this.state.leven);
+          this.setState({score:newScore})
+      }
+      else {
+          const newScore = this.state.score + (10 * this.state.leven);
+          this.setState({ score: newScore })
+      }
 
-    this.setState({
-      counter: counter,
-      questionId: questionId,
-      question: quizQuestions[counter].question,
-      answerOptions: quizQuestions[counter].answers,
-      leven: 5,
-      score: this.state.score + (10 * this.state.leven) 
+      this.setState({
+          counter: counter,
+          questionId: questionId,
+          question: quizQuestions[counter].question,
+          answerOptions: quizQuestions[counter].answers,
+          leven: 5         
     });
     }
 
