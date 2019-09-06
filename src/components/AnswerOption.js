@@ -31,12 +31,13 @@ class AnswerOption extends React.Component {
                         placeholder="Je antwoord"
                     />
                 </form>
-            </li>
+             </div>
         );
     }
 }
+
 AnswerOption.propTypes = {
   onAnswerSelected: PropTypes.func.isRequired
 };
 
-export default AnswerOption;
+export default AnswerOption

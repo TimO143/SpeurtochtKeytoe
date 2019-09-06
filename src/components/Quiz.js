@@ -14,7 +14,9 @@ function Quiz(props) {
               questionId={props.questionId}
               onAnswerSelected={props.onAnswerSelected}
             />
-            <span>Levens: {props.levens}</span>
+            <span style={{ color: 'white' }}>Levens: {props.levens}</span> <br/>
+            <span style={{ color: 'white' }}>Score: {props.score}</span>
+            
 
       </div>
   );

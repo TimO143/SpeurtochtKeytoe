@@ -16,7 +16,8 @@ class App extends Component {
       answerOptions: '',
       answersCount: {},
       result: '',
-      leven: 5
+      leven: 5,
+      score: 0
     };
 
     // functie geimporteert vanuit AnswerOption en hier gedefined
@@ -55,16 +56,18 @@ class App extends Component {
       questionId: questionId,
       question: quizQuestions[counter].question,
       answerOptions: quizQuestions[counter].answers,
-      leven: 5
+      leven: 5,
+      score: this.state.score + (10 * this.state.leven) 
     });
   }
 
     lowerLife() {
         const leven = this.state.leven - 1;
-
-        this.setState({
-            leven: leven
-        })
+        if (leven >= 0) {
+            this.setState({
+                leven: leven
+            })
+        }
     }
 
     
@@ -94,6 +97,7 @@ class App extends Component {
             questionTotal={quizQuestions.length}
             onAnswerSelected={this.handleAnswerSelected}
             levens={this.state.leven}
+            score={this.state.score}
       />
     );
   }
@@ -119,6 +123,4 @@ class App extends Component {
 
 export default App;
 
-          <h2>React Quiz</h2>
-            </div>
-            {this.state.result ? this.renderResult() : this.renderQuiz()}
+        
