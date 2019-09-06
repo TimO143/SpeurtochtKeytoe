@@ -8,17 +8,18 @@ import './App.css';
 class App extends Component {
   constructor(props) {
     super(props);
-
+      // initial state 
     this.state = {
       counter: 0,
       questionId: 1,
       question: '',
       answerOptions: '',
-      answer: '',
       answersCount: {},
-      result: ''
+      result: '',
+      leven: 5
     };
 
+    // functie geimporteert vanuit AnswerOption en hier gedefined
     this.handleAnswerSelected = this.handleAnswerSelected.bind(this);
   }
 
@@ -30,23 +31,22 @@ class App extends Component {
     });
   }
 
-
     handleAnswerSelected(value) {
-        //  gaat naar volgende bij input
-        
+        // als het antwoord overeenkomt met de input dan verder
         if (quizQuestions[this.state.counter].answers === value) {
+            //  gaat naar volgende bij input
             if (this.state.questionId < quizQuestions.length) {
                 this.setNextQuestion();
             } else {
                 this.setResults(this.getResults());
             }
         }
+        else {
+            this.lowerLife();
+        }
   }
-
-
-  
-
-  setNextQuestion(event) {
+    // zet de counter omhoog en geeft volgende vraag + antwoord die je moet invullen
+  setNextQuestion() {
     const counter = this.state.counter + 1;
     const questionId = this.state.questionId + 1;
 
@@ -55,38 +55,45 @@ class App extends Component {
       questionId: questionId,
       question: quizQuestions[counter].question,
       answerOptions: quizQuestions[counter].answers,
-      //answer: ""
+      leven: 5
     });
   }
 
-    // houd de count bij vergeleken met totale count
-  getResults() {
-    const answersCount = this.state.answersCount;
-    const answersCountKeys = Object.keys(answersCount);
-    const answersCountValues = answersCountKeys.map(key => answersCount[key]);
-    const maxAnswerCount = Math.max.apply(null, answersCountValues);
+    lowerLife() {
+        const leven = this.state.leven - 1;
 
-    return answersCountKeys.filter(key => answersCount[key] === maxAnswerCount);
+        this.setState({
+            leven: leven
+        })
+    }
+
+    
+  getResults() {
+    //const answersCount = this.state.answersCount;
+    //const answersCountKeys = Object.keys(answersCount);
+    //const answersCountValues = answersCountKeys.map(key => answersCount[key]);
+    //const maxAnswerCount = Math.max.apply(null, answersCountValues);
+    
+    //  return answersCountKeys.filter(key => answersCount[key] === maxAnswerCount);
+     
   }
 
   setResults(result) {
-    if (result.length === 1) {
+    if (true) {
       this.setState({ result:"je hebt het einde gehaald" });
-    } else {
-      this.setState({ result: 'Deze else doet niet echt iets' });
-    }
+    } 
   }
 
     // rendert de quiz op het scherm met de props van quiz
   renderQuiz() {
     return (
       <Quiz
-        answer={this.state.answer}
-        answerOptions={this.state.answerOptions}
-        questionId={this.state.questionId}
-        question={this.state.question}
-        questionTotal={quizQuestions.length}
-        onAnswerSelected={this.handleAnswerSelected}
+            answerOptions={this.state.answerOptions}
+            questionId={this.state.questionId}
+            question={this.state.question}
+            questionTotal={quizQuestions.length}
+            onAnswerSelected={this.handleAnswerSelected}
+            levens={this.state.leven}
       />
     );
   }
@@ -103,8 +110,9 @@ class App extends Component {
         <div className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
           <h2>React Quiz</h2>
-        </div>
-        {this.state.result ? this.renderResult() : this.renderQuiz()}
+            </div>
+            {this.state.result ? this.renderResult() : this.renderQuiz()}
+
       </div>
     );
   }

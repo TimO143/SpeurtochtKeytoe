@@ -20,7 +20,6 @@ var quizQuestions = [
   {
       question: "What console would you prefer to own?",
       answers: "answer5"
-      
   }
 ];
 
