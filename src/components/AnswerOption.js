@@ -24,7 +24,7 @@ class AnswerOption extends React.Component {
 
     render() {
         return (
-            <li className="answerOption">
+            <div className="answerOption">
                 <form onSubmit={e => { e.preventDefault(); this.props.onAnswerSelected(this.state.value)}}>
                     <Input
                         onChange={this.onChange}

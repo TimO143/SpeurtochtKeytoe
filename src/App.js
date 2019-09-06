@@ -110,12 +110,15 @@ class App extends Component {
         <div className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
           <h2>React Quiz</h2>
-            </div>
-            {this.state.result ? this.renderResult() : this.renderQuiz()}
-
+        </div>
+        {this.state.result ? this.renderResult() : this.renderQuiz()}
       </div>
     );
   }
 }
 
 export default App;
+
+          <h2>React Quiz</h2>
+            </div>
+            {this.state.result ? this.renderResult() : this.renderQuiz()}

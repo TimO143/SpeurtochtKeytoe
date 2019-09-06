@@ -6,6 +6,8 @@
     padding-bottom: 10px;
 }
 
+
+
 /*The logo*/
 .App-header {
     text-align: left;
@@ -16,7 +18,7 @@ div.answerOption {
     background-color: black;
     padding-left: 10%;
     font-family: Cooper Hewitt;
-    padding-top: 30%;
+    padding-top: 20%;
 }
 
 
@@ -28,7 +30,8 @@ body {
 /*Questions*/
 h2 {
     color: white;
-    text-align: center;
+    text-align: left;
+    padding-left: 10%;
     font-family: Cooper Hewitt;
 }
 
@@ -37,6 +40,7 @@ h2 {
 div.questionCount {
     text-align: left;
     padding-left: 0%;
+    padding-top: 5%;
     color: white;
     font-size: 700%;
     font-weight: bold;
