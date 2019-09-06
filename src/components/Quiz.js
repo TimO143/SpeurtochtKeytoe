@@ -13,18 +13,15 @@ function Quiz(props) {
         <QuestionCount counter={props.questionId} total={props.questionTotal} />
           <Question content={props.question} />
           <AnswerOption 
-              answer={props.answer}
               questionId={props.questionId}
-              onAnswerSelected={props.onAnswerSelected}
-
-          />
-
+              onAnswerSelected={props.onAnswerSelected} />
+          <span class='score'> Score: {props.score}</span> 
+          <span class='leven'> Levens: {props.levens} / 5</span>
       </div>
   );
 }
 
 Quiz.propTypes = {
-  //answer: PropTypes.string.isRequired,
   answerOptions: PropTypes.string.isRequired,
   question: PropTypes.string.isRequired,
   questionId: PropTypes.number.isRequired,

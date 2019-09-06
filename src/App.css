@@ -25,10 +25,17 @@ span.currentQuestion{
 
 span.leven {
     color: white;
+    font-size: 200%;
+    float: right;
+    padding-right: 10%;
 }
+
 span.score {
     color: white;
-}
+    font-size: 200%;
+    float: right;
+    padding-right: 10%;
+} 
 
 /*Placement of the input field*/
 div.answerOption {
