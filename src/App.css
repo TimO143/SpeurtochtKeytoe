@@ -6,36 +6,39 @@
     padding-bottom: 10px;
 }
 
-
-
 /*The logo*/
 .App-header {
     text-align: left;
 }
 
+/*Number of total questions*/
 span.totalQuestions {
     font-weight: lighter;
     font-style: italic;
     font-size: 60%;
 }
 
+/*Number of current question*/
 span.currentQuestion{
     font-style: italic;
 }
 
+/*Amount of lives*/
 span.leven {
     color: white;
     font-size: 200%;
     float: right;
-    padding-right: 10%;
+    padding-right: 5%;
 }
 
+    
+/*The score*/
 span.score {
     color: white;
     font-size: 200%;
     float: right;
     padding-right: 10%;
-} 
+}
 
 /*Placement of the input field*/
 div.answerOption {
@@ -43,6 +46,15 @@ div.answerOption {
     padding-left: 5%;
     font-family: Cooper Hewitt;
     padding-top: 15%;
+}
+
+/*Result page text*/
+div.resultPage {
+    color: white;
+    font-size: 200%;
+    font-family: Cooper Hewitt;
+    padding-top: 10%;
+    text-align: center;
 }
 
 
@@ -59,7 +71,6 @@ h2 {
     font-family: Cooper Hewitt;
 }
 
-
 /*Question counter*/
 div.questionCount {
     text-align: left;
@@ -72,10 +83,9 @@ div.questionCount {
 
 }
 
-
 /*Text placement inside input field*/
 input {
-    width: 33%;
+    width: 50%;
     padding: 12px;
     padding-left: 0px;
     background: transparent;
@@ -84,8 +94,3 @@ input {
     border-bottom: 2px solid;
     font-size: 150%;
 }
-
-
-
-
-

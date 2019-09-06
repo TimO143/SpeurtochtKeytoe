@@ -2,7 +2,6 @@ var quizQuestions = [
   {
       question: "What franchise would you rather play a game from?",
       answers: "answer1"
-         
   },
   {
       question: "Which console would you prefer to play with friends?",
@@ -20,7 +19,10 @@ var quizQuestions = [
   {
       question: "What console would you prefer to own?",
       answers: "answer5"
-      
+    },
+  {
+        question: "What console would you prefer to own?",
+        answers: "answer6"
   }
 ];
 

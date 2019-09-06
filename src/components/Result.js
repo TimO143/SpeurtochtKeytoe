@@ -3,12 +3,10 @@ import PropTypes from 'prop-types';
 
 function Result(props) {
   return (
-  
-      <div>
-          <strong>{props.quizResult}</strong>!
-          <strong> </strong>    
+
+      <div className="resultPage">
+        <strong>{props.quizResult}</strong>!
       </div>
-  
   );
 }
 

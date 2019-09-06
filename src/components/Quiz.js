@@ -5,18 +5,18 @@ import QuestionCount from '../components/QuestionCount';
 import AnswerOption from '../components/AnswerOption';
 
 function Quiz(props) {
-  
-    //console.log(props)
     // geeft de layout van quiz met de props voor questionCount , Question en AnswerOption --> antwoord moet het input veld doorgeven
-  return (
+    return (
       <div key={props.questionId}>
-        <QuestionCount counter={props.questionId} total={props.questionTotal} />
+          <QuestionCount counter={props.questionId} total={props.questionTotal} />
           <Question content={props.question} />
           <AnswerOption 
               questionId={props.questionId}
-              onAnswerSelected={props.onAnswerSelected} />
-          <span class='score'> Score: {props.score}</span> 
-          <span class='leven'> Levens: {props.levens} / 5</span>
+              onAnswerSelected={props.onAnswerSelected}
+            />
+            <span class="score">{props.score} <br /> Score</span>
+            <span class="leven">{props.levens} / 5 <br /> LEVEN</span>
+
       </div>
   );
 }
