@@ -1,33 +1,96 @@
-.App {
-  text-align: center;
-}
-
+/*Logo attributes*/
 .App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
-  pointer-events: none;
+    height: 100px;
+    padding-left: 0.03%;
+    padding-top: 0.09%;
+    padding-bottom: 10px;
 }
 
+/*The logo*/
 .App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+    text-align: left;
 }
 
-.App-link {
-  color: #61dafb;
+/*Number of total questions*/
+span.totalQuestions {
+    font-weight: lighter;
+    font-style: italic;
+    font-size: 60%;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/*Number of current question*/
+span.currentQuestion{
+    font-style: italic;
+}
+
+/*Amount of lives*/
+span.leven {
+    color: white;
+    font-size: 200%;
+    float: right;
+    padding-right: 5%;
+}
+
+    
+/*The score*/
+span.score {
+    color: white;
+    font-size: 200%;
+    float: right;
+    padding-right: 10%;
+}
+
+/*Placement of the input field*/
+div.answerOption {
+    background-color: black;
+    padding-left: 5%;
+    font-family: Cooper Hewitt;
+    padding-top: 15%;
+}
+
+/*Result page text*/
+div.resultPage {
+    color: white;
+    font-size: 200%;
+    font-family: Cooper Hewitt;
+    padding-top: 10%;
+    text-align: center;
+}
+
+
+/*Overall background*/
+body {
+    background-color: black;
+}
+
+/*Questions*/
+h2 {
+    color: white;
+    text-align: left;
+    padding-left: 13%;   
+    font-family: Cooper Hewitt;
+}
+
+/*Question counter*/
+div.questionCount {
+    text-align: left;
+    padding-left: 0%;
+    padding-top: 5%;
+    color: white;
+    font-size: 900%;
+    font-weight: bolder;
+    font-family: Cooper Hewitt;
+
+}
+
+/*Text placement inside input field*/
+input {
+    width: 50%;
+    padding: 12px;
+    padding-left: 0px;
+    background: transparent;
+    border: none;
+    color: white;
+    border-bottom: 2px solid;
+    font-size: 150%;
 }

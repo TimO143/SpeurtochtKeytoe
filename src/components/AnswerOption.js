@@ -1,36 +1,41 @@
 import React from 'react';
-import PropTypes from 'prop-types'
+import PropTypes from 'prop-types';
 
-function AnswerOption(props) {
-    return (
-        //presentational component
-        <li className='answerOption'>
-            <form onSubmit={props.handleSubmit}>
-            <input
-                    type='input'
-                    //className='radioCustomButton'
-                    //name='radioGroup'
-                    //checked={props.answerType === props.answer}
-                    id={props.answerType}
-                    //value={props.answerType}
-                    disabled={props.answer}
-                    //onChange={props.onAnswerSelected}
-                    value={props.answerType}
-                />
-            </form>
-            <input type="submit" value="Submit" />
-            <label className="radioCustomLabel" htmlFor={props.answerType}>
-                {props.answerContent}
-            </label>
-        </li>
-    );
+class AnswerOption extends React.Component {
+    constructor() {
+        super()
+        this.state = {
+            value: null
+        }
+    }
+    // onChange functie die een event neemt om in de state de value te veranderen naar input value
+    onChange = (e) => {
+        this.setState({
+            value: e.target.value.toLowerCase()
+        })
+    }
+    clearform = () => {
+        document.getElementById('myForm').reset();
+    }
+
+    render() {
+        return (
+            <div className="answerOption">
+                <form id='myForm' onSubmit={e => { e.preventDefault(); this.props.onAnswerSelected(this.state.value); this.clearform()}}>
+                    <input
+                        type='text'
+                        placeholder="Je antwoord"
+                        onChange={this.onChange}
+                        required
+                    />
+                </form>
+            </div>
+        );
+    }
 }
-    // container component
-    AnswerOption.propTypes = {
-        answerType: PropTypes.string.isRequired,
-        answerContent: PropTypes.string.isRequired,
-        answer: PropTypes.string.isRequired,
-        onAnswerSelected: PropTypes.func.isRequired
-    };
 
-export default AnswerOption;
+AnswerOption.propTypes = {
+  onAnswerSelected: PropTypes.func.isRequired
+};
+
+export default AnswerOption

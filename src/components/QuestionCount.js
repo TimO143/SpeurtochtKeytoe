@@ -1,18 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+// geeft de count aan van welke vraag je bent en totaal
 function QuestionCount(props) {
-    return (
-        <div className='questionCount'>
-            Question <span>{props.counter}</span> of <span>{props.total}</span>)
-        </div>
-    );
+  return (
+    <div className="questionCount">
+      VRAAG <span class="currentQuestion">{props.counter}</span> <span class="totalQuestions">/{props.total}</span>
+    </div>
+  );
 }
 
-// dit component krijgt twee props van de container component
 QuestionCount.propTypes = {
-    counter: PropTypes.number.isRequired,
-    total: PropTypes.number.isRequired
+  counter: PropTypes.number.isRequired,
+  total: PropTypes.number.isRequired
 };
 
 export default QuestionCount;
