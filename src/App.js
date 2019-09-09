@@ -8,7 +8,7 @@ import './App.css';
 class App extends Component {
   constructor(props) {
     super(props);
-      // initial state 
+      // initial state
     this.state = {
       counter: 0,
       questionId: 1,
@@ -34,7 +34,7 @@ class App extends Component {
 
     handleAnswerSelected(value) {
         //  gaat naar volgende bij input
-        if (quizQuestions[this.state.counter].answers === value || this.state.leven === 0) {
+        if (quizQuestions[this.state.counter].answers === value || this.state.leven <= 1) {
             if (this.state.questionId < quizQuestions.length) {
                 this.setNextQuestion();
             } else {

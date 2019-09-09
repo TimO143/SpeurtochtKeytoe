@@ -1,17 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const errorStyle = { color: 'red' }
-const input = ({ label, error, onChange, name, value }) => (
-    <label>
-        {label}
-    <input name={name} type='text' value={value} onChange={onChange} required />
-        {error && <span style={errorStyle}>{error}</span>}
-    </label>
-    )
-
-
-
 class AnswerOption extends React.Component {
     constructor() {
         super()
@@ -22,23 +11,24 @@ class AnswerOption extends React.Component {
     // onChange functie die een event neemt om in de state de value te veranderen naar input value
     onChange = (e) => {
         this.setState({
-            value: e.target.value.toLowerCase(),
+            value: e.target.value.toLowerCase()
         })
+    }
+    clearform = () => {
+        document.getElementById('myForm').reset();
     }
 
     render() {
         return (
             <div className="answerOption">
-                <form onSubmit={e => { e.preventDefault(); this.props.onAnswerSelected(this.state.value)}}>
+                <form id='myForm' onSubmit={e => { e.preventDefault(); this.props.onAnswerSelected(this.state.value); this.clearform()}}>
                     <input
                         type='text'
                         placeholder="Je antwoord"
-                        //value={form.userName}
                         onChange={this.onChange}
-                        //error={asyncErrors.userName}
+                        required
                     />
                 </form>
-
             </div>
         );
     }
@@ -49,9 +39,3 @@ AnswerOption.propTypes = {
 };
 
 export default AnswerOption
-const input = ({ label, error, onChange, name, value }) => (
-    <input name={name} type='text' value={value} onChange={onChange} required />
-    )
-                        type='text'
-                        placeholder="Je antwoord"
-            </div>
