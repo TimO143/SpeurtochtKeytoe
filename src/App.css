@@ -40,11 +40,27 @@ span.score {
     padding-right: 10%;
 }
 
+
+/*Error message placement*/
+span.error {
+    color: white;
+    font-size: 200%;
+    font-weight: bold;
+    float: left;
+}
+
+
+.Cancel-logo {
+    float: left;
+    padding-top: 0.5%;
+    padding-right: 1%;
+}
+
 /*Placement of the input field*/
 div.answerOption {
     background-color: black;
     padding-left: 5%;
-    font-family: Cooper Hewitt;
+    font-family: CooperHewitt;
     padding-top: 15%;
 }
 

@@ -14,8 +14,8 @@ function Quiz(props) {
               questionId={props.questionId}
               onAnswerSelected={props.onAnswerSelected}
             />
-            <span class="score">{props.score} <br /> Score</span>
-            <span class="leven">{props.levens} / 5 <br /> LEVEN</span>
+            <span className="score">{props.score} <br /> Score</span>
+            <span className="leven">{props.levens} / 5 <br /> LEVEN</span>
 
       </div>
   );

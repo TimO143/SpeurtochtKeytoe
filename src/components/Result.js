@@ -5,7 +5,7 @@ function Result(props) {
   return (
 
       <div className="resultPage">
-        <strong>{props.quizResult}</strong>!
+        <strong>Je score: {props.quizResult}</strong>!
       </div>
   );
 }

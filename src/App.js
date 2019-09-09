@@ -34,7 +34,7 @@ class App extends Component {
 
     handleAnswerSelected(value) {
         //  gaat naar volgende bij input
-        if (quizQuestions[this.state.counter].answers === value || this.state.leven === 0) {
+        if (quizQuestions[this.state.counter].answers === value || this.state.leven <= 1) {
             if (this.state.questionId < quizQuestions.length) {
                 this.setNextQuestion();
             } else {
@@ -76,6 +76,8 @@ class App extends Component {
             })
         }
     }
+   
+
 
     // houd de count bij vergeleken met totale count
   getResults() {
@@ -117,8 +119,7 @@ class App extends Component {
     return (
       <div className="App">
         <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>React Quiz</h2>
+                <img src={logo} className="App-logo" alt="logo" />
         </div>
         {this.state.result ? this.renderResult() : this.renderQuiz()}
       </div>
@@ -126,4 +127,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default App; 
