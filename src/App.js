@@ -8,7 +8,7 @@ import './App.css';
 class App extends Component {
   constructor(props) {
     super(props);
-      // initial state 
+      // initial state
     this.state = {
       counter: 0,
       questionId: 1,

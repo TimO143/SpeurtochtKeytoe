@@ -13,8 +13,11 @@ class AnswerOption extends React.Component {
     // onChange functie die een event neemt om in de state de value te veranderen naar input value
     onChange = (e) => {
         this.setState({
-            value: e.target.value.toLowerCase(),
+            value: e.target.value.toLowerCase()
         })
+    }
+    clearform = () => {
+        document.getElementById('myForm').reset();
     }
 
     clearform = () => {
@@ -53,7 +56,6 @@ class AnswerOption extends React.Component {
                     </div>
                     }
                 </form>
-
             </div>
         );
     }
