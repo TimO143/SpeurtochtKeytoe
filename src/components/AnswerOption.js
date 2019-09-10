@@ -20,11 +20,6 @@ class AnswerOption extends React.Component {
         document.getElementById('myForm').reset();
     }
 
-    clearform = () => {
-        document.getElementById('myForm').reset();
-    }
-
-    
     toggleHidden() {
         this.setState({
             hidden: !this.state.hidden
@@ -60,11 +55,6 @@ class AnswerOption extends React.Component {
         );
     }
 }
-
-
-
-
-
 
 AnswerOption.propTypes = {
   onAnswerSelected: PropTypes.func.isRequired

@@ -1,4 +1,4 @@
-var quizQuestions = [
+const quizQuestions = [
   {
       question: "What franchise would you rather play a game from?",
       answers: "answer1"
