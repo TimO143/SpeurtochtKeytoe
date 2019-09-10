@@ -89,6 +89,8 @@ class App extends Component {
             })
         }
     }
+   
+
 
     // voegt de score toe aan het resultaat ( check boven is een timeout die nodig is om niet de oude state van score te gebruiken)
     setResults = () => {
@@ -119,8 +121,7 @@ class App extends Component {
     return (
       <div className="App">
         <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>React Quiz</h2>
+                <img src={logo} className="App-logo" alt="logo" />
         </div>
         {this.state.result ? this.renderResult() : this.renderQuiz()}
       </div>
@@ -128,4 +129,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default App; 
