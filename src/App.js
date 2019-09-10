@@ -4,6 +4,7 @@ import Quiz from './components/Quiz';
 import Result from './components/Result';
 import logo from './svg/keytoe_icon_RGB.svg';
 import './App.css';
+import { setTimeout } from 'timers';
 
 class App extends Component {
   constructor(props) {
@@ -15,7 +16,7 @@ class App extends Component {
       question: '',
       answerOptions: '',
       answersCount: {},
-      result: '',
+      result: 0,
       leven: 5,
       score: 0 
     };
@@ -30,15 +31,19 @@ class App extends Component {
         question: quizQuestions[0].question,
         answerOptions: quizQuestions[0].answers
     });
-  }
+    }
 
+    // na submit van een vraag komt deze functie
     handleAnswerSelected(value) {
         //  gaat naar volgende bij input
         if (quizQuestions[this.state.counter].answers === value || this.state.leven <= 1) {
             if (this.state.questionId < quizQuestions.length) {
                 this.setNextQuestion();
             } else {
-                this.setResults(this.getResults());
+                // update de score nog 1 laatste keer omdat er geen vragen meer zijn maar wel een update moet gebeuren
+                this.updateScore();
+                // timeout om het score te update en daarna in result te plaatsen
+                setTimeout(() => { this.setResults() },1)
             }
         }
         else {
@@ -46,19 +51,27 @@ class App extends Component {
         }
   }
 
+    updateScore() {
+        if (this.state.leven === 5) {
+            this.setState(state => {
+                return {
+                    score: state.score + (20 * state.leven)
+                }
+            }, () => { console.log(this.state.score) });
+        }
+        else {
+            this.setState(state => {
+                return {
+                    score: state.score + (10 * state.leven)
+                }
+            }, () => { console.log(this.state.score) });
+        }
+    }
     setNextQuestion(event) {
     const counter = this.state.counter + 1;
-      const questionId = this.state.questionId + 1;
-      
-      if (this.state.leven === 5) {
-          const newScore = this.state.score + (20 * this.state.leven);
-          this.setState({score:newScore})
-      }
-      else {
-          const newScore = this.state.score + (10 * this.state.leven);
-          this.setState({ score: newScore })
-      }
+    const questionId = this.state.questionId + 1;
 
+    this.updateScore();
       this.setState({
           counter: counter,
           questionId: questionId,
@@ -77,20 +90,9 @@ class App extends Component {
         }
     }
 
-    // houd de count bij vergeleken met totale count
-  getResults() {
-    //const answersCount = this.state.answersCount;
-    //const answersCountKeys = Object.keys(answersCount);
-    //const answersCountValues = answersCountKeys.map(key => answersCount[key]);
-    //const maxAnswerCount = Math.max.apply(null, answersCountValues);
-
-    //return answersCountKeys.filter(key => answersCount[key] === maxAnswerCount);
-  }
-
-    setResults(result) {
-        if (true) {
-            this.setState({ result: this.state.score });
-        }
+    // voegt de score toe aan het resultaat ( check boven is een timeout die nodig is om niet de oude state van score te gebruiken)
+    setResults = () => {
+        this.setState({ result: this.state.score }, () => console.log(this.state.result, this.state.score));
     }
 
     // rendert de quiz op het scherm met de props van quiz

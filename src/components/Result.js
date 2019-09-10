@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 
 function Result(props) {
   return (
-
       <div className="resultPage">
         <strong>{props.quizResult}</strong>!
       </div>
@@ -11,7 +10,7 @@ function Result(props) {
 }
 
 Result.propTypes = {
-  quizResult: PropTypes.string.isRequired
+  quizResult: PropTypes.number.isRequired
 };
 
 export default Result;
