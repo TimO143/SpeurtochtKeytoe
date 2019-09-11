@@ -143,8 +143,7 @@ refreshPage() {
                 <img src={logo} className="App-logo" alt="logo" />
         </div>
             {this.state.result ? this.renderResult() : this.renderQuiz()}
-
-            <div>{this.state.leven === 1 && <Hint counter={this.state.counter}/>}</div>
+            <div>{this.state.leven <= 3 && <Hint counter={this.state.counter}/>}</div>
         </div>
        
     );
