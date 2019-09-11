@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
+import ReactDOM from 'react';
 import quizQuestions from './api/quizQuestions';
 import Quiz from './components/Quiz';
 import Result from './components/Result';
 import logo from './svg/keytoe_icon_RGB.svg';
 import './App.css';
 import { setTimeout } from 'timers';
+import Hint from './components/Hint'
+
 
 class App extends Component {
   constructor(props) {
@@ -19,13 +22,15 @@ class App extends Component {
       result: 0,
       leven: 5,
       score: 0 
-    };
-
+      };
+      
     // functie geimporteert vanuit AnswerOption en hier gedefined
     this.handleAnswerSelected = this.handleAnswerSelected.bind(this);
   }
 
     componentDidMount() {
+        // verander kleur van achtergrond terug naar zwart
+      document.body.style.backgroundColor = 'black'
       // gaat naar de eerste vraag
       this.setState({
         question: quizQuestions[0].question,
@@ -33,13 +38,20 @@ class App extends Component {
     });
     }
 
+refreshPage() {
+    window.location.reload();
+}
     // na submit van een vraag komt deze functie
     handleAnswerSelected(value) {
         //  gaat naar volgende bij input
         if (quizQuestions[this.state.counter].answers === value || this.state.leven <= 1) {
             if (this.state.questionId < quizQuestions.length) {
                 this.setNextQuestion();
-            } else {
+            }
+            else if (this.state.score === 0) {
+               this.refreshPage();
+            }
+            else {
                 // update de score nog 1 laatste keer omdat er geen vragen meer zijn maar wel een update moet gebeuren
                 this.updateScore();
                 // timeout om het score te update en daarna in result te plaatsen
@@ -47,7 +59,7 @@ class App extends Component {
             }
         }
         else {
-            this.lowerLife();
+           this.lowerLife();
         }
   }
 
@@ -56,6 +68,13 @@ class App extends Component {
             this.setState(state => {
                 return {
                     score: state.score + (20 * state.leven)
+                }
+            }, () => { console.log(this.state.score) });
+        }
+        else if (this.state.leven === 1) {
+            this.setState(state => {
+                return {
+                    score: state.score
                 }
             }, () => { console.log(this.state.score) });
         }
@@ -123,8 +142,11 @@ class App extends Component {
         <div className="App-header">
                 <img src={logo} className="App-logo" alt="logo" />
         </div>
-        {this.state.result ? this.renderResult() : this.renderQuiz()}
-      </div>
+            {this.state.result ? this.renderResult() : this.renderQuiz()}
+
+            <div>{this.state.leven === 1 && <Hint counter={this.state.counter}/>}</div>
+        </div>
+       
     );
   }
 }

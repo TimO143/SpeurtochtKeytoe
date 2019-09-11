@@ -1,11 +1,13 @@
 const quizQuestions = [
   {
-      question: "What franchise would you rather play a game from?",
-      answers: "answer1"
+        question: "Iedereen is zijn eigen baas bij Keytoe. Toch is er maar één echte Dungeon Master. Wie is het?",
+      answers: "answer1",
+      hint: 'hint voor vraag 1'
   },
   {
       question: "Which console would you prefer to play with friends?",
-      answers: "answer2"
+      answers: "answer2",
+      hint: 'hint voor vraag 2'
   },
   {
       question: "Which of these racing franchises would you prefer to play a game from?",

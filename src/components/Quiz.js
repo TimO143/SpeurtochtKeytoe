@@ -16,7 +16,6 @@ function Quiz(props) {
             />
             <span className="score">{props.score} <br /> Score</span>
             <span className="leven">{props.levens} / 5 <br /> LEVEN</span>
-
       </div>
   );
 }
