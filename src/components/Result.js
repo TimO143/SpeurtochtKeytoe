@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 function Result(props) {
   return (
       <div className="resultPage">
-        <strong>Je score: {props.quizResult}</strong>!
+          <strong>{props.naam} Je score: {props.quizResult}</strong>!
       </div>
   );
 }

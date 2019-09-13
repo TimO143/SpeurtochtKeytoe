@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 // geeft de count aan van welke vraag je bent en totaal
 function QuestionCount(props) {
   return (
-    <div className="questionCount">
+    <div className="questionCount grid-questionCount">
       VRAAG <span className="currentQuestion">{props.counter}</span> <span className="totalQuestions">/{props.total}</span>
     </div>
   );

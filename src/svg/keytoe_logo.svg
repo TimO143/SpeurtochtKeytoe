@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" id="Logo" width="36.469" height="56.658" viewBox="0 0 36.469 56.658">
+    <defs>
+        <style>
+            .cls-1{fill:#23e197}.cls-2{fill:#fff}
+        </style>
+    </defs>
+    <path id="Shape" d="M4.4 30.47l5.317-5.264V0L0 3.191v33.075a25.33 25.33 0 0 1 4.4-5.796z" class="cls-1" transform="translate(.027)"/>
+    <path id="Shape-2" d="M23.982 36.372h12.487L20.732 12.177 33.032 0h-13.75L6.714 12.443A22.476 22.476 0 0 0 0 28.449v7.923h9.722v-8.136a12.706 12.706 0 0 1 3.357-8.455z" class="cls-2" data-name="Shape" transform="translate(0 20.286)"/>
+</svg>
