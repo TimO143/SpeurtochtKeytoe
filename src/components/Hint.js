@@ -3,7 +3,7 @@ import quizQuestions from '../api/quizQuestions';
 
 
 function Hint(props) {
-    return <text className='hint'>{quizQuestions[props.counter].hint}</text>;
+    return <p className='hint'>{quizQuestions[props.counter].hint}</p>;
 }
 
 export default Hint
