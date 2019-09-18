@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
+import ReactDOM from 'react';
 import quizQuestions from './api/quizQuestions';
 import Quiz from './components/Quiz';
 import Result from './components/Result';
-import logo from './svg/keytoe_icon_RGB.svg';
+import logo from './svg/keytoe_logo.svg';
 import './App.css';
 import { setTimeout } from 'timers';
+import Hint from './components/Hint'
+
 
 class App extends Component {
   constructor(props) {
@@ -18,14 +21,18 @@ class App extends Component {
       answersCount: {},
       result: 0,
       leven: 5,
-      score: 0 
-    };
+      score: 0,
 
+
+      };
+      
     // functie geimporteert vanuit AnswerOption en hier gedefined
     this.handleAnswerSelected = this.handleAnswerSelected.bind(this);
   }
 
     componentDidMount() {
+        // verander kleur van achtergrond terug naar zwart
+      document.body.style.backgroundColor = 'black'
       // gaat naar de eerste vraag
       this.setState({
         question: quizQuestions[0].question,
@@ -39,7 +46,14 @@ class App extends Component {
         if (quizQuestions[this.state.counter].answers === value || this.state.leven <= 1) {
             if (this.state.questionId < quizQuestions.length) {
                 this.setNextQuestion();
-            } else {
+            }
+            else if (this.state.score === 0) {
+                // dit is niet mooi. refresh page wanneer geen score is behaald
+                //this.refreshPage();
+                // kan niet score op 0 zetten dan rendered resultaten scherm niet
+                this.setState({ result: 1 })
+            }
+            else {
                 // update de score nog 1 laatste keer omdat er geen vragen meer zijn maar wel een update moet gebeuren
                 this.updateScore();
                 // timeout om het score te update en daarna in result te plaatsen
@@ -47,7 +61,7 @@ class App extends Component {
             }
         }
         else {
-            this.lowerLife();
+           this.lowerLife();
         }
   }
 
@@ -56,6 +70,13 @@ class App extends Component {
             this.setState(state => {
                 return {
                     score: state.score + (20 * state.leven)
+                }
+            }, () => { console.log(this.state.score) });
+        }
+        else if (this.state.leven === 1) {
+            this.setState(state => {
+                return {
+                    score: state.score
                 }
             }, () => { console.log(this.state.score) });
         }
@@ -89,8 +110,6 @@ class App extends Component {
             })
         }
     }
-   
-
 
     // voegt de score toe aan het resultaat ( check boven is een timeout die nodig is om niet de oude state van score te gebruiken)
     setResults = () => {
@@ -101,30 +120,30 @@ class App extends Component {
   renderQuiz() {
     return (
       <Quiz
-        answerOptions={this.state.answerOptions}
-        questionId={this.state.questionId}
-        question={this.state.question}
-        questionTotal={quizQuestions.length}
-        onAnswerSelected={this.handleAnswerSelected}
-        levens={this.state.leven}
-        score={this.state.score}
+            answerOptions={this.state.answerOptions}
+            questionId={this.state.questionId}
+            question={this.state.question}
+            questionTotal={quizQuestions.length}
+            onAnswerSelected={this.handleAnswerSelected}
+            levens={this.state.leven}
+            score={this.state.score}
       />
     );
   }
 
     // rendert het resultaat (oud resultaat moet nog verandert worden)
   renderResult() {
-    return <Result quizResult={this.state.result} />;
+      return <Result quizResult={this.state.result} naam={this.props.naam} />;
       }
 
   render() {
     return (
-      <div className="App">
-        <div className="App-header">
-                <img src={logo} className="App-logo" alt="logo" />
+        <div>
+           <img src={logo} className="App-logo" alt="logo" />
+            {this.state.result ? this.renderResult() : this.renderQuiz()}
+             {this.state.leven <= 3 && <Hint counter={this.state.counter} />}
         </div>
-        {this.state.result ? this.renderResult() : this.renderQuiz()}
-      </div>
+       
     );
   }
 }

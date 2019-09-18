@@ -1,27 +1,84 @@
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
-import PropTypes from 'prop-types'
 import App from '../App'
+import logo from '../svg/full_logo.svg'
 
 class Welkom extends Component {
     constructor() {
         super();
         this.state = {
-            something: 'aa'
+            naam: '',
+            questionData: [],
+            posts:[]
         }
+        this.handleChange = this.handleChange.bind(this);
     }
 
-    renderApp() {
-        return (ReactDOM.render(<App />, document.getElementById('root')))
+    // lelijke manier om de achtergrond kleur te veranderen
+    componentDidMount() {
+        document.body.style.backgroundColor = '#256eff'
+
+
+        let url = 'http://192.168.5.149:4000/'
+        fetch(url)
+            .then(res => res.json())
+            .then(data => {console.log(data)
+                this.setState({questionData:data})
+            })
     }
+
+    //postData() {
+    //    let url1 = 'http://192.168.5.149:4000/post'
+    //     fetch(url1, {
+    //            method: 'POST',
+    //            headers: {
+    //                'Content-Type': 'application/json'
+    //            },
+    //            body: JSON.stringify(ids)
+    //        }
+    //    }
+
+ 
+
+    handleChange(event) {
+        this.setState({naam: event.target.value})
+    }
+    renderApp() {
+        return (ReactDOM.render(<App naam={this.state.naam}/>, document.getElementById('root')))
+    }
+
     render() {
         return (
-            <div>
-                <form onSubmit={e => { e.preventDefault();this.renderApp() }}>
-                    <input type='submit' value='start de quiz' >
-                     </input>
-                </form>
+            <div >
+                <div className='grid'>
+                    <div className='grid-logo'>
+                        {this.state.questionData.map(({ question, hint, answer }) => <div key={question}>{question}---{answer}----{hint}</div>)}
+                    </div>
 
+                        <div className="grid-logo"> <img src={logo} className="App-logo" alt="logo" /></div> 
+                        <div className='grid-titel'>
+                        <p className='Titel'>Welkom Kollega!</p>
+                        </div>
+                        <div className='grid-sub'>
+                            <p className='sub'>Met de K van Keytoe</p>
+                        </div>
+                        <div className='grid-kop'>
+                            <p className='Kop'>De kwizz</p>
+                        </div>
+                        <div className='grid-info'>
+                            <p className='InfoTekst'>Leer je Kollega’s écht kennen. Keytoe, KeytoeY, Toscani… Durf te vragen, maar niet naar het directe antwoord. Het moet wel leuk blijven. Ben je al zenuwachtig? Mooi.</p>
+                        </div>
+                    <div className='grid-naamform'>
+                        <form onSubmit={e => { e.preventDefault(); this.renderApp();  }}>
+                            <div>
+                                <input className='goInput' type='text' required placeholder='Je naam' onChange={this.handleChange}></input>
+                            </div>
+                            <div>
+                                <input className='goBut' type='submit' value='Letsgooo!'></input>
+                            </div>
+                        </form>
+                    </div>
+                 </div>
             </div>)
     };
 }
