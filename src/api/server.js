@@ -77,8 +77,25 @@ function handle_database(req, res) {
 app.get('/', function (req, res) {
     handle_database(req,res)
 })
-app.post('/post', function (req, res) {
-    res.send('POST request to homepage')
+app.post('/create', function (req, res) {
+    // res.send('POST request to homepage')
+    pool.getConnection(function (err, connection) {
+
+        var id = req.body.id
+        var question = req.body.question
+        var hint = req.body.hint
+        var answer = req.body.answer
+
+        var sql = 'INSERT INTO question (id,question,hint,answer) VALUES(7,"test1","test2","test3")'
+        connection.query(sql, function (err, result) {
+            if (err) {
+                res.status(500).send({ error: 'Something failed!' })
+            }
+            res.json({ 'status': 'succes',result })
+        })
+
+    })
+
 })
 app.listen(4000)
 console.log('Server is running.. on http://localhost:4000/')
