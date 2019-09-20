@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
 import App from '../App'
 import logo from '../svg/full_logo.svg'
+import constant from '../api/constant'
 
 class Welkom extends Component {
     constructor() {
@@ -19,7 +20,7 @@ class Welkom extends Component {
         document.body.style.backgroundColor = '#256eff'
 
 
-        let url = 'http://192.168.5.149:4000/'
+        let url = constant;
         fetch(url)
             .then(res => res.json())
             .then(data => {console.log(data)
@@ -28,7 +29,7 @@ class Welkom extends Component {
     }
 
     //postData() {
-    //    let url1 = 'http://192.168.5.149:4000/post'
+    //    let url1 = 'http://192.168.5.102:4000/post'
     //     fetch(url1, {
     //            method: 'POST',
     //            headers: {

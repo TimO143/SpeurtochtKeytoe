@@ -29,7 +29,7 @@ class App extends Component {
     // functie geimporteert vanuit AnswerOption en hier gedefined
     this.handleAnswerSelected = this.handleAnswerSelected.bind(this);
   }
-
+        
     componentDidMount() {
         // verander kleur van achtergrond terug naar zwart
       document.body.style.backgroundColor = 'black'
@@ -86,7 +86,7 @@ class App extends Component {
                     score: state.score + (10 * state.leven)
                 }
             }, () => { console.log(this.state.score) });
-        }
+        }   
     }
     setNextQuestion(event) {
     const counter = this.state.counter + 1;
