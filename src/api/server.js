@@ -26,34 +26,35 @@ app.use(express.json());
 
 app.use(cors())
 
-function post_db(req, res) {
-    pool.getConnection(function (err, connection) {
-        if (err) {
-            res.json({
-                "code": 100, "status": "Error in connection database"
-            })
-            return
-        }
-        console.log('connected  as id ' + connection.threadId)
+//function post_db(req, res) {
+//    pool.getConnection(function (err, connection) {
+//        if (err) {
+//            res.json({
+//                "code": 100, "status": "Error in connection database"
+//            })
+//            return
+//        }
+//        console.log('connected  as id ' + connection.threadId)
 
-        connection.query("insert into question(id,question,hint,answer) values (3,q3,h3,a2)", function (err, rows) {
-            connection.release()
-            if (!err) {
-                res.json(rows)
-                console.log(rows)
-            }
-        connection.on('error', function (err) {
-            res.json({ "code": 100, "status": "Error in connection database" })
-            return
-        })
-    })
+//        connection.query("insert into question(id,question,hint,answer) values (3,q3,h3,a2)", function (err, rows) {
+//            connection.release()
+//            if (!err) {
+//                res.json(rows)
+//                console.log(rows)
+//            }
+//        connection.on('error', function (err) {
+//            res.json({ "code": 100, "status": "Error in connection database" })
+//            return
+//        })
+//    })
 
-        })
-}
+//})
+//}
 function handle_database(req, res) {
 
     pool.getConnection(function (err, connection) {
         if (err) {
+            connection.release()
             res.json({
                 "code": 100, "status": "Error in connection database" })
             return
@@ -80,23 +81,77 @@ app.get('/', function (req, res) {
 app.post('/create', function (req, res) {
     // res.send('POST request to homepage')
     pool.getConnection(function (err, connection) {
-
         var id = req.body.id
         var question = req.body.question
         var hint = req.body.hint
         var answer = req.body.answer
+        //console.log(req)
+        console.log(req.body,question)
 
-        var sql = 'INSERT INTO question (id,question,hint,answer) VALUES(7,"test1","test2","test3")'
+        var sql = "INSERT INTO question(id,question,hint,answer) values ('"+id+"','"+question+"','"+hint+"','"+answer+"')"
         connection.query(sql, function (err, result) {
             if (err) {
-                res.status(500).send({ error: 'Something failed!' })
+                //res.send({ error: 'Something failed!' })
+                res.json({ err })
+                //res.json({ 'status': 'succes', result, id, question, hint, answer })
             }
-            res.json({ 'status': 'succes',result })
+            else {
+                res.json(result)
+            }
+            //res.json({ 'status': 'succes', result })
         })
-
     })
-
 })
+app.delete('/delete', function (req, res) {
+    // res.send('POST request to homepage')
+    pool.getConnection(function (err, connection) {
+        var id = req.body.id
+        var question = req.body.question
+        var hint = req.body.hint
+        var answer = req.body.answer
+        //console.log(req)
+        console.log(req.body, question)
+
+        var sql = "DELETE FROM question WHERE id='" + id + "'AND question='" + question + "'AND hint='" + hint + "'AND answer='" + answer + "'"
+        connection.query(sql, function (err, result) {
+            if (err) {
+                //res.send({ error: 'Something failed!' })
+                res.json({ err })
+                //res.json({ 'status': 'succes', result, id, question, hint, answer })
+            }
+            else {
+                res.json(result)
+            }
+            //res.json({ 'status': 'succes', result })
+        })
+    })
+})
+
+app.put('/update', function (req, res) {
+    // res.send('POST request to homepage')
+    pool.getConnection(function (err, connection) {
+        var id = req.body.id
+        var question = req.body.question
+        var hint = req.body.hint
+        var answer = req.body.answer
+        //console.log(req)
+        console.log(req.body, question)
+
+        var sql = "UPDATE question SET id='" + id + "'AND question='" + question + "'AND hint='" + hint + "'AND answer='" + answer + "' WHERE id='" + id + "'OR question='" + question + "'OR hint='" + hint + "'OR answer='" + answer + "'"
+        connection.query(sql, function (err, result) {
+            if (err) {
+                //res.send({ error: 'Something failed!' })
+                res.json({ err })
+                //res.json({ 'status': 'succes', result, id, question, hint, answer })
+            }
+            else {
+                res.json(result)
+            }
+            //res.json({ 'status': 'succes', result })
+        })
+    })
+})
+
 app.listen(4000)
 console.log('Server is running.. on http://localhost:4000/')
 
