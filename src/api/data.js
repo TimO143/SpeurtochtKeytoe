@@ -4,7 +4,7 @@ const mongoose = require("mongoose");
 const DataSchema = mongoose.Schema({
     name: {
         type: String,
-        required: true
+        required: false
     },
     score: {
         type: Number,
