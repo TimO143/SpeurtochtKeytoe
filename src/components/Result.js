@@ -37,8 +37,9 @@ class Result extends React.Component {
     }
 }
 
-Result.propTypes = {
-                    quizResult: PropTypes.number.isRequired
-            };
+Result.propTypes =
+    {
+        quizResult: PropTypes.number.isRequired
+    };
             
-            export default Result;
+export default Result;

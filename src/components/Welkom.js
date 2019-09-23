@@ -44,6 +44,9 @@ class Welkom extends Component {
     handleChange(event) {
         this.setState({naam: event.target.value})
     }
+    checkName() {
+        console.log(this.state.naam)
+    }
     renderApp() {
         return (ReactDOM.render(<App naam={this.state.naam}/>, document.getElementById('root')))
     }
@@ -70,7 +73,7 @@ class Welkom extends Component {
                             <p className='InfoTekst'>Leer je Kollega’s écht kennen. Keytoe, KeytoeY, Toscani… Durf te vragen, maar niet naar het directe antwoord. Het moet wel leuk blijven. Ben je al zenuwachtig? Mooi.</p>
                         </div>
                     <div className='grid-naamform'>
-                        <form onSubmit={e => { e.preventDefault(); this.renderApp();  }}>
+                        <form onSubmit={e => { e.preventDefault(); this.renderApp(); this.checkName() }}>
                             <div>
                                 <input className='goInput' type='text' required placeholder='Je naam' onChange={this.handleChange}></input>
                             </div>
