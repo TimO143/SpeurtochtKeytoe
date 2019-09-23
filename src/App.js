@@ -19,9 +19,9 @@ class App extends Component {
       question: '',
       answerOptions: '',
       answersCount: {},
-      result: 0,
-      leven: 5,
-      score: 0,
+      result: 0, //endScore reducer
+      leven: 5, //life reducer
+      score: 0, //score reducer
 
 
       };
