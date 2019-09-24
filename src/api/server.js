@@ -61,7 +61,7 @@ function handle_database(req, res) {
         }
         console.log('connected  as id ' + connection.threadId)
 
-        connection.query("select * from question", function (err, rows) {
+        connection.query("select * from question ORDER BY position", function (err, rows) {
             connection.release()
             if (!err) {
                 res.json(rows)
@@ -85,10 +85,11 @@ app.post('/create', function (req, res) {
         var question = req.body.question
         var hint = req.body.hint
         var answer = req.body.answer
+        var position = req.body.answer
         //console.log(req)
         console.log(req.body,question)
 
-        var sql = "INSERT INTO question(id,question,hint,answer) values ('"+id+"','"+question+"','"+hint+"','"+answer+"')"
+        var sql = "INSERT INTO question(id,question,hint,answer,position) values ('"+id+"','"+question+"','"+hint+"','"+answer+"','"+position+"')"
         connection.query(sql, function (err, result) {
             if (err) {
                 //res.send({ error: 'Something failed!' })
@@ -109,10 +110,11 @@ app.delete('/delete', function (req, res) {
         var question = req.body.question
         var hint = req.body.hint
         var answer = req.body.answer
+        var position = req.body.position
         //console.log(req)
         console.log(req.body, question)
 
-        var sql = "DELETE FROM question WHERE id='" + id + "'AND question='" + question + "'AND hint='" + hint + "'AND answer='" + answer + "'"
+        var sql = "DELETE FROM question WHERE id='" + id +"'"
         connection.query(sql, function (err, result) {
             if (err) {
                 //res.send({ error: 'Something failed!' })

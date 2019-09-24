@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import cancel from '../svg/icon.png';
-import Hint from '../components/Hint';
 
 
 class AnswerOption extends React.Component {
@@ -20,9 +19,6 @@ class AnswerOption extends React.Component {
             value: e.target.value.toLowerCase()
         })
     }
-    clearform = () => {
-        document.getElementById('myForm').reset();
-    }
 
     toggleHidden() {
         this.setState({
@@ -36,6 +32,10 @@ class AnswerOption extends React.Component {
 
     getRandom(errors) {
         return errors[Math.floor(Math.random() * errors.length)];
+    }
+
+    clearform() {
+        document.getElementById("myForm").reset()
     }
     render() {
         return (

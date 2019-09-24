@@ -1,10 +1,10 @@
 /*grid andere poging*/
 /*maak grid afstand tussen alle elementen*/
-.grid > * {
+/*.grid > * {
     padding: .5rem;
     background-color: #b6ff00;
     color: white;
-}
+}*/
 /*maak grid */
 .grid {
     display: grid;

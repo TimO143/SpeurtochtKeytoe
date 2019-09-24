@@ -1,24 +1,30 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
+
+import AdminAdd from './AdminAdd'
+import AdminItem   from './AdminItem'
 
 class Admin extends React.Component {
     constructor() {
         super()
         this.state = {
             questionData: [],
-            id:'',
+            id: 0,
+            position:'',
             question: '',
             hint: '',
             answer: '',
-           
-            tempId: '',
-            tempQuestion: '',
-            tempHint: '',
-            tempAnswer: '',
-           
+            items: [
+               ]
         }
     }
 
+// dit is hoe de items array eruit ziet je kan gewoon items[0].question = q1
+//{ id: 1, question: 'q1', hint: 'h1', answer: 'a1' ,position:'p1'},
+//{ id: 2, question: 'q2', hint: 'h2', answer: 'a2' ,position:'p2'},
+//{ id: 3, question: 'q3', hint: 'h3', answer: 'a3' ,position:'p3'},
+
+
+    // haalt de informatie uit de database op ( GET ) en voegt het toe aan items[]
     componentDidMount() {
         document.body.style.backgroundColor = '#256eff'
 
@@ -27,100 +33,178 @@ class Admin extends React.Component {
             .then(res => res.json())
             .then(data => {
                 console.log(data)
-                this.setState({ questionData: data })
-            })
+                this.setState({ items: data })
+            }).catch(err =>
+            console.log(err))
     }
 
-    handleFormSubmit(event) {
-        event.preventDefault();
-            let url1 = 'http://192.168.5.149:4000/create'
-            fetch(url1, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ "id": this.state.id, "question": this.state.question, "hint": this.state.hint, "answer": this.state.answer  })
-            })
-                .then(res => res.json())
-                .then(data => {
-                    console.log(data)
-            })
-        console.log(this.state)
-    }
-   
-    handleFormUpdate(event,id,question,hint,answer) {
-        event.preventDefault();
+      // doet niks op het moment
+    handleFormUpdate(item) {
+        //event.preventDefault();
         let url1 = 'http://192.168.5.149:4000/update/'
         fetch(url1, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ "id": id, "question": question, "hint": hint, "answer": answer })
+            body: JSON.stringify({ "id": item.id, "question": item.question,"hint":item.hint ,"answer":item.answer})
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data)
+            }).catch(err => {
+                console.log(err)
+            })
+    }
+
+    //zorgt voor veranderen van input
+    handleInputChange = e => {
+        const target = e.target
+        const value = target.value
+        const name = target.name
+        this.setState({
+            [name]: value
+        })
+    };
+
+    // voegt item toe in de state EN voegt item toe in de database, 1 probleem. ID kijkt alleen naar totale lengte van de items niet naar de ID zelf
+    addItem = e => {
+        e.preventDefault();
+        const { question, hint, answer, position } = this.state
+        const itemsInState = this.state.items
+        const itemsArrayLength = itemsInState.length
+        const id = itemsInState.length + 1
+        
+        console.log(id,question,hint,answer,position)
+        let url1 = 'http://192.168.5.149:4000/create'
+        fetch(url1, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ "id":id, "question": question, "hint": hint, "answer":answer, "position": position })
         })
             .then(res => res.json())
             .then(data => {
                 console.log(data)
             })
-    }
-    handleFormDelete(event,id,question,hint,answer) {
-        event.preventDefault();
+        this.setState({
+            items: [
+                ...itemsInState,
+                Object.assign({}, {
+                    id, question, hint, answer,position
+                })
+            ],
+            position:'',
+            question: '',
+            hint: '',
+            answer: ''
+        })
+        console.log(this.state.items)
+        console.log(itemsInState)
+        console.log(itemsArrayLength)
+        
+    };
+
+    // toggle item editing voor de index die je wilt
+    toggleItemEditing = index => {
+         this.setState({
+                items: this.state.items.map((item, itemIndex) => {
+                    if (itemIndex === index) {
+                        return {
+                            ...item,
+                            isEditing: !item.isEditing
+                        }
+                    }
+                    return item;
+             })
+        })
+    };
+
+    // update te item die je kan editen de naam van de field ( in HTML) wordt de value (de input) aan toegekent
+    handleItemUpdate = (e, index) => {
+        const target = e.target
+        const value = target.value
+        // naam van het veld
+        const name = target.name
+        this.setState({
+            items: this.state.items.map((item, itemIndex) => {
+                if (itemIndex === index) {
+                    //console.log(this.state.items[index])
+                    return {
+                        ...item,
+                        [name]: value
+                    }
+                }
+                return item
+            })
+        })
+    };
+
+    // delete uit de database gebaseerd op ID en haalt het item uit de state en voegt de items samen als het uit het midden wordt gehaald
+    onDelete = index => {
+        const deleteItem = this.state.items[index]
+        console.log(deleteItem)
+
         let url1 = 'http://192.168.5.149:4000/delete'
         fetch(url1, {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ "id": id, "question": question, "hint": hint, "answer": answer })
+            body: JSON.stringify({ "id": deleteItem.id, "question": deleteItem.question, "hint": deleteItem.hint, "position":deleteItem.position })
         })
             .then(res => res.json())
             .then(data => {
                 console.log(data)
             })
-    }
+
+
+        this.setState({
+            items: [
+                ...this.state.items.slice(0, index),
+                ...this.state.items.slice(index + 1)
+            ]
+        })
+    };
+
 
     render() {
+        const {id,question,hint,answer,position} = this.state
         return (
             <div>
-                {this.state.questionData.map(({ id, question, hint, answer }) =>
-                    <div key={id}>
-                    <form>
-                        <label>ID</label>
-                            <input type='number' value={id}
-                                onChange={e => { console.log(this.state.questionData); this.setState({ tempId: e.target.value }) }} />
-                        <label>Vraag</label>
-                            <input type='text' value={question} 
-                            onChange={e => this.setState({ tempQuestion: e.target.value })} />
-                        <label>hint</label>
-                            <input type='text' value={hint} 
-                            onChange={e => this.setState({ tempHint: e.target.value })} />
-                        <label>antwoord</label>
-                            <input type='text' value={answer} 
-                            onChange={e => this.setState({ tempAnswer: e.target.value })} />
-                            <input type="submit" onClick={e => this.handleFormUpdate(e,id,question,hint,answer)} value="update vraag" />
-                            <input type="submit" onClick={e => this.handleFormDelete(e,id,question,hint,answer)} value="delete vraag" />
-                    </form>
-                    </div>
-                )}
+                <AdminAdd
+                    position={position}
+                    id={id}
+                    question={question}
+                    hint={hint}
+                    answer={answer}
+                    onChange={this.handleInputChange}
+                    onSubmit={(e) => { this.addItem(e) }}
+                />
+
+                <h1>vragen</h1>
+
                 <div>
-                    <form>
-                        <label>ID</label>
-                        <input type='number' value={this.state.id}
-                            onChange={e => this.setState({ id: e.target.value })} />
-                        <label>Vraag</label>
-                        <input type='text' value={this.state.question}
-                            onChange={e => this.setState({ question: e.target.value })} />
-                        <label>hint</label>
-                        <input type='text' value={this.state.hint}
-                            onChange={e => this.setState({ hint: e.target.value })} />
-                        <label>antwoord</label>
-                        <input type='text' value={this.state.answer}
-                            onChange={e => this.setState({ answer: e.target.value })} />
-                        <input type="submit" onClick={e => this.handleFormSubmit(e)} value="Voeg nieuwe vraag toe" />
-                    </form>
+                    {
+                        this.state.items.map((item, index) =>
+                            <AdminItem
+                                key={item.id}
+                                index={index}
+                                item={item}
+                                toggleEditing={() => this.toggleItemEditing(index)}
+                                onChange={this.handleItemUpdate}
+                                onDelete={() => this.onDelete(index)}
+                                                              
+                            />
+                            )
+                    }
                 </div>
             </div>)
     }
 }
+// key={item.id}
+// zou key moeten hebben volgens react onder AdminItem maar anders staat het niet toe om id aan te passen. zou een extra ID kunnen aanmaken?
+//onSubmit={this.handleFormUpdate(this.state.items[index])}
 
 export default Admin
