@@ -17,8 +17,6 @@ class Welkom extends Component {
     componentDidMount() {
         document.body.style.backgroundColor = '#256eff'
     }
-
-
     
     renderAdmin() {
         return (ReactDOM.render(<Admin />, document.getElementById('root')))

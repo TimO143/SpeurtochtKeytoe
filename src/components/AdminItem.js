@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-const AdminItem = ({ toggleEditing, item, onChange, index, onDelete }) => (
+const AdminItem = ({ toggleEditing, item, onChange, index, onDelete, onSubmit }) => (
     <div>
         <div>
             <div>
@@ -49,7 +49,7 @@ const AdminItem = ({ toggleEditing, item, onChange, index, onDelete }) => (
                             onChange={e => onChange(e, index)}
                             required
                             />
-                            
+                            <input type='button' onClick={onSubmit}/>
                             </form>
                     </div>
                     :

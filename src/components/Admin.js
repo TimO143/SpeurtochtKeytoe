@@ -19,9 +19,9 @@ class Admin extends React.Component {
     }
 
 // dit is hoe de items array eruit ziet je kan gewoon items[0].question = q1
-//{ id: 1, question: 'q1', hint: 'h1', answer: 'a1' ,position:'p1'},
+//[{ id: 1, question: 'q1', hint: 'h1', answer: 'a1' ,position:'p1'},
 //{ id: 2, question: 'q2', hint: 'h2', answer: 'a2' ,position:'p2'},
-//{ id: 3, question: 'q3', hint: 'h3', answer: 'a3' ,position:'p3'},
+//{ id: 3, question: 'q3', hint: 'h3', answer: 'a3' ,position:'p3'},]
 
 
     // haalt de informatie uit de database op ( GET ) en voegt het toe aan items[]
@@ -36,25 +36,6 @@ class Admin extends React.Component {
                 this.setState({ items: data , serverStatus: true})
             }).catch(err =>
             console.log(err))
-    }
-
-      // doet niks op het moment
-    handleFormUpdate(item) {
-        //event.preventDefault();
-        let url1 = 'http://192.168.5.149:4000/update/'
-        fetch(url1, {
-            method: 'PUT',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ "id": item.id, "question": item.question,"hint":item.hint ,"answer":item.answer})
-        })
-            .then(res => res.json())
-            .then(data => {
-                console.log(data)
-            }).catch(err => {
-                console.log(err)
-            })
     }
 
     //zorgt voor veranderen van input
@@ -74,36 +55,37 @@ class Admin extends React.Component {
         const itemsInState = this.state.items
         const itemsArrayLength = itemsInState.length
         const id = itemsInState.length + 1
-        
-        console.log(id,question,hint,answer,position)
-        let url1 = 'http://192.168.5.149:4000/create'
-        fetch(url1, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ "id":id, "question": question, "hint": hint, "answer":answer, "position": position })
-        })
-            .then(res => res.json())
-            .then(data => {
-                console.log(data)
+        console.log(id)
+        if (question !== '' && hint !== '' && answer !== '' && position !== '') {
+            console.log(id, question, hint, answer, position)
+            let url1 = 'http://192.168.5.149:4000/create'
+            fetch(url1, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ "id": id, "question": question, "hint": hint, "answer": answer, "position": position })
             })
-        this.setState({
-            items: [
-                ...itemsInState,
-                Object.assign({}, {
-                    id, question, hint, answer,position
+                .then(res => res.json())
+                .then(data => {
+                    console.log(data)
                 })
-            ],
-            position:'',
-            question: '',
-            hint: '',
-            answer: ''
-        })
-        console.log(this.state.items)
-        console.log(itemsInState)
-        console.log(itemsArrayLength)
-        
+            this.setState({
+                items: [
+                    ...itemsInState,
+                    Object.assign({}, {
+                        id, question, hint, answer, position
+                    })
+                ],
+                position: '',
+                question: '',
+                hint: '',
+                answer: ''
+            })
+            console.log(this.state.items)
+            console.log(itemsInState)
+            console.log(itemsArrayLength)
+        }
     };
 
     // toggle item editing voor de index die je wilt
@@ -123,10 +105,13 @@ class Admin extends React.Component {
 
     // update te item die je kan editen de naam van de field ( in HTML) wordt de value (de input) aan toegekent
     handleItemUpdate = (e, index) => {
+        // value en naam van input veld
         const target = e.target
         const value = target.value
-        // naam van het veld
         const name = target.name
+
+        //console.log("name: "+name, "value: "+value)
+
         this.setState({
             items: this.state.items.map((item, itemIndex) => {
                 if (itemIndex === index) {
@@ -140,6 +125,27 @@ class Admin extends React.Component {
             })
         })
     };
+
+    handlePutRequest = (e, index) => {
+        e.preventDefault()
+        const updateItem = this.state.items[index]
+        console.log(updateItem)
+
+        let url1 = 'http://192.168.5.149:4000/update/'
+        fetch(url1, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ "id": updateItem.id, "question": updateItem.question, "hint": updateItem.hint, "answer": updateItem.answer, "position": updateItem.position })
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data)
+            }).catch(err => {
+                console.log(err)
+            })
+    }
 
     // delete uit de database gebaseerd op ID en haalt het item uit de state en voegt de items samen als het uit het midden wordt gehaald
     onDelete = index => {
@@ -195,6 +201,7 @@ class Admin extends React.Component {
                                 toggleEditing={() => this.toggleItemEditing(index)}
                                 onChange={this.handleItemUpdate}
                                 onDelete={() => this.onDelete(index)}
+                                onSubmit={(e) => this.handlePutRequest(e,index)}
                             />
                             )
             :

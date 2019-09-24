@@ -138,10 +138,11 @@ app.put('/update', function (req, res) {
         var question = req.body.question
         var hint = req.body.hint
         var answer = req.body.answer
+        var position = req.body.position
         //console.log(req)
         console.log(req.body, question)
 
-        var sql = "UPDATE question SET id='" + id + "'AND question='" + question + "'AND hint='" + hint + "'AND answer='" + answer + "' WHERE id='" + id + "'OR question='" + question + "'OR hint='" + hint + "'OR answer='" + answer + "'"
+        var sql = "UPDATE question SET question='" + question + "',hint='" + hint + "',answer='" + answer + "',position=" + position + " where id=" + id + ""
         connection.query(sql, function (err, result) {
             if (err) {
                 res.send({ error: 'Something failed! in PUT' })
