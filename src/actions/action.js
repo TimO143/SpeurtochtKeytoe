@@ -1,4 +1,4 @@
-//this is just a template 
+import store from '../store';
 
 export const NAME = 'NAME'
 export const ADD_SCORE = 'ADD_SCORE'
@@ -6,12 +6,10 @@ export const DECREASE_LIFE = 'DECREASE_LIFE'
 export const RESULT = 'RESULT'
 
 
-export function name(name) {
-    return {
-        type: NAME,
-        name
-    }
-}
+export const nameAdd = name => ({
+    type: 'NAME',
+    payload: name
+});
 
 export function addScore(score) {
     return {
@@ -26,9 +24,11 @@ export function decreaseLife(lives) {
         lives
     }
 }
-export function result(quizResult) {
+export function showResult(quizResult) {
     return {
         type: RESULT,
         quizResult
     }
 }
+
+

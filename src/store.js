@@ -1,7 +1,7 @@
 import { createStore } from "redux";
 import scoreBoardReducer from "./reducers/reducer";
 import {
-    name,
+    nameAdd,
     addScore,
     decreaseLife,
     result
@@ -15,9 +15,9 @@ const store = createStore(
 console.log(store.getState())
 const unsubscribe = store.subscribe(() => console.log(store.getState()))
 
-store.dispatch(name('BrankoReducer'))
-store.dispatch(addScore(10))
-store.dispatch(result({name, addScore}))
+//store.dispatch(name('BrankoReducer'))
+//store.dispatch(addScore(10))
+//store.dispatch(result({name, addScore}))
 
 
 

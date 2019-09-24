@@ -3,12 +3,17 @@ import ReactDOM from 'react-dom'
 import App from '../App'
 import logo from '../svg/full_logo.svg'
 import constant from '../api/constant'
+import {nameAdd} from '../actions/action';
+import store from '../store'
+import {bindActionCreators} from 'redux';
+import { connect } from 'react-redux';
+import scoreBoardReducer from '../reducers/reducer';
 
 class Welkom extends Component {
     constructor() {
         super();
         this.state = {
-            naam: '',
+            name: '',
             questionData: [],
             posts:[]
         }
@@ -42,13 +47,16 @@ class Welkom extends Component {
  
 
     handleChange(event) {
-        this.setState({naam: event.target.value})
+        console.log(event.target.value)
+        this.setState({name: event.target.value})
+        console.log(this.props.nameAdd(event.target.value))
     }
     checkName() {
-        console.log(this.state.naam)
+        console.log(store.getState())   
+        console.log(this.props)
     }
     renderApp() {
-        return (ReactDOM.render(<App naam={this.state.naam}/>, document.getElementById('root')))
+        return (ReactDOM.render(<App name={this.state.name}/>, document.getElementById('root')))
     }
 
     render() {
@@ -70,12 +78,12 @@ class Welkom extends Component {
                             <p className='Kop'>De kwizz</p>
                         </div>
                         <div className='grid-info'>
-                            <p className='InfoTekst'>Leer je Kollega’s écht kennen. Keytoe, KeytoeY, Toscani… Durf te vragen, maar niet naar het directe antwoord. Het moet wel leuk blijven. Ben je al zenuwachtig? Mooi.</p>
+                            <p className='InfoTekst'>Leer je Kollegaï¿½s ï¿½cht kennen. Keytoe, KeytoeY, Toscaniï¿½ Durf te vragen, maar niet naar het directe antwoord. Het moet wel leuk blijven. Ben je al zenuwachtig? Mooi.</p>
                         </div>
                     <div className='grid-naamform'>
                         <form onSubmit={e => { e.preventDefault(); this.renderApp(); this.checkName() }}>
                             <div>
-                                <input className='goInput' type='text' required placeholder='Je naam' onChange={this.handleChange}></input>
+                                <input className='goInput' type='text' required placeholder='Je naam'  onChange={this.handleChange}></input>
                             </div>
                             <div>
                                 <input className='goBut' type='submit' value='Letsgooo!'></input>
@@ -84,7 +92,31 @@ class Welkom extends Component {
                     </div>
                  </div>
             </div>)
+            
     };
 }
 
-export default Welkom;
+
+const mapStateToProps = ({ scoreReducer }) => ({
+    name: scoreReducer.name,
+    score: 0,
+    result: [],
+    lives: 5
+  });
+  
+  const mapDispatchToProps = dispatch =>
+    bindActionCreators(
+      {
+        nameAdd
+      },
+      dispatch
+    );
+
+  
+  export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(Welkom);
+
+
+

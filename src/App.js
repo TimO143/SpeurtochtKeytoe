@@ -8,7 +8,6 @@ import './App.css';
 import { setTimeout } from 'timers';
 import Hint from './components/Hint'
 
-
 class App extends Component {
   constructor(props) {
     super(props);

@@ -3,12 +3,15 @@ import PropTypes from 'prop-types';
 import App from '../App';
 import { error } from 'util';
 import constant from '../api/constant';
+import {nameAdd} from '../actions/action';
+
 
 class Result extends React.Component {
     constructor(props) {
         super(props)
 
         this.state = {
+            name: '',
             score: []
         }
     }
@@ -16,9 +19,9 @@ class Result extends React.Component {
     render() {
         return (
             <div className="resultPage">
-                {this.state.score.map(({ username, score }) =>
-                    <div key={username}>
-                        <div>{username},{score}</div>
+                {this.state.score.map(({ nameAdd, score }) =>
+                    <div key={nameAdd}>
+                        <div>{nameAdd},{score}</div>
                     </div>
                 )}   
             </div>        

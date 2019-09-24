@@ -15,24 +15,25 @@ const initialState = {
 }
 
 function scoreReducer(state = initialState, action) {
+    console.log(action)
     switch (action.type) {
         case NAME:
             return Object.assign({}, state,
                 {
-                    name: action.name
+                    name: action.payload
                 });
 
         case ADD_SCORE:
             return Object.assign({}, state,
                 {
-                    score: action.score
+                    score: action.payload
                     //unsure if lives have to be here
                 })
 
         case DECREASE_LIFE:
             return Object.assign({}, state,
                 {
-                    decreaseLife: action.lives
+                    decreaseLife: action.payload
                 })
 
         case RESULT:
