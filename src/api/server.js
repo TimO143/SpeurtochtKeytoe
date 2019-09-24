@@ -61,7 +61,7 @@ function handle_database(req, res) {
         }
         console.log('connected  as id ' + connection.threadId)
 
-        connection.query("select * from question ORDER BY position", function (err, rows) {
+        connection.query("select * from question", function (err, rows) {
             connection.release()
             if (!err) {
                 res.json(rows)
@@ -85,7 +85,7 @@ app.post('/create', function (req, res) {
         var question = req.body.question
         var hint = req.body.hint
         var answer = req.body.answer
-        var position = req.body.answer
+        var position = req.body.position
         //console.log(req)
         console.log(req.body,question)
 
