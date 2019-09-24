@@ -61,7 +61,7 @@ function handle_database(req, res) {
         }
         console.log('connected  as id ' + connection.threadId)
 
-        connection.query("select * from question", function (err, rows) {
+        connection.query("select * from question ORDER BY position", function (err, rows) {
             connection.release()
             if (!err) {
                 res.json(rows)
