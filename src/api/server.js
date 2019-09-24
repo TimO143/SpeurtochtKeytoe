@@ -92,13 +92,14 @@ app.post('/create', function (req, res) {
         var sql = "INSERT INTO question(id,question,hint,answer,position) values ('"+id+"','"+question+"','"+hint+"','"+answer+"','"+position+"')"
         connection.query(sql, function (err, result) {
             if (err) {
-                //res.send({ error: 'Something failed!' })
+               res.send({ error: 'Something failed! in POST' })
                 res.json({ err })
                 //res.json({ 'status': 'succes', result, id, question, hint, answer })
             }
             else {
                 res.json(result)
             }
+            connection.release()
             //res.json({ 'status': 'succes', result })
         })
     })
@@ -117,13 +118,14 @@ app.delete('/delete', function (req, res) {
         var sql = "DELETE FROM question WHERE id='" + id +"'"
         connection.query(sql, function (err, result) {
             if (err) {
-                //res.send({ error: 'Something failed!' })
+                res.send({ error: 'Something failed! in delete' })
                 res.json({ err })
                 //res.json({ 'status': 'succes', result, id, question, hint, answer })
             }
             else {
                 res.json(result)
             }
+            connection.release()
             //res.json({ 'status': 'succes', result })
         })
     })
@@ -142,13 +144,14 @@ app.put('/update', function (req, res) {
         var sql = "UPDATE question SET id='" + id + "'AND question='" + question + "'AND hint='" + hint + "'AND answer='" + answer + "' WHERE id='" + id + "'OR question='" + question + "'OR hint='" + hint + "'OR answer='" + answer + "'"
         connection.query(sql, function (err, result) {
             if (err) {
-                //res.send({ error: 'Something failed!' })
+                res.send({ error: 'Something failed! in PUT' })
                 res.json({ err })
                 //res.json({ 'status': 'succes', result, id, question, hint, answer })
             }
             else {
                 res.json(result)
             }
+            connection.release()
             //res.json({ 'status': 'succes', result })
         })
     })
@@ -157,21 +160,3 @@ app.put('/update', function (req, res) {
 app.listen(4000)
 console.log('Server is running.. on http://localhost:4000/')
 
-//// connect met database
-//con.connect(function (err) {
-//    if (err) throw err;
-//    console.log('connected')
-
-
-//app.get('/get', function (req, res) {
-//        let sql = 'SELECT * from question';
-//        con.query(sql, function (err, result) {
-//            if (err) throw err;
-//            console.log(result);
-//        })
-//    })
-//})
-
-    //var server = app.listen(4000, function () {
-    //    console.log('server is running..')
-    //})

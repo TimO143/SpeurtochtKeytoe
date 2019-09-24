@@ -13,8 +13,8 @@ class Admin extends React.Component {
             question: '',
             hint: '',
             answer: '',
-            items: [
-               ]
+            items: [],
+            serverStatus: false
         }
     }
 
@@ -33,7 +33,7 @@ class Admin extends React.Component {
             .then(res => res.json())
             .then(data => {
                 console.log(data)
-                this.setState({ items: data })
+                this.setState({ items: data , serverStatus: true})
             }).catch(err =>
             console.log(err))
     }
@@ -186,7 +186,7 @@ class Admin extends React.Component {
                 <h1>vragen</h1>
 
                 <div>
-                    {
+                    {this.state.serverStatus ?
                         this.state.items.map((item, index) =>
                             <AdminItem
                                 key={item.id}
@@ -195,16 +195,17 @@ class Admin extends React.Component {
                                 toggleEditing={() => this.toggleItemEditing(index)}
                                 onChange={this.handleItemUpdate}
                                 onDelete={() => this.onDelete(index)}
-                                                              
                             />
                             )
-                    }
+            :
+                    <div><p>de server staat niet aan!</p></div>
+            }
+            
+            
                 </div>
             </div>)
     }
 }
-// key={item.id}
-// zou key moeten hebben volgens react onder AdminItem maar anders staat het niet toe om id aan te passen. zou een extra ID kunnen aanmaken?
 //onSubmit={this.handleFormUpdate(this.state.items[index])}
 
 export default Admin
