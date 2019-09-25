@@ -19,11 +19,7 @@ class Result extends React.Component {
     render() {
         return (
             <div className="resultPage">
-                {this.state.score.map(({ nameAdd, score }) =>
-                    <div key={nameAdd}>
-                        <div>{nameAdd},{score}</div>
-                    </div>
-                )}   
+                <strong>{this.props.name}, {this.props.quizResult}</strong> 
             </div>        
       
         )

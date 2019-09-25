@@ -3,6 +3,12 @@ import ReactDOM from 'react-dom'
 import App from '../App'
 import logo from '../svg/full_logo.svg'
 import Admin from '../components/Admin'
+import constant from '../api/constant'
+import {nameAdd} from '../actions/action';
+import store from '../store'
+import {bindActionCreators} from 'redux';
+import { connect } from 'react-redux';
+import scoreBoardReducer from '../reducers/reducer';
 
 class Welkom extends Component {
     constructor() {
