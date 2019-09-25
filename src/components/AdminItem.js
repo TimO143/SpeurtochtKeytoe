@@ -9,6 +9,8 @@ const AdminItem = ({ toggleEditing, item, onChange, index, onDelete, onSubmit })
                     ?
                     <div>
                         <form>
+                            <div>
+                                id: 
                         <input
                             type='number'
                             name='id'
@@ -16,15 +18,20 @@ const AdminItem = ({ toggleEditing, item, onChange, index, onDelete, onSubmit })
                             value={item.id}
                             onChange={e => onChange(e, index)}
                             disabled
-                            />
+                                />
+                            </div>
+                            <div>
+                                position:
                         <input
                             type='text'
                             name='position'
                             placeholder='position'
                             value={item.position}
                             onChange={e => onChange(e, index)}
-                                
-                        />
+                                />
+                            </div>
+                            <div>
+                                vraag:
                         <input
                             type='text'
                             name='question'
@@ -32,7 +39,10 @@ const AdminItem = ({ toggleEditing, item, onChange, index, onDelete, onSubmit })
                             value={item.question}
                             onChange={e => onChange(e, index)}
                             required
-                        />
+                                />
+                            </div>
+                            <div>
+                                hint:
                         <input
                             type='text'
                             name='hint'
@@ -40,7 +50,10 @@ const AdminItem = ({ toggleEditing, item, onChange, index, onDelete, onSubmit })
                             value={item.hint}
                             onChange={e => onChange(e,index)}
                             required
-                        />
+                                />
+                            </div>
+                            <div>
+                                antwoord:
                         <input
                             type='text'
                             name='answer'
@@ -48,8 +61,9 @@ const AdminItem = ({ toggleEditing, item, onChange, index, onDelete, onSubmit })
                             value={item.answer}
                             onChange={e => onChange(e, index)}
                             required
-                            />
-                            <input type='button' onClick={onSubmit}/>
+                                />
+                                </div>
+                            <input type='button' value='Update database' onClick={onSubmit}/>
                             </form>
                     </div>
                     :

@@ -48,14 +48,42 @@ class Admin extends React.Component {
         })
     };
 
+    /* Deze functie zorgt ervoor dat er een array terug komt met id's van de vragen die missen
+     array.from maakt een nieuwe array die alle items pakt uit de oude array from('foo') -> ['f','o','o']
+     map gaat over deze elementen heen en pakt de index waar het staat. index kleiner dan 0 en index groter dan laagste -> false && false = true -> geeft index terug
+     */
+    missingNumbers = a => 
+        Array.from(
+            Array(Math.max(...a)).keys())
+            .map((n, i) => a.indexOf(i) < 0 && (i > Math.min(...a))
+                ? i
+                : null).filter(f => f);
+    
     // voegt item toe in de state EN voegt item toe in de database, 1 probleem. ID kijkt alleen naar totale lengte van de items niet naar de ID zelf
     addItem = e => {
         e.preventDefault();
         const { question, hint, answer, position } = this.state
         const itemsInState = this.state.items
-        const itemsArrayLength = itemsInState.length
-        const id = itemsInState.length + 1
-        console.log(id)
+
+        const testid = itemsInState.map(id => id.id)
+
+        // als er geen vragen zijn moet er iets in zitten anders kan het niet doorgegeven worden naar missingNumbers
+        if (testid[0] !== 0) {
+            testid.push(0)
+        }
+        console.log("Alle ID's in de array op dit moment "+testid)
+
+        /*
+          als er iets zit in de missingNumbers array dan wordt het eerste element de nieuwe id, anders wordt de lengte van de array het nieuwe id
+          dit werkt omdat er een soort van 'hidden element' zit in testid --> omdat er altijd met testid.push(0) id 0 wordt gezet als het niet op het eerste element te vinden is.
+          mogelijk probleem wat voor kan komen is wanneer id van eerste element opeens wordt gewijzigd naar 0
+        */
+        const id = this.missingNumbers(testid).length > 0 ? this.missingNumbers(testid)[0] : testid.length
+
+        console.log("inserted on id: " + id)
+        console.log(this.missingNumbers(testid))
+
+        
         if (question !== '' && hint !== '' && answer !== '' && position !== '') {
             console.log(id, question, hint, answer, position)
             let url1 = 'http://192.168.5.149:4000/create'
@@ -82,9 +110,9 @@ class Admin extends React.Component {
                 hint: '',
                 answer: ''
             })
-            console.log(this.state.items)
-            console.log(itemsInState)
-            console.log(itemsArrayLength)
+            //console.log(this.state.items)
+            //console.log(itemsInState)
+            //console.log(itemsArrayLength)
         }
     };
 
@@ -131,20 +159,22 @@ class Admin extends React.Component {
         const updateItem = this.state.items[index]
         console.log(updateItem)
 
-        let url1 = 'http://192.168.5.149:4000/update/'
-        fetch(url1, {
-            method: 'PUT',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ "id": updateItem.id, "question": updateItem.question, "hint": updateItem.hint, "answer": updateItem.answer, "position": updateItem.position })
-        })
-            .then(res => res.json())
-            .then(data => {
-                console.log(data)
-            }).catch(err => {
-                console.log(err)
+        if (updateItem.question !== '' && updateItem.hint !== '' && updateItem.answer !== '' && updateItem.position !== '') {
+            let url1 = 'http://192.168.5.149:4000/update/'
+            fetch(url1, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ "id": updateItem.id, "question": updateItem.question, "hint": updateItem.hint, "answer": updateItem.answer, "position": updateItem.position })
             })
+                .then(res => res.json())
+                .then(data => {
+                    console.log(data)
+                }).catch(err => {
+                    console.log(err)
+                })
+        }
     }
 
     // delete uit de database gebaseerd op ID en haalt het item uit de state en voegt de items samen als het uit het midden wordt gehaald
@@ -179,6 +209,7 @@ class Admin extends React.Component {
         const {id,question,hint,answer,position} = this.state
         return (
             <div>
+                <h1>Voeg vraag toe</h1>
                 <AdminAdd
                     position={position}
                     id={id}
@@ -213,6 +244,6 @@ class Admin extends React.Component {
             </div>)
     }
 }
-//onSubmit={this.handleFormUpdate(this.state.items[index])}
+
 
 export default Admin

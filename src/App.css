@@ -218,6 +218,14 @@ body {
 
 
 /*Questions*/
+h2.question {
+    color: white;
+    /*text-align: left;*/
+    /*padding-left: 13%;*/
+    font-size: 2em;
+    font-family: Cooper Hewitt;
+}
+/*Hint */
 p.hint {
     color: white;
     /*text-align: left;*/

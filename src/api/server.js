@@ -13,13 +13,12 @@ var cors = require('cors')
 
 // config voor database
 const pool = mysql.createPool({
-    connectionLimit: 100, // important, als er meer dan 100 requests worden gestuurd dan geeft het een error terug
+    connectionLimit: 100, // important, als er meer dan 100 connections worden gestuurd dan geeft het een error terug
     host: "localhost",
     user: "root",
     password: "password",
     database: "test_tim"
 })
-
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -105,7 +104,6 @@ app.post('/create', function (req, res) {
     })
 })
 app.delete('/delete', function (req, res) {
-    // res.send('POST request to homepage')
     pool.getConnection(function (err, connection) {
         var id = req.body.id
         var question = req.body.question
@@ -132,7 +130,6 @@ app.delete('/delete', function (req, res) {
 })
 
 app.put('/update', function (req, res) {
-    // res.send('POST request to homepage')
     pool.getConnection(function (err, connection) {
         var id = req.body.id
         var question = req.body.question
@@ -141,6 +138,7 @@ app.put('/update', function (req, res) {
         var position = req.body.position
         //console.log(req)
         console.log(req.body, question)
+
 
         var sql = "UPDATE question SET question='" + question + "',hint='" + hint + "',answer='" + answer + "',position=" + position + " where id=" + id + ""
         connection.query(sql, function (err, result) {
