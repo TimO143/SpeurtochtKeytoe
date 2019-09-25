@@ -10,12 +10,10 @@ class Quiz extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            levensover: this.props.levens
+            
         }
     }
-    checkLevens() {
-        console.log(this.state.levensover)
-    }
+
     // geeft de layout van quiz met de props voor questionCount , Question en AnswerOption --> antwoord moet het input veld doorgeven
     render() {
         return (
@@ -23,7 +21,7 @@ class Quiz extends React.Component {
                 <div className='grid-questionCount'>
                     <QuestionCount counter={this.props.questionId} total={this.props.questionTotal} />
                 </div>
-                <div className='grid-hint'> {this.checkLevens() && <Hint counter={this.props.questionId - 1} />}</div>
+                <div className='grid-hint'>  <Hint hint={this.props.hint} /></div>
                 <div className='grid-question'>
                     <Question content={this.props.question} />
                 </div>

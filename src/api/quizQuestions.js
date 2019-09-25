@@ -1,6 +1,6 @@
 const quizQuestions = [
   {
-        question: "Iedereen is zijn eigen baas bij Keytoe. Toch is er maar één echte Dungeon Master. Wie is het?",
+      question: "Iedereen is zijn eigen baas bij Keytoe. Toch is er maar één echte Dungeon Master. Wie is het?",
       answers: "answer1",
       hint: 'hint voor vraag 1'
   },

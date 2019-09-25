@@ -2,12 +2,7 @@ import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
 import App from '../App'
 import logo from '../svg/full_logo.svg'
-import constant from '../api/constant'
-import {nameAdd} from '../actions/action';
-import store from '../store'
-import {bindActionCreators} from 'redux';
-import { connect } from 'react-redux';
-import scoreBoardReducer from '../reducers/reducer';
+import Admin from '../components/Admin'
 
 class Welkom extends Component {
     constructor() {
@@ -23,27 +18,11 @@ class Welkom extends Component {
     // lelijke manier om de achtergrond kleur te veranderen
     componentDidMount() {
         document.body.style.backgroundColor = '#256eff'
-
-
-        let url = constant;
-        fetch(url)
-            .then(res => res.json())
-            .then(data => {console.log(data)
-                this.setState({questionData:data})
-            })
     }
-
-    //postData() {
-    //    let url1 = 'http://192.168.5.102:4000/post'
-    //     fetch(url1, {
-    //            method: 'POST',
-    //            headers: {
-    //                'Content-Type': 'application/json'
-    //            },
-    //            body: JSON.stringify(ids)
-    //        }
-    //    }
-
+    
+    renderAdmin() {
+        return (ReactDOM.render(<Admin />, document.getElementById('root')))
+    }
  
 
     handleChange(event) {
@@ -61,12 +40,9 @@ class Welkom extends Component {
 
     render() {
         return (
-            <div >
+            <div>
+                <button onClick={e => { e.preventDefault(); this.renderAdmin() }}>Naar admin panel</button>
                 <div className='grid'>
-                    <div className='grid-logo'>
-                        {this.state.questionData.map(({ question, hint, answer }) => <div key={question}>{question}---{answer}----{hint}</div>)}
-                    </div>
-
                         <div className="grid-logo"> <img src={logo} className="App-logo" alt="logo" /></div> 
                         <div className='grid-titel'>
                         <p className='Titel'>Welkom Kollega!</p>
