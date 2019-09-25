@@ -21,7 +21,7 @@ class Quiz extends React.Component {
                 <div className='grid-questionCount'>
                     <QuestionCount counter={this.props.questionId} total={this.props.questionTotal} />
                 </div>
-                <div className='grid-hint'>  <Hint counter={this.props.questionId - 1} /></div>
+                <div className='grid-hint'>  <Hint hint={this.props.hint} /></div>
                 <div className='grid-question'>
                     <Question content={this.props.question} />
                 </div>
