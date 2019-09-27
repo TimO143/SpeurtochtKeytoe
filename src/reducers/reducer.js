@@ -8,8 +8,9 @@ import {
 } from "../actions/action";
 
 const initialState = {
-    name: '',
-    score: 0,
+    //name Re gets taken out of here and shown in the result screen
+    nameRe: '',
+    scoreRe: 0,
     result: [],
     lives: 5
 }
@@ -20,13 +21,13 @@ function scoreReducer(state = initialState, action) {
         case NAME:
             return Object.assign({}, state,
                 {
-                    name: action.payload
+                    nameRe: action.payload
                 });
 
         case ADD_SCORE:
             return Object.assign({}, state,
                 {
-                    score: action.payload
+                    scoreRe: action.payload
                     //unsure if lives have to be here
                 })
 

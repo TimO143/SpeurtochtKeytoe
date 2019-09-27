@@ -1,4 +1,3 @@
-import constant from '../api/constant';
 var express = require('express')
 var app = express()
 const mysql = require('mysql')
@@ -18,7 +17,7 @@ const pool = mysql.createPool({
     host: "localhost",
     user: "root",
     password: "password",
-    database: "test_tim"
+    database: "test_score"
 })
 
 app.use(express.urlencoded({ extended: true }));
@@ -78,7 +77,46 @@ function handle_database(req, res) {
 app.get('/', function (req, res) {
     handle_database(req,res)
 })
-app.post('/scoreboard', function (req, res) {
+
+app.get('/getScoreboard', function (req,res) {
+    pool.getConnection(function (err, connection){
+    
+    var sql = "SELECT * FROM user ORDER BY id"
+    connection.query(sql, function (err, result){
+        if(err){
+            res.send({error: "Something failed in getScoreboard"})
+            res.json({err}) }
+        else {
+            res.json(result)
+        }
+        connection.release()
+        })
+    })
+})
+
+app.post('/createUserAndScore', function(req, res) {
+    pool.getConnection(function (err, connection){
+        var id = req.body.id
+        var username = req.body.username
+        var score = req.body.score
+        console.log(req.body)
+
+        var sql = "INSERT INTO user(username, score) values('"+username+"', '"+score+"')" 
+        connection.query(sql, function( err,result){
+            if (err) {
+                res.send({ error: 'Something failed! in POST SCORE USERNAME' })
+                 res.json({ err })
+                 //res.json({ 'status': 'succes', result, id, username, score })
+             }
+             else {
+                 res.json(result)
+             }
+             connection.release()
+        })
+    })
+})
+
+app.post('/create', function (req, res) {
     // res.send('POST request to homepage')
     pool.getConnection(function (err, connection) {
         var id = req.body.id
@@ -158,5 +196,5 @@ app.put('/update', function (req, res) {
 })
 
 app.listen(4000)
-console.log('Server is running.. on ',{constant})
+console.log('Server is running.. on ')
 

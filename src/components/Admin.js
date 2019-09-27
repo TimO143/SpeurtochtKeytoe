@@ -28,7 +28,7 @@ class Admin extends React.Component {
     componentDidMount() {
         document.body.style.backgroundColor = '#256eff'
 
-        let url = 'http://192.168.5.149:4000/'
+        let url = 'http://192.168.5.102:4000/'
         fetch(url)
             .then(res => res.json())
             .then(data => {
@@ -86,7 +86,7 @@ class Admin extends React.Component {
         
         if (question !== '' && hint !== '' && answer !== '' && position !== '') {
             console.log(id, question, hint, answer, position)
-            let url1 = 'http://192.168.5.149:4000/create'
+            let url1 = 'http://192.168.5.102:4000/create'
             fetch(url1, {
                 method: 'POST',
                 headers: {
@@ -160,7 +160,7 @@ class Admin extends React.Component {
         console.log(updateItem)
 
         if (updateItem.question !== '' && updateItem.hint !== '' && updateItem.answer !== '' && updateItem.position !== '') {
-            let url1 = 'http://192.168.5.149:4000/update/'
+            let url1 = 'http://192.168.5.102:4000/update/'
             fetch(url1, {
                 method: 'PUT',
                 headers: {
@@ -182,7 +182,7 @@ class Admin extends React.Component {
         const deleteItem = this.state.items[index]
         console.log(deleteItem)
 
-        let url1 = 'http://192.168.5.149:4000/delete'
+        let url1 = 'http://192.168.5.102:4000/delete'
         fetch(url1, {
             method: 'DELETE',
             headers: {

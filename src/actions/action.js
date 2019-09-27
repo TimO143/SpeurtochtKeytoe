@@ -6,17 +6,15 @@ export const DECREASE_LIFE = 'DECREASE_LIFE'
 export const RESULT = 'RESULT'
 
 
-export const nameAdd = name => ({
+export const nameAdd = nameAdd => ({
     type: 'NAME',
-    payload: name
+    payload: nameAdd
 });
 
-export function addScore(score) {
-    return {
+export const addScore = addScore => ({
         type: ADD_SCORE,
-        score
-    }
-}
+        payload: addScore
+});
 
 export function decreaseLife(lives) {
     return {

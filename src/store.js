@@ -1,5 +1,5 @@
 import { createStore } from "redux";
-import scoreBoardReducer from "./reducers/reducer";
+import scoreReducer from "./reducers/reducer";
 import {
     nameAdd,
     addScore,
@@ -8,7 +8,7 @@ import {
 } from './actions/action'
 
 const store = createStore(
-    scoreBoardReducer,
+    scoreReducer,
     window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
 
 
@@ -23,4 +23,4 @@ const unsubscribe = store.subscribe(() => console.log(store.getState()))
 
 unsubscribe()
 
-export default createStore(scoreBoardReducer);
+export default createStore(scoreReducer);

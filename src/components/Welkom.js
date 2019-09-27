@@ -3,18 +3,17 @@ import ReactDOM from 'react-dom'
 import App from '../App'
 import logo from '../svg/full_logo.svg'
 import Admin from '../components/Admin'
-import constant from '../api/constant'
 import {nameAdd} from '../actions/action';
+import { Provider } from "react-redux";
 import store from '../store'
 import {bindActionCreators} from 'redux';
 import { connect } from 'react-redux';
-import scoreBoardReducer from '../reducers/reducer';
+import scoreReducer from '../reducers/reducer';
 
 class Welkom extends Component {
     constructor() {
         super();
         this.state = {
-            name: '',
             questionData: [],
             posts:[]
         }
@@ -27,21 +26,39 @@ class Welkom extends Component {
     }
     
     renderAdmin() {
-        return (ReactDOM.render(<Admin />, document.getElementById('root')))
+        ReactDOM.render(
+            <Provider store={store}>
+                <Admin/>
+            </Provider>,
+            document.getElementById('root')
+         );
     }
  
 
     handleChange(event) {
         console.log(event.target.value)
-        this.setState({name: event.target.value})
-        console.log(this.props.nameAdd(event.target.value))
+        //this takes the name input and displays it in the result screen
+        this.props.nameAdd(event.target.value)  //< puts stuff in the payload in the actions (e.target.v) = payload
+        console.log(this.props.nameRe)
     }
     checkName() {
         console.log(store.getState())   
-        console.log(this.props)
     }
     renderApp() {
-        return (ReactDOM.render(<App name={this.state.name}/>, document.getElementById('root')))
+        // u need this. App used to have values but not needed now
+        ReactDOM.render(
+            <Provider store = {store}>
+                <App />;
+            </Provider>,
+            document.getElementById('root')
+        );
+
+        // ReactDOM.render(
+        //     <Provider store={store}>
+        //         <Result quizResult={this.state.result} />;
+        //     </Provider>,
+        //     document.getElementById('root')
+        // );
     }
 
     render() {
