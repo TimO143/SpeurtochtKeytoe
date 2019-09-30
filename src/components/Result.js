@@ -7,6 +7,8 @@ import store from '../store'
 import {bindActionCreators} from 'redux';
 import { connect } from 'react-redux';
 import scoreReducer from '../reducers/reducer';
+import logo from '../svg/keytoe_logo.svg'
+
 
 class Result extends React.Component {
     constructor(props) {
@@ -33,18 +35,23 @@ class Result extends React.Component {
 
     render() {
         return (
-            <div className="resultPage">
-                {/* this.props.nameRe takes value from nameRe in reducer */}
-                {/* <strong>{this.props.nameRe}, {this.props.scoreRe}</strong>  */}
-                {this.state.scoreboard.map((item, index) => 
-                <ul key = {index}>
-                    <li>
-                        {item.username}
-                        {item.score}
-                    </li>
-                </ul>
-                )}
-            </div>        
+            <div className="grid"> 
+                <div className="gridTable"><img src={logo} className="App-logo" alt="logo" />
+                    {/* this.props.nameRe takes value from nameRe in reducer */}
+                    {/* <strong>{this.props.nameRe}, {this.props.scoreRe}</strong>  */}
+                    <table id="scoreBoard">
+                            <th>RANGLIJST</th>
+                        {this.state.scoreboard.map((item, index) => 
+                        <tr className="rowData" key={index}>
+                            <td >{item.username}</td>
+                            <td >{item.date}</td>
+                            <td >{item.score}</td>
+                            
+                        </tr>
+                        )}
+                    </table>
+                </div>   
+            </div>     
     
         )
     }

@@ -12,6 +12,7 @@ import store from './store';
 import {nameAdd, addScore} from './actions/action';
 import {bindActionCreators} from 'redux';
 import { connect } from 'react-redux';
+import NewPage from './components/NewPage';
 
 
 class App extends Component {
@@ -148,8 +149,12 @@ class App extends Component {
                 })
                 .then(this.setState({ result: this.state.score }, () => console.log(this.state.result, this.state.score, this.props.nameRe, this.props.scoreRe))
                 )
-                
-        
+                // ReactDOM.render(
+                //     <Provider store={store}>
+                //         < />;
+                //     </Provider>,
+                //     document.getElementById('root')
+                // );
     }
 
     // rendert de quiz op het scherm met de props van quiz
@@ -167,16 +172,23 @@ class App extends Component {
       />
     );
   }
+                        //     <button
+                        //     type='button'
+                        //     onClick={onDelete}>
+                        //     Delete
+                        //  </button>
 
-    // provider must know the root hence this. invariant violation cannot find store error 
-  renderResult() {
+
+  newPage(){
     ReactDOM.render(
         <Provider store={store}>
-            <Result quizResult={this.state.result} />;
+            <NewPage />;
         </Provider>,
         document.getElementById('root')
     );
-      
+  }
+    // provider must know the root hence this. invariant violation cannot find store error 
+  
     //   ReactDOM.render(
     //     <Provider store={store}>
     //         <Welkom />
@@ -186,14 +198,13 @@ class App extends Component {
      
 
 
-    }
+    
 
     render() {
     return (
         <div>
            <img src={logo} className="App-logo" alt="logo" />
-            {this.state.result ? this.renderResult() : this.renderQuiz()}
-            
+            {this.state.result ? this.newPage()  : this.renderQuiz()}
         </div>
        
     );

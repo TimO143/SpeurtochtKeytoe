@@ -81,7 +81,7 @@ app.get('/', function (req, res) {
 app.get('/getScoreboard', function (req,res) {
     pool.getConnection(function (err, connection){
     
-    var sql = "SELECT * FROM user ORDER BY id"
+    var sql = "SELECT username, score, date_format(date, '%d/%m/%Y') as date FROM user ORDER BY id"
     connection.query(sql, function (err, result){
         if(err){
             res.send({error: "Something failed in getScoreboard"})
