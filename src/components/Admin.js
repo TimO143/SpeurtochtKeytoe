@@ -222,7 +222,7 @@ class Admin extends React.Component {
 
                 <h1>vragen</h1>
 
-                <div>
+                <div className='grid-admin-item'>
                     {this.state.serverStatus ?
                         this.state.items.map((item, index) =>
                             <AdminItem

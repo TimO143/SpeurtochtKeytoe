@@ -16,17 +16,17 @@ class AnswerOption extends React.Component {
     // onChange functie die een event neemt om in de state de value te veranderen naar input value
     onChange = (e) => {
         this.setState({
-            value: e.target.value.toLowerCase()
+            value: e.target.value.toLowerCase(),
+            hidden: true
         })
+
     }
 
     toggleHidden() {
         this.setState({
-            hidden: !this.state.hidden
+            hidden: false
         })
-        setTimeout(() => {
-            this.setState(() => ({ hidden: true }))
-        }, 2000);
+        
         
     }
 

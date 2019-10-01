@@ -3,12 +3,19 @@ import ReactDOM from 'react-dom'
 import App from '../App'
 import logo from '../svg/full_logo.svg'
 import Admin from '../components/Admin'
+import {nameAdd} from '../actions/action';
+import { Provider } from "react-redux";
+import store from '../store'
+import {bindActionCreators} from 'redux';
+import { connect } from 'react-redux';
+import scoreReducer from '../reducers/reducer';
 
 class Welkom extends Component {
     constructor() {
         super();
         this.state = {
-            naam: '',
+            questionData: [],
+            posts:[]
         }
         this.handleChange = this.handleChange.bind(this);
     }
@@ -19,15 +26,39 @@ class Welkom extends Component {
     }
     
     renderAdmin() {
-        return (ReactDOM.render(<Admin />, document.getElementById('root')))
+        ReactDOM.render(
+            <Provider store={store}>
+                <Admin/>
+            </Provider>,
+            document.getElementById('root')
+         );
     }
  
 
     handleChange(event) {
-        this.setState({naam: event.target.value})
+        console.log(event.target.value)
+        //this takes the name input and displays it in the result screen
+        this.props.nameAdd(event.target.value)  //< puts stuff in the payload in the actions (e.target.v) = payload
+        console.log(this.props.nameRe)
+    }
+    checkName() {
+        console.log(store.getState())   
     }
     renderApp() {
-        return (ReactDOM.render(<App naam={this.state.naam}/>, document.getElementById('root')))
+        // u need this. App used to have values but not needed now
+        ReactDOM.render(
+            <Provider store = {store}>
+                <App />;
+            </Provider>,
+            document.getElementById('root')
+        );
+
+        // ReactDOM.render(
+        //     <Provider store={store}>
+        //         <Result quizResult={this.state.result} />;
+        //     </Provider>,
+        //     document.getElementById('root')
+        // );
     }
 
     render() {
@@ -46,12 +77,12 @@ class Welkom extends Component {
                             <p className='Kop'>De kwizz</p>
                         </div>
                         <div className='grid-info'>
-                            <p className='InfoTekst'>Leer je Kollega’s écht kennen. Keytoe, KeytoeY, Toscani… Durf te vragen, maar niet naar het directe antwoord. Het moet wel leuk blijven. Ben je al zenuwachtig? Mooi.</p>
+                            <p className='InfoTekst'>Leer je Kollegaï¿½s ï¿½cht kennen. Keytoe, KeytoeY, Toscaniï¿½ Durf te vragen, maar niet naar het directe antwoord. Het moet wel leuk blijven. Ben je al zenuwachtig? Mooi.</p>
                         </div>
                     <div className='grid-naamform'>
-                        <form onSubmit={e => { e.preventDefault(); this.renderApp();  }}>
+                        <form onSubmit={e => { e.preventDefault(); this.renderApp(); this.checkName() }}>
                             <div>
-                                <input className='goInput' type='text' required placeholder='Je naam' onChange={this.handleChange}></input>
+                                <input className='goInput' type='text' required placeholder='Je naam'  onChange={this.handleChange}></input>
                             </div>
                             <div>
                                 <input className='goBut' type='submit' value='Letsgooo!'></input>
@@ -60,7 +91,31 @@ class Welkom extends Component {
                     </div>
                  </div>
             </div>)
+            
     };
 }
 
-export default Welkom;
+
+const mapStateToProps = ({ scoreReducer }) => ({
+    name: scoreReducer.name,
+    score: 0,
+    result: [],
+    lives: 5
+  });
+  
+  const mapDispatchToProps = dispatch =>
+    bindActionCreators(
+      {
+        nameAdd
+      },
+      dispatch
+    );
+
+  
+  export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(Welkom);
+
+
+

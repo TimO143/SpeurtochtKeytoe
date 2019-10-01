@@ -17,7 +17,7 @@ const pool = mysql.createPool({
     host: "localhost",
     user: "root",
     password: "password",
-    database: "test_tim"
+    database: "test_score"
 })
 
 app.use(express.urlencoded({ extended: true }));
@@ -25,30 +25,6 @@ app.use(express.json());
 
 app.use(cors())
 
-//function post_db(req, res) {
-//    pool.getConnection(function (err, connection) {
-//        if (err) {
-//            res.json({
-//                "code": 100, "status": "Error in connection database"
-//            })
-//            return
-//        }
-//        console.log('connected  as id ' + connection.threadId)
-
-//        connection.query("insert into question(id,question,hint,answer) values (3,q3,h3,a2)", function (err, rows) {
-//            connection.release()
-//            if (!err) {
-//                res.json(rows)
-//                console.log(rows)
-//            }
-//        connection.on('error', function (err) {
-//            res.json({ "code": 100, "status": "Error in connection database" })
-//            return
-//        })
-//    })
-
-//})
-//}
 function handle_database(req, res) {
 
     pool.getConnection(function (err, connection) {
@@ -77,6 +53,45 @@ function handle_database(req, res) {
 app.get('/', function (req, res) {
     handle_database(req,res)
 })
+
+app.get('/getScoreboard', function (req,res) {
+    pool.getConnection(function (err, connection){
+    
+    var sql = "SELECT username, score, date_format(date, '%d/%m/%Y') as date FROM user ORDER BY score DESC"
+    connection.query(sql, function (err, result){
+        if(err){
+            res.send({error: "Something failed in getScoreboard"})
+            res.json({err}) }
+        else {
+            res.json(result)
+        }
+        connection.release()
+        })
+    })
+})
+
+app.post('/createUserAndScore', function(req, res) {
+    pool.getConnection(function (err, connection){
+        var id = req.body.id
+        var username = req.body.username
+        var score = req.body.score
+        console.log(req.body)
+
+        var sql = "INSERT INTO user(username, score) values('"+username+"', '"+score+"')" 
+        connection.query(sql, function( err,result){
+            if (err) {
+                res.send({ error: 'Something failed! in POST SCORE USERNAME' })
+                 res.json({ err })
+                 //res.json({ 'status': 'succes', result, id, username, score })
+             }
+             else {
+                 res.json(result)
+             }
+             connection.release()
+        })
+    })
+})
+
 app.post('/create', function (req, res) {
     // res.send('POST request to homepage')
     pool.getConnection(function (err, connection) {
@@ -157,5 +172,5 @@ app.put('/update', function (req, res) {
 })
 
 app.listen(4000)
-console.log('Server is running.. on http://localhost:4000/')
+console.log('Server is running.. on ')
 

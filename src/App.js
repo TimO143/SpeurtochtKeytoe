@@ -4,8 +4,16 @@ import Quiz from './components/Quiz';
 import Result from './components/Result';
 import logo from './svg/keytoe_logo.svg';
 import './App.css';
+import { Provider } from "react-redux";
 import { setTimeout } from 'timers';
 import Hint from './components/Hint'
+import ReactDOM from 'react-dom';
+import store from './store';
+import {nameAdd, addScore} from './actions/action';
+import {bindActionCreators} from 'redux';
+import { connect } from 'react-redux';
+import NewPage from './components/NewPage';
+
 
 class App extends Component {
   constructor(props) {
@@ -92,7 +100,7 @@ class App extends Component {
                     score: state.score + (10 * state.leven)
                 }
             }, () => { console.log(this.state.score) });
-        }
+        }   
     }
     setNextQuestion(event) {
     const counter = this.state.counter + 1;
@@ -126,7 +134,27 @@ class App extends Component {
 
     // voegt de score toe aan het resultaat ( check boven is een timeout die nodig is om niet de oude state van score te gebruiken)
     setResults = () => {
-        this.setState({ result: this.state.score }, () => console.log(this.state.result, this.state.score));
+        this.props.addScore(this.state.score)  
+            let url1 = 'http://192.168.5.102:4000/createUserAndScore'
+            fetch(url1, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ "username": this.props.nameRe ,"score": this.props.scoreRe}) //add score later and adjust the query in server.js
+            })
+                .then(res => res.json())
+                .then(data => {
+                    console.log(data)
+                })
+                .then(this.setState({ result: this.state.score }, () => console.log(this.state.result, this.state.score, this.props.nameRe, this.props.scoreRe))
+                )
+                // ReactDOM.render(
+                //     <Provider store={store}>
+                //         < />;
+                //     </Provider>,
+                //     document.getElementById('root')
+                // );
     }
 
     // rendert de quiz op het scherm met de props van quiz
@@ -144,22 +172,63 @@ class App extends Component {
       />
     );
   }
+                        //     <button
+                        //     type='button'
+                        //     onClick={onDelete}>
+                        //     Delete
+                        //  </button>
 
-    // rendert het resultaat (oud resultaat moet nog verandert worden)
-  renderResult() {
-      return <Result quizResult={this.state.result} naam={this.props.naam} />;
-      }
+
+  newPage(){
+    ReactDOM.render(
+        <Provider store={store}>
+            <NewPage />;
+        </Provider>,
+        document.getElementById('root')
+    );
+  }
+    // provider must know the root hence this. invariant violation cannot find store error 
+  
+    //   ReactDOM.render(
+    //     <Provider store={store}>
+    //         <Welkom />
+    //     </Provider>,
+    //     document.getElementById('root')
+    //  );
+     
+
+
+    
 
     render() {
     return (
         <div>
            <img src={logo} className="App-logo" alt="logo" />
-            {this.state.result ? this.renderResult() : this.renderQuiz()}
-            
+            {this.state.result ? this.newPage()  : this.renderQuiz()}
         </div>
        
     );
   }
 }
 
-export default App; 
+const mapStateToProps = ({ scoreReducer }) => ({
+    nameRe: scoreReducer.nameRe,
+    scoreRe: scoreReducer.scoreRe,
+    result: [],
+    lives: 5
+  });
+  
+  const mapDispatchToProps = dispatch =>
+    bindActionCreators(
+      {
+        nameAdd,
+        addScore
+      },
+      dispatch
+    );
+
+  
+  export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(App);
