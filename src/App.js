@@ -1,13 +1,9 @@
 import React, { Component } from 'react';
-import quizQuestions from './api/quizQuestions';
 import Quiz from './components/Quiz';
-import Result from './components/Result';
 import logo from './svg/keytoe_logo.svg';
 import './App.css';
 import { Provider } from "react-redux";
 import { setTimeout } from 'timers';
-import Hint from './components/Hint'
-import ReactDOM from 'react-dom';
 import store from './store';
 import {nameAdd, addScore} from './actions/action';
 import {bindActionCreators} from 'redux';
@@ -60,12 +56,6 @@ class App extends Component {
             if (this.state.questionId < this.state.items.length) {
                 this.setNextQuestion();
             }
-            else if (this.state.score === 0) {
-                // dit is niet mooi. refresh page wanneer geen score is behaald
-                //this.refreshPage();
-                // kan niet score op 0 zetten dan rendered resultaten scherm niet
-                this.setState({ result: 1 })
-            }
             else {
                 // update de score nog 1 laatste keer omdat er geen vragen meer zijn maar wel een update moet gebeuren
                 this.updateScore();
@@ -108,9 +98,6 @@ class App extends Component {
     this.updateScore();
       this.setState({
           counter: counter,
-          //questionId: questionId,
-          //question: quizQuestions[counter].question,
-          //answerOptions: quizQuestions[counter].answers,
           questionId: this.state.items[counter].id,
           question: this.state.items[counter].question,
           answerOptions: this.state.items[counter].answer,
@@ -119,8 +106,6 @@ class App extends Component {
           leven: 5         
         });
         console.log(this.state.items[counter].question)
-        console.log(quizQuestions[counter])
-
     }
 
     lowerLife() {
@@ -135,7 +120,7 @@ class App extends Component {
     // voegt de score toe aan het resultaat ( check boven is een timeout die nodig is om niet de oude state van score te gebruiken)
     setResults = () => {
         this.props.addScore(this.state.score)  
-            let url1 = 'http://192.168.5.102:4000/createUserAndScore'
+            let url1 = 'http://192.168.5.149:4000/createUserAndScore'
             fetch(url1, {
                 method: 'POST',
                 headers: {
@@ -149,12 +134,6 @@ class App extends Component {
                 })
                 .then(this.setState({ result: this.state.score }, () => console.log(this.state.result, this.state.score, this.props.nameRe, this.props.scoreRe))
                 )
-                // ReactDOM.render(
-                //     <Provider store={store}>
-                //         < />;
-                //     </Provider>,
-                //     document.getElementById('root')
-                // );
     }
 
     // rendert de quiz op het scherm met de props van quiz
@@ -172,30 +151,16 @@ class App extends Component {
       />
     );
   }
-                        //     <button
-                        //     type='button'
-                        //     onClick={onDelete}>
-                        //     Delete
-                        //  </button>
 
-
-  newPage(){
-    ReactDOM.render(
+  newPage= () =>{
+    return(
         <Provider store={store}>
             <NewPage />;
-        </Provider>,
-        document.getElementById('root')
+        </Provider>
+        
     );
   }
-    // provider must know the root hence this. invariant violation cannot find store error 
-  
-    //   ReactDOM.render(
-    //     <Provider store={store}>
-    //         <Welkom />
-    //     </Provider>,
-    //     document.getElementById('root')
-    //  );
-     
+ 
 
 
     

@@ -5,11 +5,11 @@ import Welkom from './components/Welkom'
 import * as serviceWorker from './serviceWorker';
 import { Provider } from "react-redux";
 import store from "./store";
-import App from './App'
+import Panel from './components/Panel'
 
 ReactDOM.render(
    <Provider store={store}>
-       <Welkom />
+       <Panel />
    </Provider>,
    document.getElementById('root')
 );

@@ -4,12 +4,6 @@ const mysql = require('mysql')
 
 var cors = require('cors')
 
-//const con = mysql.createConnection({
-//    host: "localhost",
-//    user: "root",
-//    password: "password",
-//    database: "test_tim"
-//})
 
 // config voor database
 const pool = mysql.createPool({
@@ -17,7 +11,7 @@ const pool = mysql.createPool({
     host: "localhost",
     user: "root",
     password: "password",
-    database: "test_score"
+    database: "test_tim"
 })
 
 app.use(express.urlencoded({ extended: true }));

@@ -8,14 +8,13 @@ import { Provider } from "react-redux";
 import store from '../store'
 import {bindActionCreators} from 'redux';
 import { connect } from 'react-redux';
-import scoreReducer from '../reducers/reducer';
+
 
 class Welkom extends Component {
     constructor() {
         super();
         this.state = {
             questionData: [],
-            posts:[]
         }
         this.handleChange = this.handleChange.bind(this);
     }
@@ -53,12 +52,6 @@ class Welkom extends Component {
             document.getElementById('root')
         );
 
-        // ReactDOM.render(
-        //     <Provider store={store}>
-        //         <Result quizResult={this.state.result} />;
-        //     </Provider>,
-        //     document.getElementById('root')
-        // );
     }
 
     render() {

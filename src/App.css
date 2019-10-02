@@ -289,6 +289,7 @@ div.questionCount {
     color: white;
     border-bottom: 2px solid;
     font-size: 150%;
+    cursor: pointer
 }
 .goInput {
     /*width: 100%;*/
@@ -311,4 +312,5 @@ div.questionCount {
     border-bottom: 2px solid;
     font-size: 150%;
     margin-bottom: 5%;
+
 }
