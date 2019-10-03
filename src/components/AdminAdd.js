@@ -6,9 +6,9 @@ const AdminAdd = ({ question, hint, answer,position, onChange, onSubmit, onPost}
         <form>
             
             <div>
-                <input
+                <input className = "goInputQuestions"
                     type='text'
-                    placeholder='position'
+                    placeholder='Position'
                     value={position}
                     name='position'
                     onChange={onChange}
@@ -16,9 +16,9 @@ const AdminAdd = ({ question, hint, answer,position, onChange, onSubmit, onPost}
                 />
             </div>
             <div>
-            <input
+            <input className = "goInputQuestions"
                 type='text'
-                placeholder='question'
+                placeholder='Question'
                 value={question}
                 name='question'
                     onChange={onChange}
@@ -26,9 +26,9 @@ const AdminAdd = ({ question, hint, answer,position, onChange, onSubmit, onPost}
                 />
                 </div>
             <div>
-                <input
+                <input className = "goInputQuestions"
                     type='text'
-                    placeholder='hint'
+                    placeholder='Hint'
                     value={hint}
                     name='hint'
                     onChange={onChange}
@@ -36,9 +36,9 @@ const AdminAdd = ({ question, hint, answer,position, onChange, onSubmit, onPost}
                 />
             </div>
             <div>
-                <input
+                <input className = "goInputQuestions"
                     type='text'
-                    placeholder='answer'
+                    placeholder='Answer'
                     value={answer}
                     name='answer'
                     onChange={onChange}

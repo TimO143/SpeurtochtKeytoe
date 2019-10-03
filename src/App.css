@@ -112,7 +112,6 @@
         background-color: transparent;
         cursor: pointer;
     }
-    
     .adminDelete{
         position: relative;
         left:90%;
@@ -541,6 +540,19 @@ div.questionCount {
     font-size: 120%;
     cursor: pointer;
 }
+.goButHomepage{
+    color: black;
+    font-family: Cooper Hewitt;
+    font-weight: bold;
+    padding-left: 0px;
+    margin-bottom: 20px;
+    margin-top: 10px;
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid;
+    font-size: 120%;
+    cursor: pointer;
+}
 
 /* input field for name */
 .goInput {
@@ -567,6 +579,13 @@ div.questionCount {
     border-bottom: 2px solid;
     font-size: 150%;
     margin-bottom: 5%;
+}
+/* input field questions add */
+.goInputQuestions{
+    font-family: Cooper Hewitt;
+    background-color: grey;
+    padding: 5px;
+    width: 10%;
 }
 /* placeholder text styling */
 ::placeholder{

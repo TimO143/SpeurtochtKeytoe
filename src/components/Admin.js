@@ -1,8 +1,12 @@
-import React from 'react'
+import React from 'react';
+import AdminAdd from './AdminAdd';
+import AdminItem   from './AdminItem';
+import logo from '../svg/keytoe_icon_RGB.svg';
+import Welkom from './Welkom';
+import ReactDOM from 'react-dom';
+import { Provider } from "react-redux";
+import store from '../store';
 
-import AdminAdd from './AdminAdd'
-import AdminItem   from './AdminItem'
-import logo from '../svg/keytoe_icon_RGB.svg'
 
 
 class Admin extends React.Component {
@@ -205,50 +209,60 @@ class Admin extends React.Component {
             ]
         })
     };
+    renderPanel() {
+        ReactDOM.render(
+            <Provider store={store}>
+                <Welkom/>
+            </Provider>,
+            document.getElementById('root')
+         );
+    }
 
 
     render() {
         const {id,question,hint,answer,position} = this.state
         return (
-            <div className = "grid"><img src={logo} className="App-logo-admin" alt="logo" />
-                <div className = "grid-editQuestions"> 
-                    <h1 className = "editQuestions">VRAGEN <br />BEWERKEN</h1>
-                </div>
-                    <div className = "grid-admin-add">
-                        <div className = "admin-add">
-                            <h1>Voeg vraag toe</h1>
-                            <AdminAdd
-                                position={position}
-                                id={id}
-                                question={question}
-                                hint={hint} 
-                                answer={answer}
-                                onChange={this.handleInputChange}
-                                onSubmit={(e) => { this.addItem(e) }}
-                            />
-                        </div>
+            <div><button className = "goButHomepage" onClick={e => { e.preventDefault(); this.renderPanel() }}>Naar Welkomscherm</button>
+                <div className = "grid"><img src={logo} className="App-logo-admin" alt="logo" />
+                    <div className = "grid-editQuestions"> 
+                        <h1 className = "editQuestions">VRAGEN <br />BEWERKEN</h1>
                     </div>
-                    
-                    <div className="grid-admin-item">
-                        {this.state.serverStatus ?
-                            this.state.items.map((item, index) =>
-                            <div className = "admin-item">
-                                <AdminItem
-                                    key={item.id}
-                                    index={index}
-                                    item={item}
-                                    toggleEditing={() => this.toggleItemEditing(index)}
-                                    onChange={this.handleItemUpdate}
-                                    onDelete={() => this.onDelete(index)}
-                                    onSubmit={(e) => this.handlePutRequest(e,index)}
+                        <div className = "grid-admin-add">
+                            <div className = "admin-add">
+                                <h1>Voeg vraag toe</h1>
+                                <AdminAdd
+                                    position={position}
+                                    id={id}
+                                    question={question}
+                                    hint={hint} 
+                                    answer={answer}
+                                    onChange={this.handleInputChange}
+                                    onSubmit={(e) => { this.addItem(e) }}
                                 />
-                                </div>)
-                :
-                        <div><p>de server staat niet aan!</p></div>
-                }
-                
-                
-                    </div>
+                            </div>
+                        </div>
+                        
+                        <div className="grid-admin-item">
+                            {this.state.serverStatus ?
+                                this.state.items.map((item, index) =>
+                                <div className = "admin-item">
+                                    <AdminItem
+                                        key={item.id}
+                                        index={index}
+                                        item={item}
+                                        toggleEditing={() => this.toggleItemEditing(index)}
+                                        onChange={this.handleItemUpdate}
+                                        onDelete={() => this.onDelete(index)}
+                                        onSubmit={(e) => this.handlePutRequest(e,index)}
+                                    />
+                                    </div>)
+                    :
+                            <div><p>de server staat niet aan!</p></div>
+                    }
+                    
+                    
+                        </div>
+                </div>
             </div>)
     }
 }
