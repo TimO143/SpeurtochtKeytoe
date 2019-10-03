@@ -2,6 +2,8 @@ import React from 'react'
 
 import AdminAdd from './AdminAdd'
 import AdminItem   from './AdminItem'
+import logo from '../svg/keytoe_icon_RGB.svg'
+
 
 class Admin extends React.Component {
     constructor() {
@@ -26,7 +28,7 @@ class Admin extends React.Component {
 
     // haalt de informatie uit de database op ( GET ) en voegt het toe aan items[]
     componentDidMount() {
-        document.body.style.backgroundColor = '#256eff'
+        document.body.style.backgroundColor = 'white'
 
         let url = 'http://192.168.5.102:4000/'
         fetch(url)
@@ -208,39 +210,45 @@ class Admin extends React.Component {
     render() {
         const {id,question,hint,answer,position} = this.state
         return (
-            <div>
-                <h1>Voeg vraag toe</h1>
-                <AdminAdd
-                    position={position}
-                    id={id}
-                    question={question}
-                    hint={hint}
-                    answer={answer}
-                    onChange={this.handleInputChange}
-                    onSubmit={(e) => { this.addItem(e) }}
-                />
-
-                <h1>vragen</h1>
-
-                <div>
-                    {this.state.serverStatus ?
-                        this.state.items.map((item, index) =>
-                            <AdminItem
-                                key={item.id}
-                                index={index}
-                                item={item}
-                                toggleEditing={() => this.toggleItemEditing(index)}
-                                onChange={this.handleItemUpdate}
-                                onDelete={() => this.onDelete(index)}
-                                onSubmit={(e) => this.handlePutRequest(e,index)}
-                            />
-                            )
-            :
-                    <div><p>de server staat niet aan!</p></div>
-            }
-            
-            
+            <div className = "grid"><img src={logo} className="App-logo-admin" alt="logo" />
+                <div className = "grid-editQuestions"> 
+                    <h1 className = "editQuestions">VRAGEN <br />BEWERKEN</h1>
                 </div>
+                    <div className = "grid-admin-add">
+                        <div className = "admin-add">
+                            <h1>Voeg vraag toe</h1>
+                            <AdminAdd
+                                position={position}
+                                id={id}
+                                question={question}
+                                hint={hint} 
+                                answer={answer}
+                                onChange={this.handleInputChange}
+                                onSubmit={(e) => { this.addItem(e) }}
+                            />
+                        </div>
+                    </div>
+                    
+                    <div className="grid-admin-item">
+                        {this.state.serverStatus ?
+                            this.state.items.map((item, index) =>
+                            <div className = "admin-item">
+                                <AdminItem
+                                    key={item.id}
+                                    index={index}
+                                    item={item}
+                                    toggleEditing={() => this.toggleItemEditing(index)}
+                                    onChange={this.handleItemUpdate}
+                                    onDelete={() => this.onDelete(index)}
+                                    onSubmit={(e) => this.handlePutRequest(e,index)}
+                                />
+                                </div>)
+                :
+                        <div><p>de server staat niet aan!</p></div>
+                }
+                
+                
+                    </div>
             </div>)
     }
 }

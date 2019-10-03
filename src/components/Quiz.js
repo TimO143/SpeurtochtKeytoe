@@ -31,8 +31,8 @@ class Quiz extends React.Component {
                         onAnswerSelected={this.props.onAnswerSelected}
                     />
                 </div>
-                <span className="score grid-score">{this.props.score} <br /> Score</span>
-                <span className="leven grid-leven">{this.props.levens} / 5 <br /> LEVEN</span>
+                <span className="score grid-score">{this.props.score} <br /> PUNTEN</span>
+                <span className="leven grid-leven">{this.props.levens} / 5 <br /> LEVENS</span>
             </div>
         );
     }

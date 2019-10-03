@@ -4,13 +4,6 @@ const mysql = require('mysql')
 
 var cors = require('cors')
 
-//const con = mysql.createConnection({
-//    host: "localhost",
-//    user: "root",
-//    password: "password",
-//    database: "test_tim"
-//})
-
 // config voor database
 const pool = mysql.createPool({
     connectionLimit: 100, // important, als er meer dan 100 connections worden gestuurd dan geeft het een error terug
@@ -25,30 +18,6 @@ app.use(express.json());
 
 app.use(cors())
 
-//function post_db(req, res) {
-//    pool.getConnection(function (err, connection) {
-//        if (err) {
-//            res.json({
-//                "code": 100, "status": "Error in connection database"
-//            })
-//            return
-//        }
-//        console.log('connected  as id ' + connection.threadId)
-
-//        connection.query("insert into question(id,question,hint,answer) values (3,q3,h3,a2)", function (err, rows) {
-//            connection.release()
-//            if (!err) {
-//                res.json(rows)
-//                console.log(rows)
-//            }
-//        connection.on('error', function (err) {
-//            res.json({ "code": 100, "status": "Error in connection database" })
-//            return
-//        })
-//    })
-
-//})
-//}
 function handle_database(req, res) {
 
     pool.getConnection(function (err, connection) {
@@ -81,7 +50,7 @@ app.get('/', function (req, res) {
 app.get('/getScoreboard', function (req,res) {
     pool.getConnection(function (err, connection){
     
-    var sql = "SELECT username, score, date_format(date, '%d/%m/%Y') as date FROM user ORDER BY id"
+    var sql = "SELECT username, score, date_format(date, '%d/%m/%Y') as date FROM user ORDER BY score DESC"
     connection.query(sql, function (err, result){
         if(err){
             res.send({error: "Something failed in getScoreboard"})
@@ -96,7 +65,6 @@ app.get('/getScoreboard', function (req,res) {
 
 app.post('/createUserAndScore', function(req, res) {
     pool.getConnection(function (err, connection){
-        var id = req.body.id
         var username = req.body.username
         var score = req.body.score
         console.log(req.body)

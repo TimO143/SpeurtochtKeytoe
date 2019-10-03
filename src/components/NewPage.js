@@ -2,6 +2,7 @@
 import React from 'react';
 import App from '../App';
 import ReactDOM from 'react-dom';
+import logo from '../svg/keytoe_logo.svg';
 import {Provider} from 'react-redux'
 import store from '../store'
 import Result from '../components/Result'
@@ -20,7 +21,7 @@ class NewPage extends React.Component{
     }
 
     componentDidMount(){
-        
+        document.body.style.backgroundColor = '#256eff'
     }
 
     renderResult() {
@@ -34,9 +35,25 @@ class NewPage extends React.Component{
 
     render(){
         return(
-            <div>
-                <button onClick={this.renderResult}>KLIK DAN</button>
-                <strong style={{color:'white'}}>Hoi, {this.props.nameRe} je score is {this.props.scoreRe}</strong>
+            <div className = "grid">
+                <img src={logo} className="App-logo" alt="logo" />
+                    <div className = "grid-resButton">
+                        <button className="resButton" onClick={this.renderResult}>RANGLIJST</button>
+                    </div>
+                    <div className = "grid-gongText">
+                        <h1 className = "gongText">GEEF EEN MEP <br /> OP DIE GONG!</h1>
+                    </div>
+                    <div className = "grid-klaarText">
+                        <h2 className = "klaarText">Je hebt het voor elkaar gebokst! Je kent je kollega's alweer heel <br />
+                        wat beter. Maar hoe heb je het gedaan?</h2>
+                    </div>
+                    <div className = "grid-scoreRes">
+                        <p className = "scoreRes">{this.props.scoreRe}</p>
+                    </div>
+                    <div className = "grid-resText">
+                        <h1 className = "resText">PUNTEN GESCOORD!</h1>
+                    </div>
+                    
             </div>
         )
     }

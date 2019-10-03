@@ -9,6 +9,7 @@ import store from '../store'
 import {bindActionCreators} from 'redux';
 import { connect } from 'react-redux';
 import scoreReducer from '../reducers/reducer';
+import Panel from './Panel'
 
 class Welkom extends Component {
     constructor() {
@@ -25,10 +26,10 @@ class Welkom extends Component {
         document.body.style.backgroundColor = '#256eff'
     }
     
-    renderAdmin() {
+    renderPanel() {
         ReactDOM.render(
             <Provider store={store}>
-                <Admin/>
+                <Panel/>
             </Provider>,
             document.getElementById('root')
          );
@@ -64,11 +65,11 @@ class Welkom extends Component {
     render() {
         return (
             <div>
-                <button onClick={e => { e.preventDefault(); this.renderAdmin() }}>Naar admin panel</button>
+                <button className = "goButAdminPanel" onClick={e => { e.preventDefault(); this.renderPanel() }}>Naar admin panel</button>
                 <div className='grid'>
                         <div className="grid-logo"> <img src={logo} className="App-logo" alt="logo" /></div> 
                         <div className='grid-titel'>
-                        <p className='Titel'>Welkom Kollega!</p>
+                        <p className='Titel'>WELKOM <br />KOLLEGA!</p>
                         </div>
                         <div className='grid-sub'>
                             <p className='sub'>Met de K van Keytoe</p>
@@ -77,15 +78,15 @@ class Welkom extends Component {
                             <p className='Kop'>De kwizz</p>
                         </div>
                         <div className='grid-info'>
-                            <p className='InfoTekst'>Leer je Kollega�s �cht kennen. Keytoe, KeytoeY, Toscani� Durf te vragen, maar niet naar het directe antwoord. Het moet wel leuk blijven. Ben je al zenuwachtig? Mooi.</p>
+                            <p className='InfoTekst'>Leer je Kollega's écht kennen. Keytoe, KeytoeY, Toscani... Durf te vragen, maar niet naar het directe antwoord. Het moet wel leuk blijven. Ben je al zenuwachtig? Mooi.</p>
                         </div>
                     <div className='grid-naamform'>
                         <form onSubmit={e => { e.preventDefault(); this.renderApp(); this.checkName() }}>
                             <div>
-                                <input className='goInput' type='text' required placeholder='Je naam'  onChange={this.handleChange}></input>
+                                <input className='goInput' type='text' required placeholder='Je naam' onChange={this.handleChange}></input>
                             </div>
                             <div>
-                                <input className='goBut' type='submit' value='Letsgooo!'></input>
+                                <input className='goBut button' type='submit' value='LETSGOOO!'></input>
                             </div>
                         </form>
                     </div>

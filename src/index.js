@@ -6,6 +6,7 @@ import * as serviceWorker from './serviceWorker';
 import { Provider } from "react-redux";
 import store from "./store";
 import App from './App'
+require('typeface-cooper-hewitt')
 
 ReactDOM.render(
    <Provider store={store}>

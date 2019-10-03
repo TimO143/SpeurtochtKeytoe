@@ -20,6 +20,7 @@ class Result extends React.Component {
     }
 
     componentDidMount() {
+        document.body.style.backgroundColor = 'black'
         // console.log returns the nameRe from reducer
         console.log(this.props.nameRe, this.props.scoreRe) 
         let url = 'http://192.168.5.102:4000/getScoreboard';
@@ -40,7 +41,10 @@ class Result extends React.Component {
                     {/* this.props.nameRe takes value from nameRe in reducer */}
                     {/* <strong>{this.props.nameRe}, {this.props.scoreRe}</strong>  */}
                     <table id="scoreBoard">
+                        <thead>
                             <th>RANGLIJST</th>
+                        </thead>
+                        <tbody>
                         {this.state.scoreboard.map((item, index) => 
                         <tr className="rowData" key={index}>
                             <td >{item.username}</td>
@@ -49,6 +53,7 @@ class Result extends React.Component {
                             
                         </tr>
                         )}
+                        </tbody>
                     </table>
                 </div>   
             </div>     
