@@ -57,11 +57,11 @@ class Welkom extends Component {
     render() {
         return (
             <div>
-                <button onClick={e => { e.preventDefault(); this.renderPanel() }}>Naar admin panel</button>
+                <button className = "goButAdminPanel" onClick={e => { e.preventDefault(); this.renderPanel() }}>Naar admin panel</button>
                 <div className='grid'>
                         <div className="grid-logo"> <img src={logo} className="App-logo" alt="logo" /></div> 
                         <div className='grid-titel'>
-                        <p className='Titel'>Welkom Kollega!</p>
+                        <p className='Titel'>WELKOM <br />KOLLEGA!</p>
                         </div>
                         <div className='grid-sub'>
                             <p className='sub'>Met de K van Keytoe</p>
@@ -78,7 +78,7 @@ class Welkom extends Component {
                                 <input className='goInput' type='text' required placeholder='Je naam'  onChange={this.handleChange}></input>
                             </div>
                             <div>
-                                <input className='goBut' type='submit' value='Letsgooo!'></input>
+                                <input className='goBut button' type='submit' value='LETSGOOO!'></input>
                             </div>
                         </form>
                     </div>

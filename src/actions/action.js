@@ -1,3 +1,5 @@
+import store from '../store';
+
 export const NAME = 'NAME'
 export const ADD_SCORE = 'ADD_SCORE'
 export const DECREASE_LIFE = 'DECREASE_LIFE'

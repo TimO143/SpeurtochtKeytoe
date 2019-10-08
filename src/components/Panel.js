@@ -4,6 +4,8 @@ import { Provider } from "react-redux";
 import store from "../store";
 import Welkom from '../components/Welkom'
 import Admin from '../components/Admin'
+import logo from '../svg/full_logo.svg'
+
 
 class Panel extends React.Component {
     constructor() {
@@ -47,14 +49,26 @@ class Panel extends React.Component {
         const isEnabled = this.canBeSubmitted();
             return (
                 <div>
-                    <button onClick={this.renderWelkom} >Naar de Quiz</button>
+                    <button className = "goButAdminPanel" onClick={this.renderWelkom} >Naar de Quiz</button>
                     <form>
-                        <input type='text' onChange={this.handleUsernameChange}></input>
-                        <input type='text' onChange={this.handlePasswordChange}></input>
-                        {!isEnabled ? <button onClick={e => e.preventDefault()} disabled={!isEnabled}> Naar admin </button> : <button onClick={this.renderLogin}>Naar admin</button>}
+                        <div className = "grid">
+                        <div className="grid-logo-Admin"> <img src={logo} className="App-logo" alt="logo" /></div>
+                            <div className = "grid-loginText">
+                                <h1 className = "loginText">INLOGGEN</h1>
+                            </div>
+                            <div className = "grid-username">
+                                <input className = "usernameInput" type='text' placeholder='Username' onChange={this.handleUsernameChange}></input>
+                            </div>
+                            <div className = "grid-password">
+                                <input className = "passwordInput" type='text' placeholder='Password' onChange={this.handlePasswordChange}></input>
+                            </div>
+                        
+                            <div className = "grid-login-button">
+                                {!isEnabled ? <button className = "goButAdminPanel" onClick={e => e.preventDefault()} disabled={!isEnabled}> Nope </button> : <button className = "goButAdminPanel"onClick={this.renderLogin}>Yep</button>}
+                            </div>
+                        </div>
                     </form>
-                </div>
-                )
+                </div>)
         }
     
 }

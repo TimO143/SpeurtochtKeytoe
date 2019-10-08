@@ -1,8 +1,14 @@
-import React from 'react'
+import React from 'react';
+import logo from '../svg/keytoe_icon_RGB.svg';
+import Welkom from './Welkom';
+import ReactDOM from 'react-dom';
+import { Provider } from "react-redux";
+import store from '../store';
 
 import AdminAdd from './AdminAdd'
 import AdminItem from './AdminItem'
 import FormErrors from './FormErrors'
+
 
 class Admin extends React.Component {
     constructor() {
@@ -30,9 +36,9 @@ class Admin extends React.Component {
 
     // haalt de informatie uit de database op ( GET ) en voegt het toe aan items[]
     componentDidMount() {
-        document.body.style.backgroundColor = '#256eff'
+        document.body.style.backgroundColor = 'white'
 
-        let url = 'http://192.168.5.149:4000/'
+        let url = 'http://192.168.5.102:4000/'
         fetch(url)
             .then(res => res.json())
             .then(data => {
@@ -110,7 +116,7 @@ class Admin extends React.Component {
 
         if (question !== '' && hint !== '' && answer !== '' && position !== '') {
             console.log(id, question, hint, answer, position)
-            let url1 = 'http://192.168.5.149:4000/create'
+            let url1 = 'http://192.168.5.102:4000/create'
             fetch(url1, {
                 method: 'POST',
                 headers: {
@@ -203,7 +209,7 @@ class Admin extends React.Component {
         const deleteItem = this.state.items[index]
         console.log(deleteItem)
 
-        let url1 = 'http://192.168.5.149:4000/delete'
+        let url1 = 'http://192.168.5.102:4000/delete'
         fetch(url1, {
             method: 'DELETE',
             headers: {
@@ -224,17 +230,32 @@ class Admin extends React.Component {
             ]
         })
     };
+    renderPanel() {
+        ReactDOM.render(
+            <Provider store={store}>
+                <Welkom/>
+            </Provider>,
+            document.getElementById('root')
+         );
+    }
 
 
     render() {
         const {id,question,hint,answer,position} = this.state
         return (
             <div>
+                <button className="goButHomepage" onClick={e => { e.preventDefault(); this.renderPanel() }}>Naar Welkomscherm</button>
+                <div className="grid"><img src={logo} className="App-logo-admin" alt="logo" />
+                    <div className="grid-editQuestions">
+                        <h1 className="editQuestions">VRAGEN <br />BEWERKEN</h1>
+                    </div>
 
-                <h1>Voeg vraag toe</h1>
-                <div>
-                    <FormErrors formErrors={this.state.formErrors} />
-                </div>
+                    <div className="grid-admin-add">
+                        <div className="admin-add">
+                            <h1>Voeg vraag toe</h1>
+                      <div>
+                   <FormErrors formErrors={this.state.formErrors} />
+                     </div>
                 <AdminAdd
                     position={position}
                     id={id}
@@ -244,13 +265,14 @@ class Admin extends React.Component {
                     onChange={this.handleInputChange}
                     onSubmit={(e) => { this.addItem(e) }}
                     FormValid={this.state.formValid}
-                />
-
-                <h1>vragen</h1>
+                    />
+               </div>
+               </div>
 
                 <div className='grid-admin-item'>
                     {this.state.serverStatus ?
                         this.state.items.map((item, index) =>
+                            <div className="admin-item">
                             <AdminItem
                                 key={item.id}
                                 index={index}
@@ -262,13 +284,14 @@ class Admin extends React.Component {
                                 FormValid={this.state.formValid}
                                 errors={this.state.formErrors}
                                 />
+                                </div>
                                
                             )
             :
                     <div><p>de server staat niet aan!</p></div>
             }
             
-            
+            </div>
                 </div>
             </div>)
     }

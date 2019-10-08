@@ -5,7 +5,6 @@ import Welkom from './components/Welkom'
 import * as serviceWorker from './serviceWorker';
 import { Provider } from "react-redux";
 import store from "./store";
-
 require('typeface-cooper-hewitt')
 
 ReactDOM.render(

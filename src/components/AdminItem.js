@@ -1,17 +1,22 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import FormErrors from './FormErrors'
+import edit from '../svg/edit.svg';
+import close from '../svg/close.png';
+import previous from '../svg/previous.svg';
 
 const AdminItem = ({ toggleEditing, item, onChange, index, onDelete, onSubmit, FormValid, errors }) => (
+
     <div>
-        <div>
-            <div>
-                {item.isEditing
-                    ?
-                    <div>
-                        <FormErrors formErrors={errors} />
-                        <form>
-                            <div>
+
+        {item.isEditing
+            ?
+            <div className = "adminInputs">
+                <FormErrors formErrors={errors} />
+                <form>
+                        {/* <input  */}
+                        
+                            {/* <div>
                                 id: 
                         <input
                             type='number'
@@ -21,10 +26,10 @@ const AdminItem = ({ toggleEditing, item, onChange, index, onDelete, onSubmit, F
                             onChange={e => onChange(e, index)}
                             disabled
                                 />
-                            </div>
+                            </div> */}
                             <div>
                                 position:
-                        <input
+                        <input className = "positionInput"
                             type='text'
                             name='position'
                             placeholder='position'
@@ -34,7 +39,7 @@ const AdminItem = ({ toggleEditing, item, onChange, index, onDelete, onSubmit, F
                             </div>
                             <div>
                                 vraag:
-                        <input
+                        <input className = "vraagInput"
                             type='text'
                             name='question'
                             placeholder='question'
@@ -45,7 +50,7 @@ const AdminItem = ({ toggleEditing, item, onChange, index, onDelete, onSubmit, F
                             </div>
                             <div>
                                 hint:
-                        <input
+                        <input className = "hintInput"
                             type='text'
                             name='hint'
                             placeholder='hint'
@@ -56,7 +61,7 @@ const AdminItem = ({ toggleEditing, item, onChange, index, onDelete, onSubmit, F
                             </div>
                             <div>
                                 antwoord:
-                        <input
+                        <input className="answerInput"
                             type='text'
                             name='answer'
                             placeholder='answer'
@@ -65,38 +70,38 @@ const AdminItem = ({ toggleEditing, item, onChange, index, onDelete, onSubmit, F
                             required
                                 />
                                 </div>
-                            <input type='button' value='Update database' onClick={onSubmit}/>
+                            <input className = "goButAdmin" type='button' value='Update database' onClick={onSubmit}/>
                             </form>
-                    </div>
-                    :
-                    <div>
-                        <p>id:{item.id}</p>
-                        <p>position:{item.position}</p>
-                        <p>vraag:{item.question}</p> 
-                        <p>hint:{item.hint}</p>     
-                        <p>antwoord:{item.answer}</p>   
-                    </div>
-                }
+                    </div>    
+            :
+            <div className = "adminPageQuestions">
+                {/* TODO <br /> x 2 is unorthodox */}
+                <p>Position : {item.position} <br /> <br />
+                    Vraag {item.id}. {item.question} <br /> <br /> 
+                    Antwoord: {item.answer} <br /> <br />
+                    Hint: {item.hint}
+                </p>
+                
+                {/* the below must appear upon button press */}
+                {/* <p>hint:{item.hint}</p>     
+                <p>antwoord:{item.answer}</p>    */}
+            </div>   
+        }
+        <div>
+            <button className = "adminEdit"
+                type='button'
+                onClick={toggleEditing}
+                    >
+                {item.isEditing ? <img src={previous} width= "21px" height="21px"></img> : <img src= {edit}></img>}
+            </button>
 
-                <div>
-                    <div>
-                        <button
-                            type='button'
-                            onClick={toggleEditing}
-                             >
-                            {item.isEditing ? "Exit Edit" : "Edit"}
-                        </button>
-
-                        <button
-                            type='button'
-                            onClick={onDelete}>
-                            Delete
-                         </button>
-                        
-                    </div>
-                </div>
-            </div>
-        </div>
+            <button className = "adminDelete"
+                type='button'
+                onClick={onDelete}>
+                <img src={close} width= "21px" height="21px"></img>
+                </button>
+            <hr />
+        </div> 
     </div>)
 
 AdminItem.propTypes = {

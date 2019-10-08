@@ -4,6 +4,8 @@ import logo from './svg/keytoe_logo.svg';
 import './App.css';
 import { Provider } from "react-redux";
 import { setTimeout } from 'timers';
+import Hint from './components/Hint'
+import ReactDOM from 'react-dom';
 import store from './store';
 import {nameAdd, addScore} from './actions/action';
 import {bindActionCreators} from 'redux';
@@ -36,7 +38,7 @@ class App extends Component {
         // verander kleur van achtergrond terug naar zwart
         document.body.style.backgroundColor = 'black'
 
-        let url = 'http://192.168.5.149:4000/'
+        let url = 'http://192.168.5.102:4000/'
         fetch(url)
             .then(res => res.json())
             .then(data => {
@@ -121,7 +123,7 @@ class App extends Component {
     // voegt de score toe aan het resultaat ( check boven is een timeout die nodig is om niet de oude state van score te gebruiken)
     setResults = () => {
         this.props.addScore(this.state.score)  
-            let url1 = 'http://192.168.5.149:4000/createUserAndScore'
+            let url1 = 'http://192.168.5.102:4000/createUserAndScore'
             fetch(url1, {
                 method: 'POST',
                 headers: {
@@ -135,6 +137,12 @@ class App extends Component {
                 })
                 .then(this.setState({ result: this.state.score }, () => console.log(this.state.result, this.state.score, this.props.nameRe, this.props.scoreRe))
                 )
+                // ReactDOM.render(
+                //     <Provider store={store}>
+                //         < />;
+                //     </Provider>,
+                //     document.getElementById('root')
+                // );
     }
 
     // rendert de quiz op het scherm met de props van quiz
@@ -152,6 +160,11 @@ class App extends Component {
       />
     );
   }
+                        //     <button
+                        //     type='button'
+                        //     onClick={onDelete}>
+                        //     Delete
+                        //  </button>
 
   newPage= () =>{
     return(

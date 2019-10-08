@@ -11,7 +11,7 @@ const pool = mysql.createPool({
     host: "localhost",
     user: "root",
     password: "password",
-    database: "test_tim"
+    database: "test_score"
 })
 
 app.disable('x-powered-by')
