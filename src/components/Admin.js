@@ -1,6 +1,4 @@
 import React from 'react';
-import AdminAdd from './AdminAdd';
-import AdminItem   from './AdminItem';
 import logo from '../svg/keytoe_icon_RGB.svg';
 import Welkom from './Welkom';
 import ReactDOM from 'react-dom';

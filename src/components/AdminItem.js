@@ -8,17 +8,15 @@ import previous from '../svg/previous.svg';
 const AdminItem = ({ toggleEditing, item, onChange, index, onDelete, onSubmit, FormValid, errors }) => (
 
     <div>
+
         {item.isEditing
             ?
             <div className = "adminInputs">
+                <FormErrors formErrors={errors} />
                 <form>
-                    <div>
-                        <input 
-                        <input 
-                        <FormErrors formErrors={errors} />
-                        <form>
-                        // comment this away
-                            <div>
+                        {/* <input  */}
+                        
+                            {/* <div>
                                 id: 
                         <input
                             type='number'
@@ -28,7 +26,7 @@ const AdminItem = ({ toggleEditing, item, onChange, index, onDelete, onSubmit, F
                             onChange={e => onChange(e, index)}
                             disabled
                                 />
-                            </div>
+                            </div> */}
                             <div>
                                 position:
                         <input className = "positionInput"
