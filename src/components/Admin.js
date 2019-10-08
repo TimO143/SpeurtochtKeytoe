@@ -7,6 +7,9 @@ import ReactDOM from 'react-dom';
 import { Provider } from "react-redux";
 import store from '../store';
 
+import AdminAdd from './AdminAdd'
+import AdminItem from './AdminItem'
+import FormErrors from './FormErrors'
 
 
 class Admin extends React.Component {
@@ -20,7 +23,10 @@ class Admin extends React.Component {
             hint: '',
             answer: '',
             items: [],
-            serverStatus: false
+            serverStatus: false,
+            formErrors: { position: '', question: '', hint: '', answer: '' },
+            posValid: false,
+            formValid: false
         }
     }
 
@@ -51,8 +57,29 @@ class Admin extends React.Component {
         const name = target.name
         this.setState({
             [name]: value
-        })
+        }, () => { this.validateField(name,value)})
     };
+
+    validateField(fieldName, value) {
+        let fieldValidationErrors = this.state.formErrors
+        let posValid = this.state.posValid
+        
+        switch (fieldName) {
+            case 'position':
+                posValid = value.match(/^[0-9]*$/)
+                fieldValidationErrors.position = posValid ? '' : 'is geen nummer'
+                break;
+            default:
+                break;                 
+        }
+        this.setState({ formErrors: fieldValidationErrors, posValid: posValid},this.validateForm)
+    }
+
+    validateForm = () => {
+        this.setState({
+            formValid: this.state.posValid
+        })
+    }
 
     /* Deze functie zorgt ervoor dat er een array terug komt met id's van de vragen die missen
      array.from maakt een nieuwe array die alle items pakt uit de oude array from('foo') -> ['f','o','o']
@@ -77,7 +104,7 @@ class Admin extends React.Component {
         if (testid[0] !== 0) {
             testid.push(0)
         }
-        console.log("Alle ID's in de array op dit moment "+testid)
+        //console.log("Alle ID's in de array op dit moment "+testid)
 
         /*
           als er iets zit in de missingNumbers array dan wordt het eerste element de nieuwe id, anders wordt de lengte van de array het nieuwe id
@@ -86,10 +113,9 @@ class Admin extends React.Component {
         */
         const id = this.missingNumbers(testid).length > 0 ? this.missingNumbers(testid)[0] : testid.length
 
-        console.log("inserted on id: " + id)
-        console.log(this.missingNumbers(testid))
+        //console.log("inserted on id: " + id)
+        //console.log(this.missingNumbers(testid))
 
-        
         if (question !== '' && hint !== '' && answer !== '' && position !== '') {
             console.log(id, question, hint, answer, position)
             let url1 = 'http://192.168.5.102:4000/create'
@@ -116,9 +142,6 @@ class Admin extends React.Component {
                 hint: '',
                 answer: ''
             })
-            //console.log(this.state.items)
-            //console.log(itemsInState)
-            //console.log(itemsArrayLength)
         }
     };
 
@@ -157,7 +180,7 @@ class Admin extends React.Component {
                 }
                 return item
             })
-        })
+        }, () => { this.validateField(name, value) })
     };
 
     handlePutRequest = (e, index) => {
@@ -165,8 +188,8 @@ class Admin extends React.Component {
         const updateItem = this.state.items[index]
         console.log(updateItem)
 
-        if (updateItem.question !== '' && updateItem.hint !== '' && updateItem.answer !== '' && updateItem.position !== '') {
-            let url1 = 'http://192.168.5.102:4000/update/'
+        if ((updateItem.question !== '' && updateItem.hint !== '' && updateItem.answer !== '' && updateItem.position !== '' && this.state.posValid)) {
+            let url1 = 'http://192.168.5.149:4000/update/'
             fetch(url1, {
                 method: 'PUT',
                 headers: {
@@ -222,46 +245,46 @@ class Admin extends React.Component {
     render() {
         const {id,question,hint,answer,position} = this.state
         return (
-            <div><button className = "goButHomepage" onClick={e => { e.preventDefault(); this.renderPanel() }}>Naar Welkomscherm</button>
-                <div className = "grid"><img src={logo} className="App-logo-admin" alt="logo" />
-                    <div className = "grid-editQuestions"> 
-                        <h1 className = "editQuestions">VRAGEN <br />BEWERKEN</h1>
-                    </div>
-                        <div className = "grid-admin-add">
-                            <div className = "admin-add">
-                                <h1>Voeg vraag toe</h1>
-                                <AdminAdd
-                                    position={position}
-                                    id={id}
-                                    question={question}
-                                    hint={hint} 
-                                    answer={answer}
-                                    onChange={this.handleInputChange}
-                                    onSubmit={(e) => { this.addItem(e) }}
+            <div>
+
+                <h1>Voeg vraag toe</h1>
+                <div>
+                    <FormErrors formErrors={this.state.formErrors} />
+                </div>
+                <AdminAdd
+                    position={position}
+                    id={id}
+                    question={question}
+                    hint={hint}
+                    answer={answer}
+                    onChange={this.handleInputChange}
+                    onSubmit={(e) => { this.addItem(e) }}
+                    FormValid={this.state.formValid}
+                />
+
+                <h1>vragen</h1>
+
+                <div className='grid-admin-item'>
+                    {this.state.serverStatus ?
+                        this.state.items.map((item, index) =>
+                            <AdminItem
+                                key={item.id}
+                                index={index}
+                                item={item}
+                                toggleEditing={() => this.toggleItemEditing(index)}
+                                onChange={this.handleItemUpdate}
+                                onDelete={() => this.onDelete(index)}
+                                onSubmit={(e) => this.handlePutRequest(e, index)}
+                                FormValid={this.state.formValid}
+                                errors={this.state.formErrors}
                                 />
-                            </div>
-                        </div>
-                        
-                        <div className="grid-admin-item">
-                            {this.state.serverStatus ?
-                                this.state.items.map((item, index) =>
-                                <div className = "admin-item">
-                                    <AdminItem
-                                        key={item.id}
-                                        index={index}
-                                        item={item}
-                                        toggleEditing={() => this.toggleItemEditing(index)}
-                                        onChange={this.handleItemUpdate}
-                                        onDelete={() => this.onDelete(index)}
-                                        onSubmit={(e) => this.handlePutRequest(e,index)}
-                                    />
-                                    </div>)
-                    :
-                            <div><p>de server staat niet aan!</p></div>
-                    }
-                    
-                    
-                        </div>
+                               
+                            )
+            :
+                    <div><p>de server staat niet aan!</p></div>
+            }
+            
+            
                 </div>
             </div>)
     }

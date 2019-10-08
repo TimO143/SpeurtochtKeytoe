@@ -11,8 +11,6 @@ class Panel extends React.Component {
     constructor() {
         super()
         this.state = {
-            isAdmin: false,
-            isUser: false,
             username: '',
             password: ''
         }

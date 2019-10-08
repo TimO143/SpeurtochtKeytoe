@@ -4,6 +4,7 @@ const mysql = require('mysql')
 
 var cors = require('cors')
 
+
 // config voor database
 const pool = mysql.createPool({
     connectionLimit: 100, // important, als er meer dan 100 connections worden gestuurd dan geeft het een error terug
@@ -13,6 +14,7 @@ const pool = mysql.createPool({
     database: "test_score"
 })
 
+app.disable('x-powered-by')
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
@@ -65,6 +67,7 @@ app.get('/getScoreboard', function (req,res) {
 
 app.post('/createUserAndScore', function(req, res) {
     pool.getConnection(function (err, connection){
+        var id = req.body.id
         var username = req.body.username
         var score = req.body.score
         console.log(req.body)
@@ -144,7 +147,7 @@ app.put('/update', function (req, res) {
         var answer = req.body.answer
         var position = req.body.position
         //console.log(req)
-        console.log(req.body, question)
+        console.log(req.body)
 
 
         var sql = "UPDATE question SET question='" + question + "',hint='" + hint + "',answer='" + answer + "',position=" + position + " where id=" + id + ""

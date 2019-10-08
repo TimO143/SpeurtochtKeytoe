@@ -1,72 +1,80 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React from 'react'
+import PropTypes from 'prop-types'
+import FormErrors from './FormErrors'
 import edit from '../svg/edit.svg';
 import close from '../svg/close.png';
 import previous from '../svg/previous.svg';
-// import icon from '../svg/icon.png';
-const AdminItem = ({ toggleEditing, item, onChange, index, onDelete, onSubmit }) => (
+
+const AdminItem = ({ toggleEditing, item, onChange, index, onDelete, onSubmit, FormValid, errors }) => (
+
     <div>
         {item.isEditing
             ?
             <div className = "adminInputs">
                 <form>
-                     {/* <div>
-                      
-                <input 
-                    type='number'
-                    name='id'
-                    placeholder='id'
-                    value={item.id}
-                    onChange={e => onChange(e, index)}
-                    disabled
-                        /> 
-                    </div>  */}
                     <div>
-                      
-                <input className = "positionInput"
-                    type='text'
-                    name='position'
-                    placeholder ='position'
-                    value={item.position}
-                    onChange={e => onChange(e, index)}
-                        />
-                    </div>
-                    <div>
-                      
-                <input className = "vraagInput"
-                    type='text'
-                    name='question'
-                    placeholder='question'
-                    value={item.question}
-                    onChange={e => onChange(e, index)}
-                    required
-                        />
-                    </div>
-                    <div>
-                      
-                <input className = "hintInput"
-                    type='text'
-                    name='hint'
-                    placeholder='hint'
-                    value={item.hint}
-                    onChange={e => onChange(e,index)}
-                    required
-                        />
-                    </div>
-                    <div>
-                      
-                <input className = "answerInput"
-                    type='text'
-                    name='answer'
-                    placeholder='answer'
-                    value={item.answer}
-                    onChange={e => onChange(e, index)}
-                    required
-                        />
-                        </div>
-                    <input className = "goButAdmin" type='button' value='Update database' onClick={onSubmit}/>
-                    </form>
-            </div>
+                        <input 
+                        <input 
+                        <FormErrors formErrors={errors} />
+                        <form>
+                        // comment this away
+                            <div>
+                                id: 
+                        <input
+                            type='number'
+                            name='id'
+                            placeholder='id'
+                            value={item.id}
+                            onChange={e => onChange(e, index)}
+                            disabled
+                                />
+                            </div>
+                            <div>
+                                position:
+                        <input className = "positionInput"
+                            type='text'
+                            name='position'
+                            placeholder='position'
+                            value={item.position}
+                            onChange={e => onChange(e, index)}
+                                />
+                            </div>
+                            <div>
+                                vraag:
+                        <input className = "vraagInput"
+                            type='text'
+                            name='question'
+                            placeholder='question'
+                            value={item.question}
+                            onChange={e => onChange(e, index)}
+                            required
+                                />
+                            </div>
+                            <div>
+                                hint:
+                        <input className = "hintInput"
+                            type='text'
+                            name='hint'
+                            placeholder='hint'
+                            value={item.hint}
+                            onChange={e => onChange(e,index)}
+                            required
+                                />
+                            </div>
+                            <div>
+                                antwoord:
+                        <input
+                            type='text'
+                            name='answer'
+                            placeholder='answer'
+                            value={item.answer}
+                            onChange={e => onChange(e, index)}
+                            required
+                                />
+                                </div>
+                            <input className = "goButAdmin" type='button' value='Update database' onClick={onSubmit}/>
+                            </form>
+                    </div>    
             :
             <div className = "adminPageQuestions">
                 {/* TODO <br /> x 2 is unorthodox */}

@@ -1,11 +1,6 @@
 import { createStore } from "redux";
 import scoreReducer from "./reducers/reducer";
-import {
-    nameAdd,
-    addScore,
-    decreaseLife,
-    result
-} from './actions/action'
+
 
 const store = createStore(
     scoreReducer,

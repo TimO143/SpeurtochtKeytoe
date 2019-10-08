@@ -1,10 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-const AdminAdd = ({ question, hint, answer,position, onChange, onSubmit, onPost}) => (
-    <div>
-        <form>
-            
+const AdminAdd = ({ question, hint, answer, position, onChange, onSubmit, onPost, FormValid}) => (
+    <div >
+        <form >
             <div>
                 <input className = "goInputQuestions"
                     type='text'
@@ -45,7 +44,7 @@ const AdminAdd = ({ question, hint, answer,position, onChange, onSubmit, onPost}
                     required
                 />
             </div>
-            <button className = "goButAdmin" type='submit' onClick={onSubmit}>VOEG TOE</button>
+            <button type='submit' onClick={onSubmit} disabled={!FormValid}>save</button>
 
         </form>
     </div>)

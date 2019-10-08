@@ -2,21 +2,19 @@ import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
 import App from '../App'
 import logo from '../svg/full_logo.svg'
-import Admin from '../components/Admin'
+import Panel from '../components/Panel'
 import {nameAdd} from '../actions/action';
 import { Provider } from "react-redux";
 import store from '../store'
 import {bindActionCreators} from 'redux';
 import { connect } from 'react-redux';
-import scoreReducer from '../reducers/reducer';
-import Panel from './Panel'
+
 
 class Welkom extends Component {
     constructor() {
         super();
         this.state = {
             questionData: [],
-            posts:[]
         }
         this.handleChange = this.handleChange.bind(this);
     }
@@ -54,12 +52,6 @@ class Welkom extends Component {
             document.getElementById('root')
         );
 
-        // ReactDOM.render(
-        //     <Provider store={store}>
-        //         <Result quizResult={this.state.result} />;
-        //     </Provider>,
-        //     document.getElementById('root')
-        // );
     }
 
     render() {
@@ -83,7 +75,7 @@ class Welkom extends Component {
                     <div className='grid-naamform'>
                         <form onSubmit={e => { e.preventDefault(); this.renderApp(); this.checkName() }}>
                             <div>
-                                <input className='goInput' type='text' required placeholder='Je naam' onChange={this.handleChange}></input>
+                                <input className='goInput' type='text' required placeholder='Je naam'  onChange={this.handleChange}></input>
                             </div>
                             <div>
                                 <input className='goBut button' type='submit' value='LETSGOOO!'></input>
