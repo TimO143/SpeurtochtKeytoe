@@ -5,11 +5,12 @@ import Welkom from './components/Welkom'
 import * as serviceWorker from './serviceWorker';
 import { Provider } from "react-redux";
 import store from "./store";
-import Panel from './components/Panel'
+
+require('typeface-cooper-hewitt')
 
 ReactDOM.render(
    <Provider store={store}>
-       <Panel />
+       <Welkom />
    </Provider>,
    document.getElementById('root')
 );

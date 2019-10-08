@@ -20,7 +20,6 @@ class App extends Component {
       questionId: 1,
       question: '',
       answerOptions: '',
-      answersCount: {},
       result: 0,
       leven: 5,
       score: 0,
@@ -53,6 +52,7 @@ class App extends Component {
     handleAnswerSelected(value) {
         //  gaat naar volgende bij input
         if (this.state.items[this.state.counter].answer === value || this.state.leven <= 1) {
+            console.log(this.state.items.length, this.state.questionId)
             if (this.state.questionId < this.state.items.length) {
                 this.setNextQuestion();
             }
@@ -93,19 +93,20 @@ class App extends Component {
         }   
     }
     setNextQuestion(event) {
-    const counter = this.state.counter + 1;
+        const counter = this.state.counter + 1;
+        const questionId = this.state.questionId + 1;
 
     this.updateScore();
       this.setState({
           counter: counter,
-          questionId: this.state.items[counter].id,
+          questionId: questionId,
           question: this.state.items[counter].question,
           answerOptions: this.state.items[counter].answer,
           hint: this.state.items[counter].hint,
           
           leven: 5         
         });
-        console.log(this.state.items[counter].question)
+        console.log(this.state.items[counter], counter)
     }
 
     lowerLife() {

@@ -14,6 +14,7 @@ const pool = mysql.createPool({
     database: "test_tim"
 })
 
+app.disable('x-powered-by')
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
@@ -146,7 +147,7 @@ app.put('/update', function (req, res) {
         var answer = req.body.answer
         var position = req.body.position
         //console.log(req)
-        console.log(req.body, question)
+        console.log(req.body)
 
 
         var sql = "UPDATE question SET question='" + question + "',hint='" + hint + "',answer='" + answer + "',position=" + position + " where id=" + id + ""

@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 function QuestionCount(props) {
   return (
     <div className="questionCount grid-questionCount">
-      VRAAG <span className="currentQuestion">{props.counter}</span> <span className="totalQuestions">/{props.total}</span>
+      <span className='vraagWeg'>VRAAG</span> <span className="currentQuestion">{props.counter}</span> <span className="totalQuestions">/{props.total}</span>
     </div>
   );
 }

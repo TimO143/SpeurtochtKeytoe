@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="23" height="24" viewBox="0 0 23 24">
+    <defs>
+        <style>
+            .cls-1,.cls-4{fill:none}.cls-1{stroke:#fff}.cls-2{fill:#fff;font-size:12px;font-family:CooperHewitt-Semibold,Cooper Hewitt;font-weight:600;letter-spacing:.188em}.cls-3{stroke:none}
+        </style>
+    </defs>
+    <g id="icon" transform="translate(-368 -982)">
+        <g id="Ellipse_1" class="cls-1" data-name="Ellipse 1" transform="translate(368 982)">
+            <ellipse cx="11.5" cy="12" class="cls-3" rx="11.5" ry="12"/>
+            <ellipse cx="11.5" cy="12" class="cls-4" rx="11" ry="11.5"/>
+        </g>
+        <text id="_" class="cls-2" data-name="?" transform="translate(377 998)">
+            <tspan x="0" y="0">?</tspan>
+        </text>
+    </g>
+</svg>

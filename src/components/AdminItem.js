@@ -1,13 +1,15 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import FormErrors from './FormErrors'
 
-const AdminItem = ({ toggleEditing, item, onChange, index, onDelete, onSubmit }) => (
+const AdminItem = ({ toggleEditing, item, onChange, index, onDelete, onSubmit, FormValid, errors }) => (
     <div>
         <div>
             <div>
                 {item.isEditing
                     ?
                     <div>
+                        <FormErrors formErrors={errors} />
                         <form>
                             <div>
                                 id: 

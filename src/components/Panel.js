@@ -9,8 +9,6 @@ class Panel extends React.Component {
     constructor() {
         super()
         this.state = {
-            isAdmin: false,
-            isUser: false,
             username: '',
             password: ''
         }
@@ -50,11 +48,10 @@ class Panel extends React.Component {
             return (
                 <div>
                     <button onClick={this.renderWelkom} >Naar de Quiz</button>
-                    <form onSubmit={this.renderLogin}>
+                    <form>
                         <input type='text' onChange={this.handleUsernameChange}></input>
                         <input type='text' onChange={this.handlePasswordChange}></input>
-                        {}
-                        <input type='submit' disabled={!isEnabled}></input>
+                        {!isEnabled ? <button onClick={e => e.preventDefault()} disabled={!isEnabled}> Naar admin </button> : <button onClick={this.renderLogin}>Naar admin</button>}
                     </form>
                 </div>
                 )

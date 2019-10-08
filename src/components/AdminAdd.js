@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-const AdminAdd = ({ question, hint, answer,position, onChange, onSubmit, onPost}) => (
+const AdminAdd = ({ question, hint, answer, position, onChange, onSubmit, onPost, FormValid}) => (
     <div >
         <form >
             <div>
@@ -44,7 +44,7 @@ const AdminAdd = ({ question, hint, answer,position, onChange, onSubmit, onPost}
                     required
                 />
             </div>
-            <button type='submit' onClick={onSubmit}>save</button>
+            <button type='submit' onClick={onSubmit} disabled={!FormValid}>save</button>
 
         </form>
     </div>)
