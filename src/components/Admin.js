@@ -8,7 +8,7 @@ import store from '../store';
 import AdminAdd from './AdminAdd'
 import AdminItem from './AdminItem'
 import FormErrors from './FormErrors'
-
+import URL from './constant'
 
 class Admin extends React.Component {
     constructor() {
@@ -27,6 +27,7 @@ class Admin extends React.Component {
             formValid: false
         }
     }
+    
 
 // dit is hoe de items array eruit ziet je kan gewoon items[0].question = q1
 //[{ id: 1, question: 'q1', hint: 'h1', answer: 'a1' ,position:'p1'},
@@ -37,8 +38,11 @@ class Admin extends React.Component {
     // haalt de informatie uit de database op ( GET ) en voegt het toe aan items[]
     componentDidMount() {
         document.body.style.backgroundColor = 'white'
-
-        let url = 'http://192.168.5.102:4000/'
+        console.log(process.env)
+        // url voor kwizz_db http://185.96.4.70:8081
+        // mijn url: http://192.168.5.149
+        // branko: http://192.168.5.102
+        let url = URL
         fetch(url)
             .then(res => res.json())
             .then(data => {
@@ -116,7 +120,7 @@ class Admin extends React.Component {
 
         if (question !== '' && hint !== '' && answer !== '' && position !== '') {
             console.log(id, question, hint, answer, position)
-            let url1 = 'http://192.168.5.102:4000/create'
+            let url1 = URL+'/create'
             fetch(url1, {
                 method: 'POST',
                 headers: {
@@ -187,7 +191,7 @@ class Admin extends React.Component {
         console.log(updateItem)
 
         if ((updateItem.question !== '' && updateItem.hint !== '' && updateItem.answer !== '' && updateItem.position !== '' && this.state.posValid)) {
-            let url1 = 'http://192.168.5.149:4000/update/'
+            let url1 = URL+'/update/'
             fetch(url1, {
                 method: 'PUT',
                 headers: {
@@ -202,6 +206,7 @@ class Admin extends React.Component {
                     console.log(err)
                 })
         }
+        alert('het is geupdate')
     }
 
     // delete uit de database gebaseerd op ID en haalt het item uit de state en voegt de items samen als het uit het midden wordt gehaald
@@ -209,7 +214,7 @@ class Admin extends React.Component {
         const deleteItem = this.state.items[index]
         console.log(deleteItem)
 
-        let url1 = 'http://192.168.5.102:4000/delete'
+        let url1 = URL+'/delete'
         fetch(url1, {
             method: 'DELETE',
             headers: {

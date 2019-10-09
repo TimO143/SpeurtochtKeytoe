@@ -92,13 +92,13 @@ const AdminItem = ({ toggleEditing, item, onChange, index, onDelete, onSubmit, F
                 type='button'
                 onClick={toggleEditing}
                     >
-                {item.isEditing ? <img src={previous} width= "21px" height="21px"></img> : <img src= {edit}></img>}
+                {item.isEditing ? <img src={previous} alt='vorige'width= "21px" height="21px"></img> : <img src= {edit} alt='Edit'></img>}
             </button>
 
             <button className = "adminDelete"
                 type='button'
                 onClick={onDelete}>
-                <img src={close} width= "21px" height="21px"></img>
+                <img src={close} alt='close' width= "21px" height="21px"></img>
                 </button>
             <hr />
         </div> 

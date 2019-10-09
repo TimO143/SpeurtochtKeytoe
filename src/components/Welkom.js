@@ -35,10 +35,10 @@ class Welkom extends Component {
  
 
     handleChange(event) {
-        console.log(event.target.value)
+        //console.log(event.target.value)
         //this takes the name input and displays it in the result screen
         this.props.nameAdd(event.target.value)  //< puts stuff in the payload in the actions (e.target.v) = payload
-        console.log(this.props.nameRe)
+       // console.log(this.props.nameRe)
     }
     checkName() {
         console.log(store.getState())   
@@ -64,10 +64,10 @@ class Welkom extends Component {
                         <p className='Titel'>WELKOM <br />KOLLEGA!</p>
                         </div>
                         <div className='grid-sub'>
-                            <p className='sub'>Met de K van Keytoe</p>
+                            <p className='sub'>MET DE K VAN KEYTOE</p>
                         </div>
                         <div className='grid-kop'>
-                            <p className='Kop'>De kwizz</p>
+                            <p className='Kop'>DE KWIZZ</p>
                         </div>
                         <div className='grid-info'>
                             <p className='InfoTekst'>Leer je Kollega's écht kennen. Keytoe, KeytoeY, Toscani... Durf te vragen, maar niet naar het directe antwoord. Het moet wel leuk blijven. Ben je al zenuwachtig? Mooi.</p>

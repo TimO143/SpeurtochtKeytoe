@@ -4,13 +4,12 @@ import logo from './svg/keytoe_logo.svg';
 import './App.css';
 import { Provider } from "react-redux";
 import { setTimeout } from 'timers';
-import Hint from './components/Hint'
-import ReactDOM from 'react-dom';
 import store from './store';
 import {nameAdd, addScore} from './actions/action';
 import {bindActionCreators} from 'redux';
 import { connect } from 'react-redux';
 import NewPage from './components/NewPage';
+import URL from './components/constant'
 
 
 class App extends Component {
@@ -38,12 +37,12 @@ class App extends Component {
         // verander kleur van achtergrond terug naar zwart
         document.body.style.backgroundColor = 'black'
 
-        let url = 'http://192.168.5.102:4000/'
+        let url = URL
         fetch(url)
             .then(res => res.json())
             .then(data => {
-                console.log(data)
-                console.log(data[0].question, data[0].answer,data[0].hint)
+                //console.log(data)
+                //console.log(data[0].question, data[0].answer,data[0].hint)
                 this.setState({ items: data, question: data[0].question, answerOptions: data[0].answer,hint:data[0].hint })
             }).catch(err =>
                 console.log(err))
@@ -54,9 +53,15 @@ class App extends Component {
     handleAnswerSelected(value) {
         //  gaat naar volgende bij input
         if (this.state.items[this.state.counter].answer === value || this.state.leven <= 1) {
-            console.log(this.state.items.length, this.state.questionId)
+           // console.log(this.state.items.length, this.state.questionId)
             if (this.state.questionId < this.state.items.length) {
                 this.setNextQuestion();
+            }
+            else if (this.state.score === 0) {
+                // dit is niet mooi. refresh page wanneer geen score is behaald
+                //this.refreshPage();
+                // kan niet score op 0 zetten dan rendered resultaten scherm niet
+                this.setState({ result: 1 })
             }
             else {
                 // update de score nog 1 laatste keer omdat er geen vragen meer zijn maar wel een update moet gebeuren
@@ -108,7 +113,7 @@ class App extends Component {
           
           leven: 5         
         });
-        console.log(this.state.items[counter], counter)
+        //console.log(this.state.items[counter], counter)
     }
 
     lowerLife() {
@@ -123,7 +128,7 @@ class App extends Component {
     // voegt de score toe aan het resultaat ( check boven is een timeout die nodig is om niet de oude state van score te gebruiken)
     setResults = () => {
         this.props.addScore(this.state.score)  
-            let url1 = 'http://192.168.5.102:4000/createUserAndScore'
+            let url1 = URL+'/createUserAndScore'
             fetch(url1, {
                 method: 'POST',
                 headers: {
@@ -137,12 +142,6 @@ class App extends Component {
                 })
                 .then(this.setState({ result: this.state.score }, () => console.log(this.state.result, this.state.score, this.props.nameRe, this.props.scoreRe))
                 )
-                // ReactDOM.render(
-                //     <Provider store={store}>
-                //         < />;
-                //     </Provider>,
-                //     document.getElementById('root')
-                // );
     }
 
     // rendert de quiz op het scherm met de props van quiz
@@ -160,12 +159,7 @@ class App extends Component {
       />
     );
   }
-                        //     <button
-                        //     type='button'
-                        //     onClick={onDelete}>
-                        //     Delete
-                        //  </button>
-
+                     
   newPage= () =>{
     return(
         <Provider store={store}>

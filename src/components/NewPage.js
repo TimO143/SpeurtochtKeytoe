@@ -1,15 +1,11 @@
-//imports
 import React from 'react';
-import App from '../App';
 import ReactDOM from 'react-dom';
-import logo from '../svg/keytoe_logo.svg';
 import {Provider} from 'react-redux'
 import store from '../store'
 import Result from '../components/Result'
 import {nameAdd, addScore} from '../actions/action';
 import {bindActionCreators} from 'redux';
 import { connect } from 'react-redux';
-import scoreReducer from '../reducers/reducer';
 
 class NewPage extends React.Component{
     constructor(props){
@@ -36,7 +32,6 @@ class NewPage extends React.Component{
     render(){
         return(
             <div className = "grid">
-                <img src={logo} className="App-logo" alt="logo" />
                     <div className = "grid-resButton">
                         <button className="resButton" onClick={this.renderResult}>RANGLIJST</button>
                     </div>

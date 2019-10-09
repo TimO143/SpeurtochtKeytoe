@@ -8,10 +8,14 @@ var cors = require('cors')
 // config voor database
 const pool = mysql.createPool({
     connectionLimit: 100, // important, als er meer dan 100 connections worden gestuurd dan geeft het een error terug
+    //host: "localhost",
+    //user: "kwizz_db",
+    //password: "CxLBspgGVP6YppMt",
+    //database: "kwizz_db"
     host: "localhost",
     user: "root",
     password: "password",
-    database: "test_score"
+    database: "test_tim" 
 })
 
 app.disable('x-powered-by')
@@ -166,6 +170,6 @@ app.put('/update', function (req, res) {
     })
 })
 
-app.listen(4000)
-console.log('Server is running.. on ')
+app.listen(8081)
+console.log('Server is running.. on 8081')
 

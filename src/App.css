@@ -1,163 +1,95 @@
 .grid {
     display: grid;
 
-    grid-template-rows: minmax(75px,auto);
+    grid-template-rows: minmax(10px,auto);
     grid-template-columns: repeat(3,1fr);
     grid-gap: .5rem;
 }
 
-/*Grid layout voor groter dan mobiel*/
-@media screen and (min-width: 40em) {
-    /*Welkom scherm elementen*/
-    p.Titel {
-        font-size: 8em;
-    }
-    div.questionCount{
-        font-size:900%;
-    }
-    .grid {
-        grid-template-columns: repeat(6,1fr);
-        grid-gap: 1px;
-    }
-    .grid-logo {
-        grid-column: 1/-1;
-        grid-row: span 1;
-    }
-    .grid-logo-Admin{
-        grid-column: 1/-1;
-        grid-row: 1;
-    }
-    .grid-titel{
-        grid-column: 2/3;
-        grid-row: 2;
-    }
-    .grid-sub {
-        grid-column: 3/5;
-        grid-row: 2;
-        display: flex;
-        align-items: flex-end;
-    }
-    .grid-kop {
-        padding-right: 2.275em ;
-        grid-column: 1/2;
-        grid-row: 3;
-    }
-    .grid-info {
-        grid-column: 2/5;
-        grid-row: 3;
-    }
-    .grid-naamform{
-        grid-column: 2/5;
-        grid-row: 4;
-    }
-    /* ResultGrid */
-    .grid-gongText{
-        grid-column: 2/6;
-        grid-row: 1;
-    }
-    .grid-klaarText{
-        grid-column: 2/6;
-        grid-row: 2;
-    }
-    .grid-resButton{
-        grid-column: 2/5;
-        grid-row: 3;
-    }
-    .grid-scoreRes{
-        grid-column: 5/7;
-        grid-row: 4;
-    }
-    .grid-resText{
-        grid-column: 5/7;
-        grid-row: 5;
-    }
-    /* Admin page */
-    .grid-username{
-        grid-column: 2/3;
-        grid-row: 3; 
-        /* if u change this, grid-password moves down 1 row as well */
-    }
-    .grid-loginText{
-        grid-column: 2/5;   
-        grid-row: 2;
-    }
-    .grid-password{
-        grid-column: 3/4;
-        grid-row: 3;
-    }
-    .grid-login-button{
-        grid-column: 4/5;
-        grid-row: 3;
-    }
-    .grid-admin-add{
-        grid-column: 1/-1;
-        grid-row: 4;
-    }
-    .grid-admin-item{
-        grid-column: 1/-1;
-        grid-row: 3;
-    }
-    .grid-editQuestions {
-        grid-column: 1/-1;
-        grid-row: 2;
-        /* font-size: 400%;
-        font-weight: bolder;    */
-    }
-    .adminEdit {
-        position: absolute;
-        left:85%;
-        display: inline-block;
-        text-decoration: none;
-        border: none;
-        background-color: transparent;
-        cursor: pointer;
-    }
-    .adminDelete{
-        position: relative;
-        left:90%;
-        display: inline-block;
-        text-decoration: none;
-        border: none; 
-        background-color: transparent;
-        height: 10px;
-        width: auto;
-        cursor: pointer;   
-    }
-    /*Welkom scherm eind*/
-    .grid-in-grid{
-        grid-column:1/7;
-        grid-row:2/5;
-    }
-    /*Vragen layout*/
-    .grid-questionCount{
-        grid-column: 2/6;
-        grid-row: 1;
-    }
-    .grid-question{
-        grid-column: 2/5;
-        grid-row:2;
-    }
-    .grid-hint {
-        grid-column: 2/4;
-        grid-row: 3;
-    }
-    .grid-answer{
-        grid-column: 2/4;
-        grid-row:4;
-    }
-    .grid-leven{
-        grid-column:4/5 ;
-        grid-row:4
-    }
-    .grid-score {
-        grid-column: 5/6;
-        grid-row:4
-    }
-    /* RANGLIJST */
-    .gridTable {
-        grid-column: 2/3;
-    }
+/*Welkom mobiele versie*/
+/*Grid Welkom*/
+.grid-logo {
+    grid-column: 1/4;
+    grid-row: span 1;
 }
+.grid-titel {
+    grid-column: 1/4;
+    grid-row: 2;
+}
+.grid-sub {
+    grid-column: 1/4;
+    grid-row: 3;
+    display: flex;
+    align-items: flex-end;
+}
+.grid-kop {
+    display: none
+}
+.grid-info {
+    grid-column: 1/4;
+    grid-row: 5;
+}
+.grid-naamform {
+    grid-column: 1/4;
+    grid-row: 6;
+}
+
+/*Grid voor Quiz*/
+.grid-questionCount {
+    grid-column: 3/4;
+    grid-row: 1;
+}
+.grid-question {
+    grid-column: 1/4;
+    grid-row: 2;
+    padding-left: 10px;
+}
+
+.grid-hint {
+    grid-column: 1/4;
+    grid-row: 3;
+    padding-left: 10px;
+}
+
+.grid-answer {
+    grid-column: 1/4;
+    grid-row: 4;
+}
+
+.grid-leven {
+    grid-column: 1;
+    grid-row: 5;
+    padding-left: 10px;
+}
+
+.grid-score {
+    grid-column: 3;
+    grid-row: 5;
+    padding-right: 10px;
+}
+/*Grid voor NewPage*/
+.grid-resButton{
+    grid-column: 1;
+    grid-row:1
+}
+.grid-gongText{
+
+}
+.grid-klaarText{
+
+}
+.grid-scoreRes{
+
+}
+.grid-resText{
+
+}
+
+
+span.vraagWeg {
+    display: none;
+}
+
 /*Overall background*/
 body {
     background-color: black;
@@ -228,7 +160,6 @@ div.answerOption {
     background-color: black;
     padding-left: 5%;
     font-family: Cooper Hewitt;
-    padding-top: 15%;
 }
 
 /* Admin log in */
@@ -275,46 +206,46 @@ div.answerOption {
     margin-top: 0px;
     margin-bottom: 0px;
 }
-    .adminInputs{
-        font-family: Cooper Hewitt;
-        font-size: 1em;
+.adminInputs{
+    font-family: Cooper Hewitt;
+    font-size: 1em;
     }
-    .positionInput{
-        font-family: Cooper Hewitt;
-        width: 80%;
-        background: transparent;
-        border: none;
-        color: black;
-        border-bottom: 2px solid;
-        font-size: 150%;
-     }
-     .vraagInput{
-        font-family: Cooper Hewitt;
-        width: 80%;
-        background: transparent;
-        border: none;
-        color: black;
-        border-bottom: 2px solid;
-        font-size: 150%;
-     }
-     .hintInput{
-        font-family: Cooper Hewitt;
-        width: 80%;
-        background: transparent;
-        border: none;
-        color: black;
-        border-bottom: 2px solid;
-        font-size: 150%;
-     }
-     .answerInput{
-        font-family: Cooper Hewitt;
-        width: 80%;
-        background: transparent;
-        border: none;
-        color: black;
-        border-bottom: 2px solid;
-        font-size: 150%;
-     }
+.positionInput{
+    font-family: Cooper Hewitt;
+    width: 80%;
+    background: transparent;
+    border: none;
+    color: black;
+    border-bottom: 2px solid;
+    font-size: 150%;
+    }
+.vraagInput{
+    font-family: Cooper Hewitt;
+    width: 80%;
+    background: transparent;
+    border: none;
+    color: black;
+    border-bottom: 2px solid;
+    font-size: 150%;
+    }
+.hintInput{
+    font-family: Cooper Hewitt;
+    width: 80%;
+    background: transparent;
+    border: none;
+    color: black;
+    border-bottom: 2px solid;
+    font-size: 150%;
+    }
+.answerInput{
+    font-family: Cooper Hewitt;
+    width: 80%;
+    background: transparent;
+    border: none;
+    color: black;
+    border-bottom: 2px solid;
+    font-size: 150%;
+    }
 /* text above add question form */
 .admin-add{
     
@@ -422,10 +353,20 @@ div.scoreBoard {
     text-align: left;
     padding-right: 2%;
 }
+#scoreBoard td {
+    color: white;
+    font-size: 200%;
+    font-family: Cooper Hewitt;
+    padding-top: 2%;
+    padding-right: 20%;
+    text-align: left;
+    border-bottom: 1px solid white;
+}
 
 #scoreBoard tr.rowData{
     text-align: left;
     border-bottom: 1px solid white;
+    padding-right: 20%
 }
 /* -----------Welkom pagina--------------*/
 .Titel {
@@ -447,7 +388,7 @@ div.scoreBoard {
     line-height: 1;
     letter-spacing: normal;
     color: #ffffff;
-    margin-bottom: 120px;
+    margin-bottom: -20px;
 }
 /* Lange tekst */
 .InfoTekst {
@@ -496,7 +437,7 @@ div.questionCount {
     padding-left: 0%;
     padding-top: 5%;
     color: white;
-    font-size: 10em;
+    font-size: 2em;
     font-weight: bolder;
     font-family: Cooper Hewitt;
 }
@@ -592,4 +533,314 @@ div.questionCount {
     font-family: Cooper Hewitt;
     color: white;
     font-weight: normal;
+}
+
+
+/*Grid layout voor groter dan mobiel*/
+@media screen and (min-width: 425px) {
+    /*######  Welkom scherm elementen  ######*/
+    p.Titel {
+        font-size: 8em;
+    }
+    span.vraagWeg {
+        display: inline;
+    }
+    div.questionCount {
+        font-size: 900%;
+    }
+    /*--------------------------Welkom Grid---------------*/
+    .grid {
+        grid-template-columns: repeat(6,1fr);
+        grid-gap: 1px;
+    }
+
+    .grid-logo {
+        grid-column: 1/-1;
+        grid-row: span 1;
+    }
+
+    .grid-logo-Admin {
+        grid-column: 1/-1;
+        grid-row: 1;
+    }
+
+    .grid-titel {
+        grid-column: 2/3;
+        grid-row: 2;
+    }
+
+    .grid-sub {
+        grid-column: 3/5;
+        grid-row: 2;
+        display: flex;
+        align-items: flex-end;
+    }
+
+    .grid-kop {
+        padding-right: 2.275em;
+        grid-column: 1/2;
+        grid-row: 3;
+    }
+
+    .grid-info {
+        grid-column: 2/5;
+        grid-row: 3;
+    }
+
+    .grid-naamform {
+        grid-column: 2/5;
+        grid-row: 4;
+    }
+    /*######  Result scherm elementen  ######*/
+
+    /* -----------------Result Grid--------------- */
+    .grid-gongText {
+        grid-column: 2/6;
+        grid-row: 1;
+    }
+
+    .grid-klaarText {
+        grid-column: 2/6;
+        grid-row: 2;
+    }
+
+    .grid-resButton {
+        grid-column: 2/5;
+        grid-row: 3;
+    }
+
+    .grid-scoreRes {
+        grid-column: 5/7;
+        grid-row: 4;
+    }
+
+    .grid-resText {
+        grid-column: 5/7;
+        grid-row: 5;
+    }
+    /*######  Admin  scherm elementen  ######*/
+    .adminEdit {
+        position: absolute;
+        left: 85%;
+        display: inline-block;
+        text-decoration: none;
+        border: none;
+        background-color: transparent;
+        cursor: pointer;
+    }
+
+    .adminDelete {
+        position: relative;
+        left: 90%;
+        display: inline-block;
+        text-decoration: none;
+        border: none;
+        background-color: transparent;
+        height: 10px;
+        width: auto;
+        cursor: pointer;
+    }
+    /* ---------------Admin Grid-------------- */
+    .grid-username {
+        grid-column: 2/3;
+        grid-row: 3;
+        /* if u change this, grid-password moves down 1 row as well */
+    }
+
+    .grid-loginText {
+        grid-column: 2/5;
+        grid-row: 2;
+    }
+
+    .grid-password {
+        grid-column: 3/4;
+        grid-row: 3;
+    }
+
+    .grid-login-button {
+        grid-column: 4/5;
+        grid-row: 3;
+    }
+
+    .grid-admin-add {
+        grid-column: 1/-1;
+        grid-row: 4;
+    }
+
+    .grid-admin-item {
+        grid-column: 1/-1;
+        grid-row: 3;
+    }
+
+    .grid-editQuestions {
+        grid-column: 1/-1;
+        grid-row: 2;
+        /* font-size: 400%;
+        font-weight: bolder;    */
+    }
+
+    /*######  Quiz scherm elementen  ######*/
+    /*---------------Quiz Grid-------------------*/
+    .grid-questionCount {
+        grid-column: 2/6;
+        grid-row: 1;
+    }
+
+    .grid-question {
+        grid-column: 2/5;
+        grid-row: 2;
+    }
+
+    .grid-hint {
+        grid-column: 2/4;
+        grid-row: 3;
+    }
+
+    .grid-answer {
+        grid-column: 2/4;
+        grid-row: 4;
+    }
+
+    .grid-leven {
+        grid-column: 4/5;
+        grid-row: 4
+    }
+
+    .grid-score {
+        grid-column: 5/6;
+        grid-row: 4
+    }
+    /*######  Ranglijst/Result scherm elementen  ######*/
+    #scoreBoard td {
+        color: white;
+        font-size: 200%;
+        font-family: Cooper Hewitt;
+        padding-top: 2%;
+        padding-right: 20%;
+        text-align: left;
+        border-bottom: 1px solid white;
+    }
+
+    #scoreBoard th {
+        color: white;
+        font-size: 200%;
+        font-weight: bolder;
+        font-family: Cooper Hewitt;
+        text-align: left;
+        padding-right: 20%;
+    }
+
+    #scoreBoard tr.rowData {
+        text-align: left;
+        border-bottom: 1px solid white;
+    }
+
+    /* ------------------RANGLIJST Grid-------------- */
+    .gridTable {
+        grid-column: 2/3;
+    }
+
+    /*######  NewPage scherm elementen  ######*/
+    /* ------------------NewPage (mep op gong + score zien) Grid-------------- */
+
+    /*######  Panel (inlog voor admin) scherm elementen  ######*/
+    /* ------------------Panel (inlog voor admin) Grid-------------- */
+
+}
+
+@media screen and (min-width: 768px) {
+    /*######  Welkom scherm elementen  ######*/
+    /*--------------------------Welkom Grid---------------*/
+
+    /*######  Result scherm elementen  ######*/
+    /* -----------------Result Grid--------------- */
+
+    /*######  Admin  scherm elementen  ######*/
+    /* ---------------Admin Grid-------------- */
+
+    /*######  Quiz scherm elementen  ######*/
+    /*---------------Quiz Grid-------------------*/
+
+    /*######  Ranglijst/Result scherm elementen  ######*/
+    /* ------------------RANGLIJST Grid-------------- */
+
+    /*######  NewPage scherm elementen  ######*/
+    /* ------------------NewPage (mep op gong + score zien) Grid-------------- */
+
+    /*######  Panel (inlog voor admin) scherm elementen  ######*/
+    /* ------------------Panel (inlog voor admin) Grid-------------- */
+
+
+}
+
+@media screen and (min-width: 1024px) {
+    /*######  Welkom scherm elementen  ######*/
+    /*--------------------------Welkom Grid---------------*/
+
+    /*######  Result scherm elementen  ######*/
+    /* -----------------Result Grid--------------- */
+
+    /*######  Admin  scherm elementen  ######*/
+    /* ---------------Admin Grid-------------- */
+
+    /*######  Quiz scherm elementen  ######*/
+    /*---------------Quiz Grid-------------------*/
+
+    /*######  Ranglijst/Result scherm elementen  ######*/
+    /* ------------------RANGLIJST Grid-------------- */
+
+    /*######  NewPage scherm elementen  ######*/
+    /* ------------------NewPage (mep op gong + score zien) Grid-------------- */
+
+    /*######  Panel (inlog voor admin) scherm elementen  ######*/
+    /* ------------------Panel (inlog voor admin) Grid-------------- */
+
+}
+
+@media screen and (min-width: 1440px) {
+    /*######  Welkom scherm elementen  ######*/
+    /*--------------------------Welkom Grid---------------*/
+
+    /*######  Result scherm elementen  ######*/
+    /* -----------------Result Grid--------------- */
+
+    /*######  Admin  scherm elementen  ######*/
+    /* ---------------Admin Grid-------------- */
+
+    /*######  Quiz scherm elementen  ######*/
+    /*---------------Quiz Grid-------------------*/
+
+    /*######  Ranglijst/Result scherm elementen  ######*/
+    /* ------------------RANGLIJST Grid-------------- */
+
+    /*######  NewPage scherm elementen  ######*/
+    /* ------------------NewPage (mep op gong + score zien) Grid-------------- */
+
+    /*######  Panel (inlog voor admin) scherm elementen  ######*/
+    /* ------------------Panel (inlog voor admin) Grid-------------- */
+
+}
+
+@media screen and (min-width: 1920px) {
+    /*######  Welkom scherm elementen  ######*/
+    /*--------------------------Welkom Grid---------------*/
+
+    /*######  Result scherm elementen  ######*/
+    /* -----------------Result Grid--------------- */
+
+    /*######  Admin  scherm elementen  ######*/
+    /* ---------------Admin Grid-------------- */
+
+    /*######  Quiz scherm elementen  ######*/
+    /*---------------Quiz Grid-------------------*/
+
+    /*######  Ranglijst/Result scherm elementen  ######*/
+    /* ------------------RANGLIJST Grid-------------- */
+
+    /*######  NewPage scherm elementen  ######*/
+    /* ------------------NewPage (mep op gong + score zien) Grid-------------- */
+
+    /*######  Panel (inlog voor admin) scherm elementen  ######*/
+    /* ------------------Panel (inlog voor admin) Grid-------------- */
+
 }
