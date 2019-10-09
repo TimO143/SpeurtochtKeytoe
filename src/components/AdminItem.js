@@ -6,27 +6,12 @@ import close from '../svg/close.png';
 import previous from '../svg/previous.svg';
 
 const AdminItem = ({ toggleEditing, item, onChange, index, onDelete, onSubmit, FormValid, errors }) => (
-
     <div>
-
         {item.isEditing
             ?
             <div className = "adminInputs">
                 <FormErrors formErrors={errors} />
                 <form>
-                        {/* <input  */}
-                        
-                            {/* <div>
-                                id: 
-                        <input
-                            type='number'
-                            name='id'
-                            placeholder='id'
-                            value={item.id}
-                            onChange={e => onChange(e, index)}
-                            disabled
-                                />
-                            </div> */}
                             <div>
                                 position:
                         <input className = "positionInput"
@@ -75,16 +60,11 @@ const AdminItem = ({ toggleEditing, item, onChange, index, onDelete, onSubmit, F
                     </div>    
             :
             <div className = "adminPageQuestions">
-                {/* TODO <br /> x 2 is unorthodox */}
                 <p>Position : {item.position} <br /> <br />
                     Vraag {item.id}. {item.question} <br /> <br /> 
                     Antwoord: {item.answer} <br /> <br />
                     Hint: {item.hint}
                 </p>
-                
-                {/* the below must appear upon button press */}
-                {/* <p>hint:{item.hint}</p>     
-                <p>antwoord:{item.answer}</p>    */}
             </div>   
         }
         <div>

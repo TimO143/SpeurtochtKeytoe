@@ -19,15 +19,12 @@ class AnswerOption extends React.Component {
             value: e.target.value.toLowerCase(),
             hidden: true
         })
-
     }
 
     toggleHidden() {
         this.setState({
             hidden: false
         })
-        
-        
     }
 
     getRandom(errors) {

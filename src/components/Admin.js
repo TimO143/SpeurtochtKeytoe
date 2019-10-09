@@ -250,7 +250,11 @@ class Admin extends React.Component {
         return (
             <div>
                 <button className="goButHomepage" onClick={e => { e.preventDefault(); this.renderPanel() }}>Naar Welkomscherm</button>
-                <div className="grid"><img src={logo} className="App-logo-admin" alt="logo" />
+                <div className="grid">
+                    <div className='grid-logo'>
+                        <img src={logo} className="App-logo-admin" alt="logo" />
+                    </div>
+                   
                     <div className="grid-editQuestions">
                         <h1 className="editQuestions">VRAGEN <br />BEWERKEN</h1>
                     </div>
@@ -290,7 +294,6 @@ class Admin extends React.Component {
                                 errors={this.state.formErrors}
                                 />
                                 </div>
-                               
                             )
             :
                     <div><p>de server staat niet aan!</p></div>

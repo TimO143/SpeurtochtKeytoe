@@ -41,6 +41,7 @@ class NewPage extends React.Component{
                     <div className = "grid-klaarText">
                         <h2 className = "klaarText">Je hebt het voor elkaar gebokst! Je kent je kollega's alweer heel <br />
                         wat beter. Maar hoe heb je het gedaan?</h2>
+                    <hr className='balk'></hr>
                     </div>
                     <div className = "grid-scoreRes">
                         <p className = "scoreRes">{this.props.scoreRe}</p>
