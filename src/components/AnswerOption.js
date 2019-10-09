@@ -53,7 +53,7 @@ class AnswerOption extends React.Component {
                         <span>
                             <img src={cancel} className="Cancel-logo" alt="cancel" />
                             <span className='error'>{this.getRandom(this.state.errormsgs)}</span>
-                           <br/><br/> <hr/>
+                           <br/><br/>
                         </span>
                     </div>
                     }

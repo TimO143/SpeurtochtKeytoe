@@ -34,10 +34,8 @@ class Result extends React.Component {
                 <div className="gridTable">
                     {/* this.props.nameRe takes value from nameRe in reducer */}
                     {/* <strong>{this.props.nameRe}, {this.props.scoreRe}</strong>  */}
+                    <p className = "scoreboardName">RANGLIJST</p>
                     <table id="scoreBoard">
-                        <thead>
-                            <th>RANGLIJST</th>
-                        </thead>
                         <tbody>
                         {this.state.scoreboard.map((item, index) => 
                         <tr className="rowData" key={index}>

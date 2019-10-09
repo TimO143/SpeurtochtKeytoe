@@ -44,7 +44,7 @@ const AdminAdd = ({ question, hint, answer, position, onChange, onSubmit, onPost
                     required
                 />
             </div>
-            <button type='submit' onClick={onSubmit} disabled={!FormValid}>save</button>
+            <button className = "addQuestionButton" type='submit' onClick={onSubmit} disabled={!FormValid}>SAVE</button>
 
         </form>
     </div>)
