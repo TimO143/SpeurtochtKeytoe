@@ -6,7 +6,7 @@
     grid-gap: .5rem;
 }
 
-/*Welkom mobiele versie*/
+/*  Alles kleiner dan 425 px*/
 /*Grid Welkom*/
 .grid-logo {
     grid-column: 1/4;
@@ -84,6 +84,13 @@
 .grid-resText{
 
 }
+
+/*#############  Elementen voor NewPage ###############*/
+.gongText{}
+.klaarText{}
+.scoreRes{}
+.resText{}
+
 
 
 span.vraagWeg {
@@ -536,7 +543,7 @@ div.questionCount {
 }
 
 
-/*Grid layout voor groter dan mobiel*/
+/*Smart Phone*/
 @media screen and (min-width: 425px) {
     /*######  Welkom scherm elementen  ######*/
     p.Titel {
@@ -747,7 +754,7 @@ div.questionCount {
     /* ------------------Panel (inlog voor admin) Grid-------------- */
 
 }
-
+            /*Tablet*/
 @media screen and (min-width: 768px) {
     /*######  Welkom scherm elementen  ######*/
     /*--------------------------Welkom Grid---------------*/
@@ -772,7 +779,7 @@ div.questionCount {
 
 
 }
-
+    /*Small Desktop*/
 @media screen and (min-width: 1024px) {
     /*######  Welkom scherm elementen  ######*/
     /*--------------------------Welkom Grid---------------*/
@@ -796,7 +803,7 @@ div.questionCount {
     /* ------------------Panel (inlog voor admin) Grid-------------- */
 
 }
-
+ /* Medium Desktop*/
 @media screen and (min-width: 1440px) {
     /*######  Welkom scherm elementen  ######*/
     /*--------------------------Welkom Grid---------------*/
@@ -820,7 +827,7 @@ div.questionCount {
     /* ------------------Panel (inlog voor admin) Grid-------------- */
 
 }
-
+    /*Large Desktop*/
 @media screen and (min-width: 1920px) {
     /*######  Welkom scherm elementen  ######*/
     /*--------------------------Welkom Grid---------------*/
