@@ -14,6 +14,7 @@ class Quiz extends React.Component {
         }
     }
 
+
     // geeft de layout van quiz met de props voor questionCount , Question en AnswerOption --> antwoord moet het input veld doorgeven
     render() {
         return (
@@ -29,6 +30,7 @@ class Quiz extends React.Component {
 
                 <div className='grid-question'>
                     <Question content={this.props.question} />
+                    {console.log(this.props.levens)}
                 </div>
                 <div className='grid-answer'>
                     <AnswerOption
