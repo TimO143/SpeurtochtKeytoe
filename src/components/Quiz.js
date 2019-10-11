@@ -25,7 +25,7 @@ class Quiz extends React.Component {
                 {this.props.levens <= 2 ?
                     <div className='grid-hint'>  <Hint hint={this.props.hint} /></div>
                     :
-                    <div></div>
+                    <div className='grid-hint'> <Hint hint={''}/></div>
                     }
 
                 <div className='grid-question'>

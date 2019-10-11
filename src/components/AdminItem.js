@@ -9,59 +9,59 @@ const AdminItem = ({ toggleEditing, item, onChange, index, onDelete, onSubmit, F
     <div>
         {item.isEditing
             ?
-            <div className = "adminInputs">
-                <FormErrors formErrors={errors} />
+            <div className="adminInputs">
+                {!FormValid ? <FormErrors formErrors={errors} />: <div></div>}
                 <form>
                             <div>
-                                position:
-                        <input className = "positionInput"
+                                <label>positie:</label>
+                        <input className = "admin-item-input"
                             type='text'
                             name='position'
-                            placeholder='position'
+                            placeholder='Positie'
                             value={item.position}
                             onChange={e => onChange(e, index)}
                                 />
                             </div>
-                            <div>
-                                vraag:
-                        <input className = "vraagInput"
+                            
+                                <label>vraag:</label>
+                        <input className = "admin-item-input"
                             type='text'
                             name='question'
-                            placeholder='question'
+                            placeholder='Vraag'
                             value={item.question}
                             onChange={e => onChange(e, index)}
                             required
                                 />
-                            </div>
+                    
+                    <div>
+                        <label>  antwoord:</label>
+                        <input className="admin-item-input"
+                            type='text'
+                            name='answer'
+                            placeholder='Antwoord'
+                            value={item.answer}
+                            onChange={e => onChange(e, index)}
+                            required
+                        />
+                    </div>
                             <div>
-                                hint:
-                        <input className = "hintInput"
+                               <label> hint:</label>
+                        <input className = "admin-item-input"
                             type='text'
                             name='hint'
-                            placeholder='hint'
+                            placeholder='Hint'
                             value={item.hint}
                             onChange={e => onChange(e,index)}
                             required
                                 />
                             </div>
-                            <div>
-                                antwoord:
-                        <input className="answerInput"
-                            type='text'
-                            name='answer'
-                            placeholder='answer'
-                            value={item.answer}
-                            onChange={e => onChange(e, index)}
-                            required
-                                />
-                                </div>
                             <input className = "goButAdmin" type='button' value='Update database' onClick={onSubmit}/>
                             </form>
                     </div>    
             :
             <div className = "adminPageQuestions">
-                <p>Position : {item.position} <br /> <br />
-                    Vraag {item.id}. {item.question} <br /> <br /> 
+                <p> Positie : {item.position} <br /> <br />
+                    Vraag : {item.question} <br /> <br /> 
                     Antwoord: {item.answer} <br /> <br />
                     Hint: {item.hint}
                 </p>

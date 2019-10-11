@@ -24,7 +24,8 @@ class Admin extends React.Component {
             serverStatus: false,
             formErrors: { position: '', question: '', hint: '', answer: '' },
             posValid: false,
-            formValid: false
+            formValidAdd: false,
+            formValidItem: false,
         }
     }
     
@@ -39,9 +40,7 @@ class Admin extends React.Component {
     componentDidMount() {
         document.body.style.backgroundColor = 'white'
         console.log(process.env)
-        // url voor kwizz_db http://185.96.4.70:8081
-        // mijn url: http://192.168.5.149
-        // branko: http://192.168.5.102
+
         let url = URL
         fetch(url)
             .then(res => res.json())
@@ -59,13 +58,13 @@ class Admin extends React.Component {
         const name = target.name
         this.setState({
             [name]: value
-        }, () => { this.validateField(name,value)})
+        }, () => { this.validateFieldAdd(name,value)})
     };
 
-    validateField(fieldName, value) {
+    validateFieldAdd(fieldName, value) {
         let fieldValidationErrors = this.state.formErrors
         let posValid = this.state.posValid
-        
+
         switch (fieldName) {
             case 'position':
                 posValid = value.match(/^[0-9]*$/)
@@ -74,12 +73,31 @@ class Admin extends React.Component {
             default:
                 break;                 
         }
-        this.setState({ formErrors: fieldValidationErrors, posValid: posValid},this.validateForm)
+        this.setState({ formErrors: fieldValidationErrors, posValid: posValid},this.validateFormAdd)
+    }
+    validateFormAdd = () => {
+        this.setState({
+            formValidAdd: this.state.posValid
+        })
+    }
+    validateFieldItem(fieldName, value) {
+        let fieldValidationErrors = this.state.formErrors
+        let posValid = this.state.posValid
+
+        switch (fieldName) {
+            case 'position':
+                posValid = value.match(/^[0-9]*$/)
+                fieldValidationErrors.position = posValid ? '' : 'is geen nummer'
+                break;
+            default:
+                break;
+        }
+        this.setState({ formErrors: fieldValidationErrors, posValid: posValid }, this.validateFormItem)
     }
 
-    validateForm = () => {
+    validateFormItem = () => {
         this.setState({
-            formValid: this.state.posValid
+            formValidItem: this.state.posValid
         })
     }
 
@@ -182,7 +200,7 @@ class Admin extends React.Component {
                 }
                 return item
             })
-        }, () => { this.validateField(name, value) })
+        }, () => { this.validateFieldItem(name, value) })
     };
 
     handlePutRequest = (e, index) => {
@@ -190,7 +208,7 @@ class Admin extends React.Component {
         const updateItem = this.state.items[index]
         console.log(updateItem)
 
-        if ((updateItem.question !== '' && updateItem.hint !== '' && updateItem.answer !== '' && updateItem.position !== '' && this.state.posValid)) {
+        if ((updateItem.question !== '' && updateItem.hint !== '' && updateItem.answer !== '' && updateItem.position !== '' )) {
             let url1 = URL+'/update/'
             fetch(url1, {
                 method: 'PUT',
@@ -206,7 +224,8 @@ class Admin extends React.Component {
                     console.log(err)
                 })
         }
-        alert('het is geupdate')
+        alert('item is geupdate')
+       
     }
 
     // delete uit de database gebaseerd op ID en haalt het item uit de state en voegt de items samen als het uit het midden wordt gehaald
@@ -262,18 +281,18 @@ class Admin extends React.Component {
                     <div className="grid-admin-add">
                         <div className="admin-add">
                             <h1>Voeg vraag toe</h1>
-                      <div>
-                   <FormErrors formErrors={this.state.formErrors} />
+                            <div>
                      </div>
                 <AdminAdd
-                    position={position}
-                    id={id}
-                    question={question}
-                    hint={hint}
-                    answer={answer}
-                    onChange={this.handleInputChange}
-                    onSubmit={(e) => { this.addItem(e) }}
-                    FormValid={this.state.formValid}
+                                position={position}
+                                id={id}
+                                question={question}
+                                hint={hint}
+                                answer={answer}
+                                onChange={this.handleInputChange}
+                                onSubmit={(e) => { this.addItem(e) }}
+                                FormValid={this.state.formValidAdd}
+                                errors={this.state.formErrors}
                     />
                </div>
                </div>
@@ -290,7 +309,7 @@ class Admin extends React.Component {
                                 onChange={this.handleItemUpdate}
                                 onDelete={() => this.onDelete(index)}
                                 onSubmit={(e) => this.handlePutRequest(e, index)}
-                                FormValid={this.state.formValid}
+                                FormValid={this.state.formValidItem}
                                 errors={this.state.formErrors}
                                 />
                                 </div>

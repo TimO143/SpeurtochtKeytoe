@@ -1,13 +1,15 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import FormErrors from './FormErrors'
 
-const AdminAdd = ({ question, hint, answer, position, onChange, onSubmit, onPost, FormValid}) => (
+const AdminAdd = ({ question, hint, answer, position, onChange, onSubmit, onPost, FormValid,errors}) => (
     <div >
+        {!FormValid ? <FormErrors formErrors={errors} /> : <div></div>}
         <form >
             <div>
                 <input className = "goInputQuestions"
                     type='text'
-                    placeholder='Position'
+                    placeholder='Positie'
                     value={position}
                     name='position'
                     onChange={onChange}
@@ -17,7 +19,7 @@ const AdminAdd = ({ question, hint, answer, position, onChange, onSubmit, onPost
             <div>
             <input className = "goInputQuestions"
                 type='text'
-                placeholder='Question'
+                placeholder='Vraag'
                 value={question}
                 name='question'
                     onChange={onChange}
@@ -27,19 +29,19 @@ const AdminAdd = ({ question, hint, answer, position, onChange, onSubmit, onPost
             <div>
                 <input className = "goInputQuestions"
                     type='text'
-                    placeholder='Hint'
-                    value={hint}
-                    name='hint'
+                    placeholder='Antwoord'
+                    value={answer}
+                    name='answer'
                     onChange={onChange}
                     required
                 />
             </div>
             <div>
-                <input className = "goInputQuestions"
+                <input className="goInputQuestions"
                     type='text'
-                    placeholder='Answer'
-                    value={answer}
-                    name='answer'
+                    placeholder='Hint'
+                    value={hint}
+                    name='hint'
                     onChange={onChange}
                     required
                 />

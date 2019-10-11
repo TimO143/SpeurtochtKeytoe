@@ -42,7 +42,7 @@ class Panel extends React.Component {
 
     canBeSubmitted() {
         const { username,password } = this.state;
-        return username === 'Hoi' && password.length > 0;
+        return username === 'keytoe' && password ==='iserniet';
     }
 
     render() {
@@ -57,10 +57,10 @@ class Panel extends React.Component {
                                 <h1 className = "loginText">INLOGGEN</h1>
                             </div>
                             <div className = "grid-username">
-                                <input className = "usernameInput" type='text' placeholder='Username' onChange={this.handleUsernameChange}></input>
+                                <input className = "panel-input" type='text' placeholder='Username' onChange={this.handleUsernameChange}></input>
                             </div>
                             <div className = "grid-password">
-                                <input className = "passwordInput" type='text' placeholder='Password' onChange={this.handlePasswordChange}></input>
+                                <input className = "panel-input" type='password' placeholder='Password' onChange={this.handlePasswordChange}></input>
                             </div>
                         
                             <div className = "grid-login-button">
