@@ -156,8 +156,16 @@
         background: transparent;
         border: none;
         color: black;
-        border-bottom: 2px solid;
+        text-decoration: underline;
         font-size: 150%;
+    }
+
+    label {
+        display: inline-block;
+        font-size: 200%;
+        text-align: left;
+        margin-right: 100px;
+        width: 100px;
     }
     .positionInput {
         font-family: Cooper Hewitt;
@@ -779,7 +787,6 @@
         color: black;
         text-decoration:underline;
         font-size: 150%;
-       
     }
 
     label {

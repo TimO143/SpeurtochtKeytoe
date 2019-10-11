@@ -15,11 +15,12 @@ const AdminItem = ({ toggleEditing, item, onChange, index, onDelete, onSubmit, F
                             <div>
                                 <label>positie:</label>
                         <input className = "admin-item-input"
-                            type='text'
+                            type='number'
                             name='position'
                             placeholder='Positie'
                             value={item.position}
                             onChange={e => onChange(e, index)}
+                            required
                                 />
                             </div>
                             

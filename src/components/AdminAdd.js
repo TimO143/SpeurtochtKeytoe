@@ -4,11 +4,10 @@ import FormErrors from './FormErrors'
 
 const AdminAdd = ({ question, hint, answer, position, onChange, onSubmit, onPost, FormValid,errors}) => (
     <div >
-        {!FormValid ? <FormErrors formErrors={errors} /> : <div></div>}
         <form >
             <div>
                 <input className = "goInputQuestions"
-                    type='text'
+                    type='number'
                     placeholder='Positie'
                     value={position}
                     name='position'
