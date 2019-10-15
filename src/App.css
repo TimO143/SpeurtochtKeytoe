@@ -82,7 +82,7 @@
         margin-top: 10px;
         background: transparent;
         border: none;
-        border-bottom: 2px solid;
+        text-decoration:underline;
         font-size: 200%;
         cursor: pointer;
     }
@@ -493,7 +493,10 @@
         padding-right: 20%
     }
     /* ------------------RANGLIJST Grid-------------- */
-
+    .gridTable {
+        grid-column: 1/3;
+        grid-row: 2
+    }
     /*######  NewPage scherm elementen  ######*/
     .gongText {
         font-size: 340%;
@@ -617,12 +620,12 @@
         color: white;
         font-family: Cooper Hewitt;
         font-weight: bold;
-        padding-left: 0px;
+        padding-left: 15px;
         margin-bottom: 20px;
         margin-top: 10px;
         background: transparent;
         border: none;
-        border-bottom: 2px solid;
+        text-decoration:underline;
         font-size: 120%;
         cursor: pointer;
     }
@@ -740,7 +743,10 @@
     /*######  Result scherm elementen  ######*/
 
     /* -----------------Result Grid--------------- */
-
+    .gridTable{
+        grid-column: 2/6;
+        grid-row:2
+    }
     /*######  Admin  scherm elementen  ######*/
     .App-logo-admin {
         height: 150px;
@@ -1439,9 +1445,7 @@
     }
 
     /* ------------------RANGLIJST Grid-------------- */
-    .gridTable {
-        grid-column: 2/6;
-    }
+
 
     /*######  NewPage scherm elementen  ######*/
     /* ------------------NewPage (mep op gong + score zien) Grid-------------- */

@@ -1,8 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import FormErrors from './FormErrors'
 
-const AdminAdd = ({ question, hint, answer, position, onChange, onSubmit, onPost, FormValid,errors}) => (
+
+const AdminAdd = ({ question, hint, answer, position, onChange, onSubmit, onPost, FormValid}) => (
     <div >
         <form >
             <div>
@@ -51,7 +51,7 @@ const AdminAdd = ({ question, hint, answer, position, onChange, onSubmit, onPost
     </div>)
 
 AdminAdd.propTypes = {
-    position: PropTypes.string.isRequired,
+    position: PropTypes.number.isRequired,
     question: PropTypes.string.isRequired,
     hint: PropTypes.string.isRequired,
     answer: PropTypes.string.isRequired,

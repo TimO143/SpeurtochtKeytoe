@@ -1,16 +1,14 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import FormErrors from './FormErrors'
 import edit from '../svg/edit.svg';
 import close from '../svg/close.png';
 import previous from '../svg/previous.svg';
 
-const AdminItem = ({ toggleEditing, item, onChange, index, onDelete, onSubmit, FormValid, errors }) => (
+const AdminItem = ({ toggleEditing, item, onChange, index, onDelete, onSubmit, FormValid }) => (
     <div>
         {item.isEditing
             ?
             <div className="adminInputs">
-                {!FormValid ? <FormErrors formErrors={errors} />: <div></div>}
                 <form>
                             <div>
                                 <label>positie:</label>
@@ -88,7 +86,7 @@ const AdminItem = ({ toggleEditing, item, onChange, index, onDelete, onSubmit, F
 AdminItem.propTypes = {
     item: PropTypes.shape({
         id: PropTypes.number.isRequired,
-        position: PropTypes.string.isRequired,
+        position: PropTypes.number.isRequired,
         answer: PropTypes.string.isRequired,
         hint: PropTypes.string.isRequired,
     }),

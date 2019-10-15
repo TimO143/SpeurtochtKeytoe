@@ -4,10 +4,8 @@ import Welkom from './Welkom';
 import ReactDOM from 'react-dom';
 import { Provider } from "react-redux";
 import store from '../store';
-
 import AdminAdd from './AdminAdd'
 import AdminItem from './AdminItem'
-import FormErrors from './FormErrors'
 import URL from './constant'
 
 class Admin extends React.Component {
@@ -16,7 +14,7 @@ class Admin extends React.Component {
         this.state = {
             questionData: [],
             id: 0,
-            position:'',
+            position:0,
             question: '',
             hint: '',
             answer: '',
@@ -29,11 +27,6 @@ class Admin extends React.Component {
         }
     }
     
-
-// dit is hoe de items array eruit ziet je kan gewoon items[0].question = q1
-//[{ id: 1, question: 'q1', hint: 'h1', answer: 'a1' ,position:'p1'},
-//{ id: 2, question: 'q2', hint: 'h2', answer: 'a2' ,position:'p2'},
-//{ id: 3, question: 'q3', hint: 'h3', answer: 'a3' ,position:'p3'},]
 
 
     // haalt de informatie uit de database op ( GET ) en voegt het toe aan items[]
@@ -292,7 +285,7 @@ class Admin extends React.Component {
                                 onChange={this.handleInputChange}
                                 onSubmit={(e) => { this.addItem(e) }}
                                 FormValid={this.state.formValidAdd}
-                                errors={this.state.formErrors}
+                               
                     />
                </div>
                </div>
@@ -310,7 +303,7 @@ class Admin extends React.Component {
                                 onDelete={() => this.onDelete(index)}
                                 onSubmit={(e) => this.handlePutRequest(e, index)}
                                 FormValid={this.state.formValidItem}
-                                errors={this.state.formErrors}
+                               
                                 />
                                 </div>
                             )

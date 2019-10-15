@@ -3,6 +3,10 @@ import {nameAdd, addScore} from '../actions/action';
 import {bindActionCreators} from 'redux';
 import { connect } from 'react-redux';
 import URL from './constant'
+import Welkom from '../components/Welkom'
+import ReactDOM from 'react-dom'
+import { Provider } from "react-redux";
+import store from '../store'
 
 
 class Result extends React.Component {
@@ -26,10 +30,20 @@ class Result extends React.Component {
                 this.setState({ scoreboard: data})
             })
     }
+    renderWelkom() {
+        ReactDOM.render(
+            <Provider store={store}>
+                <Welkom />;
+            </Provider>,
+            document.getElementById('root')
+        );
+    }
 
     render() {
         return (
             <div className="grid"> 
+                <button className="goButAdminPanel" onClick={e => { e.preventDefault(); this.renderWelkom() }}>Naar Home</button>
+
                 <div className="gridTable">
                     {/* this.props.nameRe takes value from nameRe in reducer */}
                     {/* <strong>{this.props.nameRe}, {this.props.scoreRe}</strong>  */}

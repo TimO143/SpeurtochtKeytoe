@@ -8,6 +8,7 @@ import { Provider } from "react-redux";
 import store from '../store'
 import {bindActionCreators} from 'redux';
 import { connect } from 'react-redux';
+import Result from '../components/Result'
 
 
 class Welkom extends Component {
@@ -31,6 +32,15 @@ class Welkom extends Component {
             </Provider>,
             document.getElementById('root')
          );
+    }
+
+    renderScore() {
+        ReactDOM.render(
+            <Provider store={store}>
+                <Result />
+            </Provider>,
+            document.getElementById('root')
+        );
     }
  
 
@@ -56,8 +66,11 @@ class Welkom extends Component {
 
     render() {
         return (
+
             <div>
                 <button className = "goButAdminPanel" onClick={e => { e.preventDefault(); this.renderPanel() }}>Naar admin panel</button>
+                <button className="goButAdminPanel" onClick={e => { e.preventDefault(); this.renderScore() }}>Naar Highscores</button>
+
                 <div className='grid'>
                         <div className="grid-logo"> <img src={logo} className="App-logo" alt="logo" /></div> 
                         <div className='grid-titel'>
