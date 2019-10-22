@@ -7,6 +7,10 @@ import store from '../store';
 import AdminAdd from './AdminAdd'
 import AdminItem from './AdminItem'
 import URL from './constant'
+import edit from '../svg/edit.svg';
+import close from '../svg/close.png';
+import save from '../svg/save.svg';
+import previous from '../svg/previous.svg';
 
 class Admin extends React.Component {
     constructor() {
@@ -137,7 +141,7 @@ class Admin extends React.Component {
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({ "id": id, "question": question, "hint": hint, "answer": answer, "position": position })
+                body: JSON.stringify({ "id": id, "question": question, "hint": hint, "answer": answer.toLowerCase(), "position": position })
             })
                 .then(res => res.json())
                 .then(data => {
@@ -208,7 +212,7 @@ class Admin extends React.Component {
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({ "id": updateItem.id, "question": updateItem.question, "hint": updateItem.hint, "answer": updateItem.answer, "position": updateItem.position })
+                body: JSON.stringify({ "id": updateItem.id, "question": updateItem.question, "hint": updateItem.hint, "answer": updateItem.answer.toLowerCase(), "position": updateItem.position })
             })
                 .then(res => res.json())
                 .then(data => {
@@ -261,7 +265,7 @@ class Admin extends React.Component {
         const {id,question,hint,answer,position} = this.state
         return (
             <div>
-                <button className="goButHomepage" onClick={e => { e.preventDefault(); this.renderPanel() }}>Naar Welkomscherm</button>
+                <button className="goButHomepage" onClick={e => { e.preventDefault(); this.renderPanel() }}>Welkomscherm</button>
                 <div className="grid">
                     <div className='grid-logo'>
                         <img src={logo} className="App-logo-admin" alt="logo" />
@@ -273,9 +277,9 @@ class Admin extends React.Component {
 
                     <div className="grid-admin-add">
                         <div className="admin-add">
-                            <h1>Voeg vraag toe</h1>
+                            <h1>Voeg vraag toe - Totaal aantal vragen: {this.state.items.length}</h1>
                             <div>
-                     </div>
+                            </div>
                 <AdminAdd
                                 position={position}
                                 id={id}
@@ -308,7 +312,7 @@ class Admin extends React.Component {
                                 </div>
                             )
             :
-                    <div><p>de server staat niet aan!</p></div>
+                    <div><p>De server staat niet aan!</p></div>
             }
             
             </div>

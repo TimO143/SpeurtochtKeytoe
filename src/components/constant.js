@@ -1,4 +1,4 @@
-const URL = 'http://kwizz-server.keytoe.nl:8083'
+const URL = 'http://kwizz-server.keytoe.nl'
 
 
 export default URL

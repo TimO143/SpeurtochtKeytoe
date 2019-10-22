@@ -25,7 +25,7 @@ class Quiz extends React.Component {
                 {this.props.levens <= 2 ?
                     <div className='grid-hint'>  <Hint hint={this.props.hint} /></div>
                     :
-                    <div className='grid-hint'> <Hint hint={''}/></div>
+                    ''
                     }
 
                 <div className='grid-question'>
@@ -38,8 +38,8 @@ class Quiz extends React.Component {
                         onAnswerSelected={this.props.onAnswerSelected}
                     />
                 </div>
-                <span className="score grid-score">{this.props.score} <br /> PUNTEN</span>
-                <span className="leven grid-leven">{this.props.levens} / 5 <br /> LEVENS</span>
+                <span className="score grid-score"><span className="quiz-part-life">{Math.trunc(this.props.score)}</span> <br /> PUNTEN</span>
+                <span className="leven grid-leven"><span className="quiz-part-life">{this.props.levens}</span> <span className="quiz-total-life">/ 5</span> <br /> LEVENS</span>
             </div>
         );
     }

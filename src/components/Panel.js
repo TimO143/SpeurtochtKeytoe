@@ -49,7 +49,7 @@ class Panel extends React.Component {
         const isEnabled = this.canBeSubmitted();
             return (
                 <div>
-                    <button className = "goButAdminPanel" onClick={this.renderWelkom} >Naar de Quiz</button>
+                    <button className = "goButAdminPanel" onClick={this.renderWelkom} >De Quiz</button>
                     <form>
                         <div className = "grid">
                         <div className="grid-logo-Admin"> <img src={logo} className="App-logo" alt="logo" /></div>
@@ -64,7 +64,7 @@ class Panel extends React.Component {
                             </div>
                         
                             <div className = "grid-login-button">
-                                {!isEnabled ? <button className = "goButAdminPanel" onClick={e => e.preventDefault()} disabled={!isEnabled}> Nope </button> : <button className = "goButAdminPanel"onClick={this.renderLogin}>Yep</button>}
+                                {!isEnabled ? <button className = "panel-inlog" onClick={e => e.preventDefault()} disabled={!isEnabled}> Nope </button> : <button className = "panel-inlog"onClick={this.renderLogin}>Yep</button>}
                             </div>
                         </div>
                     </form>

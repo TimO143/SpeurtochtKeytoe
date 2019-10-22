@@ -42,19 +42,20 @@ class Result extends React.Component {
     render() {
         return (
             <div className="grid"> 
-                <button className="goButAdminPanel" onClick={e => { e.preventDefault(); this.renderWelkom() }}>Naar Home</button>
 
                 <div className="gridTable">
                     {/* this.props.nameRe takes value from nameRe in reducer */}
                     {/* <strong>{this.props.nameRe}, {this.props.scoreRe}</strong>  */}
-                    <p className='scoreboardName'>RANGLIJST</p>
+                    <p className='scoreboardName'>
+                    <button className="goButAdminPanel" onClick={e => { e.preventDefault(); this.renderWelkom() }}> {'<'} </button>
+                        RANGLIJST</p>
                     <table id="scoreBoard">
                         <tbody>
                         {this.state.scoreboard.map((item, index) => 
                         <tr className="rowData" key={index}>
                             <td >{item.username}</td>
                             <td >{item.date}</td>
-                            <td >{item.score}</td>
+                            <td style={{textAlign:'right'}}>{item.score}</td>
                             
                         </tr>
                         )}

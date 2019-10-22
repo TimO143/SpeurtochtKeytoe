@@ -6,8 +6,9 @@
     "\\src\\actions",
     "\\src\\api",
     "\\src\\components",
-    "\\src\\reducers"
+    "\\src\\reducers",
+    "\\src\\svg"
   ],
-  "SelectedNode": "\\src\\components\\constant.js",
+  "SelectedNode": "\\src\\App.js",
   "PreviewInSolutionExplorer": false
 }

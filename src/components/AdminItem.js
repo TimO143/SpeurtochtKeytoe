@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import edit from '../svg/edit.svg';
 import close from '../svg/close.png';
+import save from '../svg/save.svg';
 import previous from '../svg/previous.svg';
 
 const AdminItem = ({ toggleEditing, item, onChange, index, onDelete, onSubmit, FormValid }) => (
@@ -11,7 +12,7 @@ const AdminItem = ({ toggleEditing, item, onChange, index, onDelete, onSubmit, F
             <div className="adminInputs">
                 <form>
                             <div>
-                                <label>positie:</label>
+                                <label>Positie:</label>
                         <input className = "admin-item-input"
                             type='number'
                             name='position'
@@ -22,7 +23,7 @@ const AdminItem = ({ toggleEditing, item, onChange, index, onDelete, onSubmit, F
                                 />
                             </div>
                             
-                                <label>vraag:</label>
+                                <label>Vraag:</label>
                         <input className = "admin-item-input"
                             type='text'
                             name='question'
@@ -33,7 +34,7 @@ const AdminItem = ({ toggleEditing, item, onChange, index, onDelete, onSubmit, F
                                 />
                     
                     <div>
-                        <label>  antwoord:</label>
+                        <label>  Antwoord:</label>
                         <input className="admin-item-input"
                             type='text'
                             name='answer'
@@ -44,7 +45,7 @@ const AdminItem = ({ toggleEditing, item, onChange, index, onDelete, onSubmit, F
                         />
                     </div>
                             <div>
-                               <label> hint:</label>
+                               <label> Hint:</label>
                         <input className = "admin-item-input"
                             type='text'
                             name='hint'
@@ -54,7 +55,6 @@ const AdminItem = ({ toggleEditing, item, onChange, index, onDelete, onSubmit, F
                             required
                                 />
                             </div>
-                            <input className = "goButAdmin" type='button' value='Update database' onClick={onSubmit}/>
                             </form>
                     </div>    
             :
@@ -67,6 +67,15 @@ const AdminItem = ({ toggleEditing, item, onChange, index, onDelete, onSubmit, F
             </div>   
         }
         <div>
+            <button className="adminSave"
+                type='button'
+                onClick={onSubmit}>
+                {item.isEditing ?
+                    <img src={save} alt='close' width="21px" height="21px"></img>
+                    :
+                    ''
+                }
+            </button>
             <button className = "adminEdit"
                 type='button'
                 onClick={toggleEditing}

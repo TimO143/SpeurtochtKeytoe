@@ -44,7 +44,7 @@ class NewPage extends React.Component{
                     <hr className='balk'></hr>
                     </div>
                     <div className = "grid-scoreRes">
-                        <p className = "scoreRes">{this.props.scoreRe}</p>
+                    <p className="scoreRes">{Math.round(this.props.scoreRe)}</p>
                     </div>
                     <div className = "grid-resText">
                         <h1 className = "resText">PUNTEN GESCOORD!</h1>

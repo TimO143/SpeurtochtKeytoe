@@ -23,6 +23,8 @@ class Welkom extends Component {
     // lelijke manier om de achtergrond kleur te veranderen
     componentDidMount() {
         document.body.style.backgroundColor = '#256eff'
+
+        document.getElementById('focus').focus()
     }
     
     renderPanel() {
@@ -68,10 +70,13 @@ class Welkom extends Component {
         return (
 
             <div>
-                <button className = "goButAdminPanel" onClick={e => { e.preventDefault(); this.renderPanel() }}>Naar admin panel</button>
-                <button className="goButAdminPanel" onClick={e => { e.preventDefault(); this.renderScore() }}>Naar Highscores</button>
 
                 <div className='grid'>
+                    <div className='grid-but'>
+                        <button className="goButAdminPanel" onClick={e => { e.preventDefault(); this.renderPanel() }}>Admin panel</button>
+                        <button className="goButAdminPanel" onClick={e => { e.preventDefault(); this.renderScore() }}>Highscores</button>
+
+                    </div>
                         <div className="grid-logo"> <img src={logo} className="App-logo" alt="logo" /></div> 
                         <div className='grid-titel'>
                         <p className='Titel'>WELKOM <br />KOLLEGA!</p>
@@ -88,7 +93,7 @@ class Welkom extends Component {
                     <div className='grid-naamform'>
                         <form onSubmit={e => { e.preventDefault(); this.renderApp(); this.checkName() }}>
                             <div>
-                                <input className='goInput' type='text' required placeholder='Je naam'  onChange={this.handleChange}></input>
+                                <input id='focus' className='goInput' pattern="^([a-zA-Z]|[à-ú]|[À-ʸ]|[ ]|[0-9])+$" type='text' required placeholder='Je naam' onChange={this.handleChange}></input>
                             </div>
                             <div>
                                 <input className='goBut button' type='submit' value='LETSGOOO!'></input>
