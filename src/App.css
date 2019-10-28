@@ -4,6 +4,8 @@
         grid-template-rows: minmax(10px,auto);
         grid-template-columns: repeat(3,1fr);
         grid-gap: .5rem;
+        margin-left:6vw;
+        margin-right:6vw;
     }
     /*Overall background*/
     body {
@@ -20,16 +22,16 @@
     /*######  Welkom scherm elementen  ######*/
     .Titel {
         color: white;
-        font-family: Cooper Hewitt;
+        font-family: Cooper Hewitt, Helvetica, Arial, sans-serif;
         font-weight: 1000;
-        font-size: 4.375em;
+        font-size: 3.375em;
         line-height: 0.86;
         margin-top: 0px;
         margin-bottom: 0px;
     }
     /* K van keytoe */
     .sub {
-        font-family: Cooper Hewitt;
+        font-family: Cooper Hewitt, Helvetica, Arial, sans-serif;
         font-size: 30px;
         font-weight: 900;
         font-style: normal;
@@ -41,7 +43,7 @@
     }
     /* Lange tekst */
     .InfoTekst {
-        font-family: Cooper Hewitt;
+        font-family: Cooper Hewitt, Helvetica, Arial, sans-serif;
         font-size: 35px;
         font-weight: normal;
         font-style: normal;
@@ -52,7 +54,7 @@
     }
     /* de kwizz */
     .Kop {
-        font-family: Cooper Hewitt;
+        font-family: Cooper Hewitt, Helvetica, Arial, sans-serif;
         font-size: 30px;
         font-weight: bold;
         font-style: normal;
@@ -76,21 +78,21 @@
     }
     .goButAdminPanel {
         color: white;
-        font-family: Cooper Hewitt;
+        font-family: Cooper Hewitt, Helvetica, Arial, sans-serif;
         font-weight: bold;
         padding-left: 0px;
         margin-bottom: 20px;
         margin-top: 6vh;
         background: transparent;
         border: none;
-        text-decoration:underline;
+        text-decoration: underline;
         font-size: 100%;
         cursor: pointer;
     }
     .goInput {
         /*width: 100%;*/
         color: white;
-        font-family: Cooper Hewitt;
+        font-family: Cooper Hewitt, Helvetica, Arial, sans-serif;
         font-weight: normal;
         padding: 12px;
         padding-left: 0px;
@@ -144,26 +146,29 @@
     .editQuestions {
         color: black;
         font-size: 3em;
-        font-family: Cooper Hewitt;
+        font-family: Cooper Hewitt, Helvetica, Arial, sans-serif;
         font-weight: 1000;
         line-height: 0.86;
         margin-top: 0px;
         margin-bottom: 0px;
     }
     .adminInputs {
-        font-family: Cooper Hewitt;
+        font-family: Cooper Hewitt, Helvetica, Arial, sans-serif;
         font-size: 1em;
     }
 
     .admin-item-input {
-        font-family: Cooper Hewitt;
+        font-family: Cooper Hewitt, Helvetica, Arial, sans-serif;
         width: 80%;
         background: transparent;
         border: none;
-        color: black;
-        text-decoration: underline;
+        color: grey;
         font-size: 150%;
-        margin-bottom:10px;
+        margin-bottom: 35px;
+        border-bottom: 3px solid;
+        padding-bottom:15px;
+        padding-top:10px;
+        resize:vertical;
     }
 
     label {
@@ -172,9 +177,10 @@
         text-align: left;
         margin-right: 100px;
         width: 100px;
+        padding-top:10px;
     }
     .positionInput {
-        font-family: Cooper Hewitt;
+        font-family: Cooper Hewit, Helvetica, Arial, sans-serift;
         width: 80%;
         background: transparent;
         border: none;
@@ -184,7 +190,7 @@
     }
 
     .adminSave {
-        position: absolute;
+        position: relative;
         left: 30%;
         display: inline-block;
         text-decoration: none;
@@ -193,7 +199,7 @@
         cursor: pointer;
     }
     .adminEdit {
-        position: absolute;
+        position: relative;
         left: 50%;
         display: inline-block;
         text-decoration: none;
@@ -214,20 +220,17 @@
     }
     /* text above add question form */
     .admin-add {
-        font-family: Cooper Hewitt;
+        font-family: Cooper Hewitt, Helvetica, Arial, sans-serif;
         font-size: 1em;
-        font-weight: bold;
-        
     }
     /* admin-item = questions displayed in admin page */
     .admin-item {
         color: black;
-        font-family: Cooper Hewitt;
+        font-family: Cooper Hewitt, Helvetica, Arial, sans-serif;
         font-weight: normal;
-        
     }
     .addQuestionButton {
-        font-family: Cooper Hewitt;
+        font-family: Cooper Hewitt, Helvetica, Arial, sans-serif;
         font-weight: bold;
         padding: 12px;
         padding-left: 0px;
@@ -239,28 +242,15 @@
         font-size: 150%;
         cursor: pointer;
     }
-    .goButHomepage {
-        color: black;
-        font-family: Cooper Hewitt;
-        font-weight: bold;
-        padding-left: 0px;
-        margin-bottom: 20px;
-        margin-top: 10px;
-        background: transparent;
-        border: none;
-        border-bottom: 2px solid;
-        font-size: 120%;
-        cursor: pointer;
-    }
         /*adminItem.js*/
     .adminPageQuestions {
         color: black;
-        font-family: Cooper Hewitt;
+        font-family: Cooper Hewitt, Helvetica, Arial, sans-serif;
         font-size: 1.5em;
         line-height: 1.0;
     }
     .goButAdmin {
-        font-family: Cooper Hewitt;
+        font-family: Cooper Hewitt, Helvetica, Arial, sans-serif;
         font-weight: bold;
         padding-left: 0px;
         margin-bottom: 20px;
@@ -275,32 +265,49 @@
         /*AdminAdd deel*/
     /* input field questions add */
     .goInputQuestions {
-        font-family: Cooper Hewitt;
-        background-color: grey;
-        padding: 5px;
-        width: 70%;
-        cursor:pointer;
+        font-family: Cooper Hewitt, Helvetica, Arial, sans-serif;
+        font-size: 2em;
+        width: 80%;
+        border: none;
+        border-bottom: 2px solid;
+        resize: vertical;
+        margin-bottom: 35px;
+        padding-bottom: 15px;
+        padding-top: 10px;
+        margin-top: 10px;
     }
-    
+        .goInputQuestions::placeholder {
+            color: black
+        }
+
+    .admin-add-gebruik{
+        font-size:2em;
+        font-weight:normal;
+
+    }
+   
 
     /* ---------------Admin Grid-------------- */
     .grid-admin-add {
-        grid-column: 1/-1;
-        grid-row: 3;
-        margin-left:4vw;
-    }
-
-    .grid-admin-item {
         grid-column: 1/-1;
         grid-row: 4;
         margin-left:4vw;
     }
 
+    .grid-admin-item {
+        grid-column: 1/-1;
+        grid-row: 5;
+        margin-left:4vw;
+    }
+
     .grid-editQuestions {
         grid-column: 1/-1;
+        grid-row: 3;
+    }
+    .grid-but-admin {
+        grid-column: 1;
         grid-row: 2;
-        /* font-size: 400%;
-        font-weight: bolder;    */
+        margin-top:-60px;
     }
     /*######  Quiz scherm elementen  ######*/
     span.vraagWeg {
@@ -326,7 +333,7 @@
         font-style: italic;
     }
     span.leven {
-        font-family: Cooper Hewitt;
+        font-family: Cooper Hewitt, Helvetica, Arial, sans-serif;
         font-weight: bolder;
         color: white;
         font-size: 200%;
@@ -334,7 +341,7 @@
         padding-right: 5%;
     }
     span.score {
-        font-family: Cooper Hewitt;
+        font-family: Cooper Hewitt, Helvetica, Arial, sans-serif;
         color: white;
         font-size: 200%;
         font-weight: bolder;
@@ -361,7 +368,7 @@
         color: white;
         background-color: black;
         padding-left: 5%;
-        font-family: Cooper Hewitt;
+        font-family: Cooper Hewitt, Helvetica, Arial, sans-serif;
     }
     /*Questions*/
     p.question {
@@ -369,16 +376,16 @@
         /*text-align: left;*/
         /*padding-left: 13%;*/
         font-size: 2em;
-        font-family: Cooper Hewitt;
+        font-family: Cooper Hewitt, Helvetica, Arial, sans-serif;
     }
     /*Hint */
     p.hint {
-        font-family: Cooper Hewitt;
+        font-family: Cooper Hewitt, Helvetica, Arial, sans-serif;
         color: white;
         /*text-align: left;*/
         /*padding-left: 13%;*/
         font-size: 2em;
-        font-family: Cooper Hewitt;
+        font-family: Cooper Hewitt, Helvetica, Arial, sans-serif;
     }
 
     /*Question counter*/
@@ -389,7 +396,7 @@
         color: white;
         font-size: 2em;
         font-weight: bolder;
-        font-family: Cooper Hewitt;
+        font-family: Cooper Hewitt, Helvetica, Arial, sans-serif;
     }
     /*---------------Quiz Grid-------------------*/
     .grid-questionCount {
@@ -426,7 +433,7 @@
 
     .gongText {
         color: white;
-        font-family: Cooper Hewitt;
+        font-family: Cooper Hewitt, Helvetica, Arial, sans-serif;
         font-weight: 1000;
         font-size: 8em;
         line-height: 0.86;
@@ -435,7 +442,7 @@
 
     .scoreRes {
         color: white;
-        font-family: Cooper Hewitt;
+        font-family: Cooper Hewitt, Helvetica, Arial, sans-serif;
         font-size: 500%;
         font-weight: bolder;
         font-weight: bold;
@@ -448,7 +455,7 @@
 
     .resText {
         color: white;
-        font-family: Cooper Hewitt;
+        font-family: Cooper Hewitt, Helvetica, Arial, sans-serif;
         font-size: 200%;
         font-weight: bolder;
         font-weight: bold;
@@ -461,13 +468,13 @@
     }
     .klaarText {
         color: white;
-        font-family: Cooper Hewitt;
+        font-family: Cooper Hewitt, Helvetica, Arial, sans-serif;
         font-size: 250%;
         font-weight: normal;
     }
 
     .resButton {
-        font-family: Cooper Hewitt;
+        font-family: Cooper Hewitt, Helvetica, Arial, sans-serif;
         padding: 12px;
         padding-left: 0px;
         background: transparent;
@@ -485,24 +492,24 @@
     div.scoreBoard {
         color: white;
         font-size: 200%;
-        font-family: Cooper Hewitt;
+        font-family: Cooper Hewitt, Helvetica, Arial, sans-serif;
         padding-top: 10%;
         text-align: center;
     }
 
-    .scoreboardName{
+    .scoreboardName {
         color: white;
         font-size: 340%;
         font-weight: bolder;
-        font-family: Cooper Hewitt;
+        font-family: Cooper Hewitt, Helvetica, Arial, sans-serif;
         text-align: left;
         padding-right: 2%;
-        margin-bottom:unset;
+        margin-bottom: unset;
     }
     #scoreBoard td {
         color: white;
         font-size: 200%;
-        font-family: Cooper Hewitt;
+        font-family: Cooper Hewitt, Helvetica, Arial, sans-serif;
         padding-top: 2%;
         padding-right: 10px;
         text-align: left;
@@ -573,13 +580,13 @@
     /*######  Panel (inlog voor admin) scherm elementen  ######*/
     .loginText {
         color: white;
-        font-family: Cooper Hewitt;
+        font-family: Cooper Hewitt, Helvetica, Arial, sans-serif;
         font-size: 8em;
         font-weight: bold;
         line-height: 0.86;
     }
     .panel-input {
-        font-family: Cooper Hewitt;
+        font-family: Cooper Hewitt, Helvetica, Arial, sans-serif;
         padding: 12px;
         padding-left: 0px;
         margin-bottom: 20px;
@@ -589,6 +596,19 @@
         border-bottom: 2px solid;
         font-size: 150%;
         cursor: auto;
+    }
+    .panel-inlog {
+        color: white;
+        font-family: Cooper Hewitt, Helvetica, Arial, sans-serif;
+        font-weight: bold;
+        padding-left: 15px;
+        margin-bottom: 20px;
+        margin-top: 10px;
+        background: transparent;
+        border: none;
+        text-decoration: underline;
+        font-size: 300%;
+        cursor: pointer;
     }
     .loginText{
         font-size:300%
@@ -617,7 +637,7 @@
     /*-----------Overig-------------*/
     /* placeholder text styling */
     ::placeholder {
-        font-family: Cooper Hewitt;
+        font-family: Cooper Hewitt, Helvetica, Arial, sans-serif;
         color: white;
         font-weight: normal;
     }
@@ -630,6 +650,8 @@
         grid-template-rows: minmax(10px,auto);
         grid-template-columns: repeat(3,1fr);
         grid-gap: .5rem;
+        margin-left:6vw;
+        margin-right:6vw;
     }
     /*######  Welkom scherm elementen  ######*/
     .App-logo {
@@ -640,14 +662,14 @@
 
     .goButAdminPanel {
         color: white;
-        font-family: Cooper Hewitt;
+        font-family: Cooper Hewitt, Helvetica, Arial, sans-serif;
         font-weight: bold;
         padding-left: 15px;
         margin-bottom: 20px;
         margin-top: 6vh;
         background: transparent;
         border: none;
-        text-decoration:underline;
+        text-decoration: underline;
         font-size: 120%;
         cursor: pointer;
     }
@@ -668,7 +690,7 @@
 
     .Titel {
         color: white;
-        font-family: Cooper Hewitt;
+        font-family: Cooper Hewitt, Helvetica, Arial, sans-serif;
         font-weight: 1000;
         font-size: 4.375em;
         line-height: 0.86;
@@ -679,7 +701,7 @@
     .goInput {
         /*width: 100%;*/
         color: white;
-        font-family: Cooper Hewitt;
+        font-family: Cooper Hewitt, Helvetica, Arial, sans-serif;
         font-weight: normal;
         padding: 12px;
         padding-left: 0px;
@@ -692,7 +714,7 @@
 
     /* K van keytoe */
     .sub {
-        font-family: Cooper Hewitt;
+        font-family: Cooper Hewitt, Helvetica, Arial, sans-serif;
         font-size: 30px;
         font-weight: 900;
         font-style: normal;
@@ -704,7 +726,7 @@
     }
     /* Lange tekst */
     .InfoTekst {
-        font-family: Cooper Hewitt;
+        font-family: Cooper Hewitt, Helvetica, Arial, sans-serif;
         font-size: 35px;
         font-weight: normal;
         font-style: normal;
@@ -715,7 +737,7 @@
     }
     /* de kwizz */
     .Kop {
-        font-family: Cooper Hewitt;
+        font-family: Cooper Hewitt, Helvetica, Arial, sans-serif;
         font-size: 30px;
         font-weight: bold;
         font-style: normal;
@@ -731,23 +753,28 @@
         color: white;
     }
     /*--------------------------Welkom Grid---------------*/
-    
+
+    .grid-but-admin {
+        grid-column: 2/4;
+        grid-row: 1;
+    }
     .grid-but{
         grid-column:2/4;
         grid-row:1;
     }
+
     .grid-logo {
         grid-column: 1;
         grid-row:1;
     }
 
     .grid-titel {
-        grid-column: 2/3;
+        grid-column: 1/2;
         grid-row: 2;
     }
 
     .grid-sub {
-        grid-column: 3/4;
+        grid-column: 2/4;
         grid-row: 2;
         display: flex;
         align-items: flex-end;
@@ -759,22 +786,19 @@
     }
 
     .grid-info {
-        grid-column: 2/4;
+        grid-column: 1/4;
         grid-row: 5;
     }
 
     .grid-naamform {
-        grid-column: 2/4;
+        grid-column: 1/4;
         grid-row: 6;
     }
 
     /*######  Result scherm elementen  ######*/
 
     /* -----------------Result Grid--------------- */
-    .gridTable{
-        grid-column: 2/6;
-        grid-row:2
-    }
+
     /*######  Admin  scherm elementen  ######*/
     .App-logo-admin {
         height: 150px;
@@ -784,24 +808,10 @@
         padding-bottom: 10px;
     }
 
-    .goButHomepage {
-        color: black;
-        font-family: Cooper Hewitt;
-        font-weight: bold;
-        padding-left: 0px;
-        margin-bottom: 20px;
-        margin-top: 10px;
-        background: transparent;
-        border: none;
-        border-bottom: 2px solid;
-        font-size: 180%;
-        cursor: pointer;
-    }
-
     .editQuestions {
         color: black;
         font-size: 8em;
-        font-family: Cooper Hewitt;
+        font-family: Cooper Hewitt, Helvetica, Arial, sans-serif;
         font-weight: 1000;
         line-height: 0.86;
         margin-top: 0px;
@@ -809,19 +819,22 @@
     }
 
     .adminInputs {
-        font-family: Cooper Hewitt;
+        font-family: Cooper Hewitt, Helvetica, Arial, sans-serif;
         font-size: 1em;
     }
 
     .admin-item-input {
-        font-family: Cooper Hewitt;
+        font-family: Cooper Hewitt, Helvetica, Arial, sans-serif;
         width: 80%;
         background: transparent;
         border: none;
-        color: black;
-        text-decoration:underline;
+        color: grey;
         font-size: 150%;
-        margin-bottom:10px;
+        margin-bottom: 35px;
+        border-bottom: 3px solid;
+        padding-bottom: 15px;
+        padding-top:10px;
+        resize:vertical;
     }
 
     label {
@@ -830,28 +843,39 @@
         text-align: left;
         margin-right: 100px;
         width:100px;
+        padding-top:10px;
     }
 
  
     /* text above add question form */
     .admin-add {
-        font-family: Cooper Hewitt;
+        font-family: Cooper Hewitt, Helvetica, Arial, sans-serif;
         font-size: 1em;
-        font-weight: bold;
-        line-height: 0.86;
     }
 
     .goInputQuestions {
-        font-family: Cooper Hewitt;
-        background-color: grey;
-        padding: 5px;
+        font-family: Cooper Hewitt, Helvetica, Arial, sans-serif;
+        background-color: white;
         font-size: 2em;
-        width: 30%;
-        cursor: pointer;
+        width: 80%;
+        border: none;
+        border-bottom: 2px solid;
+        resize: vertical;
+        margin-bottom: 35px;
+        padding-bottom: 15px;
+        padding-top: 10px;
+        margin-top:10px;
+    }
+    .goInputQuestions::placeholder{
+        color:black
+    }
+    .admin-add-gebruik {
+        font-size: 2em;
+        font-weight: normal;
     }
 
     .goButAdmin {
-        font-family: Cooper Hewitt;
+        font-family: Cooper Hewitt, Helvetica, Arial, sans-serif;
         font-weight: bold;
         padding-left: 0px;
         margin-bottom: 20px;
@@ -861,11 +885,11 @@
         color: black;
         font-size: 120%;
         cursor: pointer;
-        text-decoration:underline;
+        text-decoration: underline;
     }
     .adminSave {
-        position: absolute;
-        left: 80%;
+        position: relative;
+        left: 70%;
         display: inline-block;
         text-decoration: none;
         border: none;
@@ -873,8 +897,8 @@
         cursor: pointer;
     }
     .adminEdit {
-        position: absolute;
-        left: 85%;
+        position: relative;
+        left: 75%;
         display: inline-block;
         text-decoration: none;
         border: none;
@@ -883,7 +907,7 @@
     }
     .adminDelete {
         position: relative;
-        left: 90%;
+        left: 80%;
         display: inline-block;
         text-decoration: none;
         border: none;
@@ -894,7 +918,7 @@
     }
 
     .addQuestionButton {
-        font-family: Cooper Hewitt;
+        font-family: Cooper Hewitt, Helvetica, Arial, sans-serif;
         font-weight: bold;
         padding: 12px;
         padding-left: 0px;
@@ -909,14 +933,13 @@
     /* admin-item = questions displayed in admin page */
     .admin-item {
         color: black;
-        font-family: Cooper Hewitt;
+        font-family: Cooper Hewitt, Helvetica, Arial, sans-serif;
         font-weight: normal;
-      
     }
 
     .adminPageQuestions {
         color: black;
-        font-family: Cooper Hewitt;
+        font-family: Cooper Hewitt, Helvetica, Arial, sans-serif;
         font-size: 2em;
         line-height: 1.0;
     }
@@ -969,18 +992,18 @@
         color: white;
         font-size: 3em;
         font-weight: bolder;
-        font-family: Cooper Hewitt;
+        font-family: Cooper Hewitt, Helvetica, Arial, sans-serif;
     }
 
     p.hint {
-        font-family: Cooper Hewitt;
+        font-family: Cooper Hewitt, Helvetica, Arial, sans-serif;
         color: white;
         font-size: 2em;
-        font-family: Cooper Hewitt;
+        font-family: Cooper Hewitt, Helvetica, Arial, sans-serif;
     }
 
     span.score {
-        font-family: Cooper Hewitt;
+        font-family: Cooper Hewitt, Helvetica, Arial, sans-serif;
         color: white;
         font-size: 200%;
         font-weight: bolder;
@@ -989,7 +1012,7 @@
     }
 
     span.leven {
-        font-family: Cooper Hewitt;
+        font-family: Cooper Hewitt, Helvetica, Arial, sans-serif;
         font-weight: bolder;
         color: white;
         font-size: 200%;
@@ -1072,24 +1095,24 @@
         width: 100%
     }
 
-    #scoreBoard td {
-        color: white;
-        width: auto;
-        font-size: 250%;
-        font-family: Cooper Hewitt;
-        padding-top: 2%;
-        padding-right: 20px;
-        text-align: left;
-        border-bottom: 1px solid white;
-    }
+        #scoreBoard td {
+            color: white;
+            width: auto;
+            font-size: 250%;
+            font-family: Cooper Hewitt, Helvetica, Arial, sans-serif;
+            padding-top: 2%;
+            padding-right: 20px;
+            text-align: left;
+            border-bottom: 1px solid white;
+        }
 
     .scoreboardName {
         color: white;
         font-size: 5em;
         font-weight: bolder;
-        font-family: Cooper Hewitt;
+        font-family: Cooper Hewitt, Helvetica, Arial, sans-serif;
         text-align: left;
-        margin-bottom:unset;
+        margin-bottom: unset;
     }
 
     #scoreBoard tr.rowData {
@@ -1097,13 +1120,11 @@
         border-bottom: 1px solid white;
     }
     /* ------------------RANGLIJST Grid-------------- */
-    .gridTable {
-        grid-column: 2/6;
-    }
+
     /*######  NewPage scherm elementen  ######*/
     .gongText {
         color: white;
-        font-family: Cooper Hewitt;
+        font-family: Cooper Hewitt, Helvetica, Arial, sans-serif;
         font-weight: 1000;
         font-size: 5em;
         line-height: 0.86;
@@ -1112,7 +1133,7 @@
 
     .scoreRes {
         color: white;
-        font-family: Cooper Hewitt;
+        font-family: Cooper Hewitt, Helvetica, Arial, sans-serif;
         font-size: 500%;
         font-weight: bolder;
         font-weight: bold;
@@ -1125,7 +1146,7 @@
 
     .resText {
         color: white;
-        font-family: Cooper Hewitt;
+        font-family: Cooper Hewitt, Helvetica, Arial, sans-serif;
         font-size: 200%;
         font-weight: bolder;
         font-weight: bold;
@@ -1139,13 +1160,13 @@
 
     .klaarText {
         color: white;
-        font-family: Cooper Hewitt;
+        font-family: Cooper Hewitt, Helvetica, Arial, sans-serif;
         font-size: 250%;
         font-weight: normal;
     }
 
     .resButton {
-        font-family: Cooper Hewitt;
+        font-family: Cooper Hewitt, Helvetica, Arial, sans-serif;
         padding: 12px;
         padding-left: 0px;
         background: transparent;
@@ -1188,14 +1209,14 @@
     /*######  Panel (inlog voor admin) scherm elementen  ######*/
     .loginText {
         color: white;
-        font-family: Cooper Hewitt;
+        font-family: Cooper Hewitt, Helvetica, Arial, sans-serif;
         font-size: 5em;
         font-weight: bold;
         line-height: 0.86;
     }
     .panel-inlog {
         color: white;
-        font-family: Cooper Hewitt;
+        font-family: Cooper Hewitt, Helvetica, Arial, sans-serif;
         font-weight: bold;
         padding-left: 15px;
         margin-bottom: 20px;
@@ -1210,7 +1231,7 @@
         font-size:4em;
     }
     .panel-input {
-        font-family: Cooper Hewitt;
+        font-family: Cooper Hewitt, Helvetica, Arial, sans-serif;
         padding: 12px;
         padding-left: 0px;
         margin-bottom: 20px;
@@ -1250,12 +1271,40 @@
         grid-template-rows: minmax(10px,auto);
         grid-template-columns: repeat(6,1fr);
         grid-gap: .5rem;
+        margin-left:6vw;
     }
     /*######  Welkom scherm elementen  ######*/
     .Titel {
         font-size:900%;
     }
     /*--------------------------Welkom Grid---------------*/
+
+    .grid-but-admin {
+        grid-column: 2/4;
+        grid-row: 1;
+    }
+
+    .grid-titel {
+        grid-column: 2/3;
+        grid-row: 2;
+    }
+
+    .grid-sub {
+        grid-column: 3/4;
+        grid-row: 2;
+        display: flex;
+        align-items: flex-end;
+    }
+
+    .grid-info {
+        grid-column: 2/4;
+        grid-row: 5;
+    }
+
+    .grid-naamform {
+        grid-column: 2/4;
+        grid-row: 6;
+    }
     .grid-kop {
         display: inline;
         margin-right: 10px;
@@ -1271,6 +1320,11 @@
     }
     /*######  Result scherm elementen  ######*/
     /* -----------------Result Grid--------------- */
+    .gridTable {
+        grid-column: 2/6;
+        grid-row: 2
+    }
+
     .grid-gongText {
         grid-column: 2/6;
         grid-row: 1;
@@ -1458,9 +1512,6 @@
         grid-template-columns: repeat(6,1fr);
         grid-gap: 1px;
     }
-
-
-
     .grid-logo-Admin {
         grid-column: 1/-1;
         grid-row: 1;
@@ -1526,7 +1577,7 @@
     }
 
     ::placeholder {
-        font-family: Cooper Hewitt;
+        font-family: Cooper Hewitt, Helvetica, Arial, sans-serif;
         color: white;
         font-weight: normal;
     }

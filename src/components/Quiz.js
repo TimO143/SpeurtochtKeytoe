@@ -27,7 +27,6 @@ class Quiz extends React.Component {
                     :
                     ''
                     }
-
                 <div className='grid-question'>
                     <Question content={this.props.question} />
                     {console.log(this.props.levens)}

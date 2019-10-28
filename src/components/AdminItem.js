@@ -11,8 +11,8 @@ const AdminItem = ({ toggleEditing, item, onChange, index, onDelete, onSubmit, F
             ?
             <div className="adminInputs">
                 <form>
+                    <label>Positie:</label>
                             <div>
-                                <label>Positie:</label>
                         <input className = "admin-item-input"
                             type='number'
                             name='position'
@@ -21,10 +21,10 @@ const AdminItem = ({ toggleEditing, item, onChange, index, onDelete, onSubmit, F
                             onChange={e => onChange(e, index)}
                             required
                                 />
-                            </div>
-                            
-                                <label>Vraag:</label>
-                        <input className = "admin-item-input"
+                    </div>
+                    <label>Vraag:</label>
+                    <div>
+                        <textarea className = "admin-item-input"
                             type='text'
                             name='question'
                             placeholder='Vraag'
@@ -32,9 +32,9 @@ const AdminItem = ({ toggleEditing, item, onChange, index, onDelete, onSubmit, F
                             onChange={e => onChange(e, index)}
                             required
                                 />
-                    
+                    </div>
+                    <label>  Antwoord:</label>
                     <div>
-                        <label>  Antwoord:</label>
                         <input className="admin-item-input"
                             type='text'
                             name='answer'
@@ -44,8 +44,8 @@ const AdminItem = ({ toggleEditing, item, onChange, index, onDelete, onSubmit, F
                             required
                         />
                     </div>
+                    <label> Hint:</label>
                             <div>
-                               <label> Hint:</label>
                         <input className = "admin-item-input"
                             type='text'
                             name='hint'

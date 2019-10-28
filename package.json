@@ -10,18 +10,19 @@
     "prop-types": "^15.6.2",
     "react": "^16.6.0",
     "react-dom": "^16.6.0",
+    "react-konami-code": "^1.4.0",
     "react-redux": "^6.0.0",
     "react-scripts": "2.0.4",
     "react-transition-group": "^1.2.1",
     "redux": "^4.0.4",
     "typeface-cooper-hewitt": "0.0.44"
   },
-    "scripts": {
-        "start": "react-scripts start",
-        "build": "react-scripts build",
-        "test": "react-scripts test",
-        "eject": "react-scripts eject"
-    },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
   "eslintConfig": {
     "extends": "react-app"
   },
@@ -30,5 +31,8 @@
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ]
+  ],
+  "devDependencies": {
+    "supertest": "^4.0.2"
+  }
 }

@@ -47,7 +47,7 @@ class Result extends React.Component {
                     {/* this.props.nameRe takes value from nameRe in reducer */}
                     {/* <strong>{this.props.nameRe}, {this.props.scoreRe}</strong>  */}
                     <p className='scoreboardName'>
-                    <button className="goButAdminPanel" onClick={e => { e.preventDefault(); this.renderWelkom() }}> {'<'} </button>
+                        <button style={{ textDecoration: 'none',fontSize:'100%' }} className="goButAdminPanel" onClick={e => { e.preventDefault(); this.renderWelkom() }}> {'<'} </button>
                         RANGLIJST</p>
                     <table id="scoreBoard">
                         <tbody>

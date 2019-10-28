@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
+import Hint from './components/Hint';
 
 it('renders without crashing', () => {
-  const div = document.createElement('div');
-  ReactDOM.render(<App />, div);
+    const div = document.createElement('div');
+    ReactDOM.render(<Hint/>, div);
   ReactDOM.unmountComponentAtNode(div);
 });

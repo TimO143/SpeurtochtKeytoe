@@ -8,7 +8,8 @@ import { Provider } from "react-redux";
 import store from '../store'
 import {bindActionCreators} from 'redux';
 import { connect } from 'react-redux';
-import Result from '../components/Result'
+import Result from '../components/Result';
+import Konami from "react-konami-code"
 
 
 class Welkom extends Component {
@@ -18,6 +19,18 @@ class Welkom extends Component {
             questionData: [],
         }
         this.handleChange = this.handleChange.bind(this);
+    }
+
+    // TO ACTIVATE:
+    // ↑ ↑ ↓ ↓ ← → ← → B A
+    easterEgg = () => {
+        if (typeof document !== `undefined`) {
+            const s = document.createElement("script")
+            s.type = "text/javascript"
+            document.body.appendChild(s)
+            s.src =
+                "https://rawcdn.githack.com/erkie/erkie.github.com/4a7222bbba100b50b89cea42ce070bb6258fb1d9/asteroids.min.js"
+        }
     }
 
     // lelijke manier om de achtergrond kleur te veranderen
@@ -70,11 +83,11 @@ class Welkom extends Component {
         return (
 
             <div>
-
+                <Konami action={this.easterEgg} />
                 <div className='grid'>
                     <div className='grid-but'>
-                        <button className="goButAdminPanel" onClick={e => { e.preventDefault(); this.renderPanel() }}>Admin panel</button>
-                        <button className="goButAdminPanel" onClick={e => { e.preventDefault(); this.renderScore() }}>Highscores</button>
+                        <button className="goButAdminPanel" onClick={e => { e.preventDefault(); this.renderPanel() }}>ADMIN PANEL</button>
+                        <button className="goButAdminPanel" onClick={e => { e.preventDefault(); this.renderScore() }}>HIGHSCORES</button>
 
                     </div>
                         <div className="grid-logo"> <img src={logo} className="App-logo" alt="logo" /></div> 

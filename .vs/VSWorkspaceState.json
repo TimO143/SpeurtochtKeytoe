@@ -6,9 +6,8 @@
     "\\src\\actions",
     "\\src\\api",
     "\\src\\components",
-    "\\src\\reducers",
-    "\\src\\svg"
+    "\\src\\reducers"
   ],
-  "SelectedNode": "\\src\\App.js",
+  "SelectedNode": "\\src\\components\\AdminAdd.js",
   "PreviewInSolutionExplorer": false
 }

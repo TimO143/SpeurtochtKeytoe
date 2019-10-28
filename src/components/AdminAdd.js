@@ -4,7 +4,9 @@ import PropTypes from 'prop-types'
 
 const AdminAdd = ({ question, hint, answer, position, onChange, onSubmit, onPost, FormValid}) => (
     <div >
+
         <form >
+            <label> Positie:</label>
             <div>
                 <input className = "goInputQuestions"
                     type='number'
@@ -13,10 +15,12 @@ const AdminAdd = ({ question, hint, answer, position, onChange, onSubmit, onPost
                     name='position'
                     onChange={onChange}
                     required
+                    
                 />
             </div>
+            <label> Vraag:</label>
             <div>
-            <input className = "goInputQuestions"
+            <textarea className = "goInputQuestions"
                 type='text'
                 placeholder='Vraag'
                 value={question}
@@ -24,7 +28,8 @@ const AdminAdd = ({ question, hint, answer, position, onChange, onSubmit, onPost
                     onChange={onChange}
                     required
                 />
-                </div>
+            </div>
+            <label> Antwoord:</label>
             <div>
                 <input className = "goInputQuestions"
                     type='text'
@@ -35,6 +40,7 @@ const AdminAdd = ({ question, hint, answer, position, onChange, onSubmit, onPost
                     required
                 />
             </div>
+            <label> Hint:</label>
             <div>
                 <input className="goInputQuestions"
                     type='text'
@@ -45,7 +51,7 @@ const AdminAdd = ({ question, hint, answer, position, onChange, onSubmit, onPost
                     required
                 />
             </div>
-            <button className = "addQuestionButton" type='submit' onClick={onSubmit} disabled={!FormValid}>SAVE</button>
+            <button className = "addQuestionButton" type='submit' onClick={onSubmit} disabled={!FormValid}>TOEVOEGEN</button>
 
         </form>
     </div>)

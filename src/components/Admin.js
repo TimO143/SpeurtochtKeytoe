@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import logo from '../svg/keytoe_icon_RGB.svg';
 import Welkom from './Welkom';
 import ReactDOM from 'react-dom';
@@ -7,10 +7,9 @@ import store from '../store';
 import AdminAdd from './AdminAdd'
 import AdminItem from './AdminItem'
 import URL from './constant'
-import edit from '../svg/edit.svg';
 import close from '../svg/close.png';
-import save from '../svg/save.svg';
 import previous from '../svg/previous.svg';
+import Konami from "react-konami-code";
 
 class Admin extends React.Component {
     constructor() {
@@ -18,7 +17,7 @@ class Admin extends React.Component {
         this.state = {
             questionData: [],
             id: 0,
-            position:0,
+            position:null,
             question: '',
             hint: '',
             answer: '',
@@ -31,7 +30,17 @@ class Admin extends React.Component {
         }
     }
     
-
+    // TO ACTIVATE:
+    // ↑ ↑ ↓ ↓ ← → ← → B A
+    easterEgg = () => {
+        if (typeof document !== `undefined`) {
+            const s = document.createElement("script")
+            s.type = "text/javascript"
+            document.body.appendChild(s)
+            s.src =
+                "https://rawcdn.githack.com/erkie/erkie.github.com/4a7222bbba100b50b89cea42ce070bb6258fb1d9/asteroids.min.js"
+        }
+    }
 
     // haalt de informatie uit de database op ( GET ) en voegt het toe aan items[]
     componentDidMount() {
@@ -42,7 +51,7 @@ class Admin extends React.Component {
         fetch(url)
             .then(res => res.json())
             .then(data => {
-                console.log(data)
+                //console.log(data)
                 this.setState({ items: data , serverStatus: true})
             }).catch(err =>
             console.log(err))
@@ -265,8 +274,11 @@ class Admin extends React.Component {
         const {id,question,hint,answer,position} = this.state
         return (
             <div>
-                <button className="goButHomepage" onClick={e => { e.preventDefault(); this.renderPanel() }}>Welkomscherm</button>
+                <Konami action={this.easterEgg} />
                 <div className="grid">
+                    <div className='grid-but-admin'>
+                    <button className="goButAdminPanel" style={{ color: 'black' }} onClick={e => { e.preventDefault(); this.renderPanel() }}>WELKOMSCHERM</button>
+                    </div>
                     <div className='grid-logo'>
                         <img src={logo} className="App-logo-admin" alt="logo" />
                     </div>
@@ -277,6 +289,16 @@ class Admin extends React.Component {
 
                     <div className="grid-admin-add">
                         <div className="admin-add">
+                            <p className='admin-add-gebruik'>
+                                Instructie: <br /><br />
+                                Positie: <br />Als hoeveelste de vraag wordt gesteld<br />
+                                <br />
+                                
+                                <img src={close} alt='close' width="21px" height="21px"></img> : Delete knop - Als je hier op klikt dan verwijder je de vraag definitief uit de database <br /><br />
+                                <img src={previous} alt='prev' width="21px" height="21px"></img> : Met deze knop ga je uit de edit van een vraag, Deze knop slaat je veranderingen niet op, maar onthoud ze wel zolang je op de pagina bent. Dus vergeet niet op Save-button te klikken<br /><br />
+    
+
+                            </p>
                             <h1>Voeg vraag toe - Totaal aantal vragen: {this.state.items.length}</h1>
                             <div>
                             </div>

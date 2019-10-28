@@ -49,11 +49,14 @@ class Panel extends React.Component {
         const isEnabled = this.canBeSubmitted();
             return (
                 <div>
-                    <button className = "goButAdminPanel" onClick={this.renderWelkom} >De Quiz</button>
                     <form>
                         <div className = "grid">
                         <div className="grid-logo-Admin"> <img src={logo} className="App-logo" alt="logo" /></div>
-                            <div className = "grid-loginText">
+
+                            <div className='grid-but'>
+                                <button className="goButAdminPanel" onClick={this.renderWelkom} >DE QUIZ</button>
+                            </div>
+                                <div className="grid-loginText">
                                 <h1 className = "loginText">INLOGGEN</h1>
                             </div>
                             <div className = "grid-username">
